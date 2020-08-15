@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import Button from '../common/Button';
+
 const NavBar = styled.div`
   display: flex;
   padding: 40px 120px;
@@ -13,6 +15,10 @@ const NavMenu = styled.div`
 
 const NavLogo = styled.div`
   color: #fff;
+`;
+
+const NavLinks = styled.div`
+  flex: 1;
 `;
 
 const Ul = styled.ul`
@@ -28,7 +34,7 @@ const Li = styled.li`
     content: '';
     width: 0;
     height: 2px;
-    background: yellow;
+    background: #cf3e58;
     display: block;
     margin: auto;
     transition: 0.5s;
@@ -43,16 +49,6 @@ const SLink = styled(Link)`
   font-size: 13px;
 `;
 
-const Button = styled.button`
-  margin-left: auto;
-  height: 35px;
-  padding: 10px 20px;
-  border: 0;
-  background: yellow;
-  font-weight: bold;
-  cursor: pointer;
-`;
-
 const Header = () => {
   return (
     <NavBar>
@@ -65,17 +61,19 @@ const Header = () => {
           </h1>
         </NavLogo>
 
-        <Ul>
-          <Link to='#'>
-            <Li>HOME</Li>
-          </Link>
-          <Link to='#'>
-            <Li>ABOUT</Li>
-          </Link>
-          <Link to='#'>
-            <Li>RECIPE</Li>
-          </Link>
-        </Ul>
+        <NavLinks>
+          <Ul>
+            <Link to='#'>
+              <Li>HOME</Li>
+            </Link>
+            <Link to='#'>
+              <Li>ABOUT</Li>
+            </Link>
+            <Link to='#'>
+              <Li>RECIPE</Li>
+            </Link>
+          </Ul>
+        </NavLinks>
       </NavMenu>
       <Button>SIGN IN</Button>
     </NavBar>

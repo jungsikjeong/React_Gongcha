@@ -1,8 +1,11 @@
 import React from 'react';
 import Header from '../Header/Header';
 import styled from 'styled-components';
-
 import baImage from '../../assets/background.jpg';
+
+import Button from '../common/Button';
+import LeftSideBar from '../Layouts/LeftSideBar';
+import MainFooter from '../Layouts/MainFooter';
 
 const Container = styled.div`
   height: 100vh;
@@ -14,10 +17,36 @@ const Container = styled.div`
   position: relative;
 `;
 
+const BannerTitle = styled.div`
+  margin: 80px 130px;
+  color: #fff;
+
+  h1 {
+    font-size: 64px;
+    margin-bottom: 30px;
+  }
+
+  span {
+    color: #cf3e58;
+    opacity: 0.8;
+  }
+`;
+
 const Main = () => {
   return (
     <Container>
       <Header />
+      <BannerTitle>
+        <h1>
+          <span>Tea</span>로 시작하는 <br />
+          <span>The</span> 기분 좋은 아침!
+        </h1>
+        <Button>EXPLORE</Button>
+
+        <LeftSideBar />
+
+        <MainFooter />
+      </BannerTitle>
     </Container>
   );
 };

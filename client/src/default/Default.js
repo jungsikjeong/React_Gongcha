@@ -70,6 +70,7 @@ const Default = () => {
           EXPLORE
         </button>
       </div>
+
       <div className='vertical-bar'>
         <div className='search-icon'>
           <FaList className='icon' />
@@ -82,6 +83,7 @@ const Default = () => {
           <FaPinterestP className='icon' />
         </div>
       </div>
+
       <div className='notifications'>
         <div className='contents'>
           <small>
