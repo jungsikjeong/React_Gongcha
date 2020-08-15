@@ -1,13 +1,13 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-}
+} */
 
-.hero {
+/* .hero {
   height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)),
-    url(../../assets/background.jpg);
+    url(../assets/background.jpg);
   background-position: center;
   background-size: cover;
   overflow-x: hidden;
@@ -20,7 +20,7 @@
 }
 
 .nav-logo h1 {
-  /* 임시 */
+  
   color: #fff;
 }
 
@@ -45,7 +45,7 @@
   font-size: 13px;
 }
 
-/* 밑줄그음 */
+
 .nav-links ul li::after {
   content: '';
   width: 0;
@@ -82,7 +82,7 @@
 }
 
 .banner-title h1 span {
-  /* 색상 노랑으로했었음 */
+  
   color: #fff;
   opacity: 0.8;
 }
@@ -100,7 +100,7 @@
   width: 80px;
 }
 
-/* 강의에선 .search-icon fa */
+
 .search-icon .icon {
   margin: 45px 23px;
   display: block;
@@ -145,7 +145,7 @@
 
 .notification-img {
   flex-basis: 50%;
-  /* 이미지 꽉 채우기위해서 사용 */
+  이미지 꽉 채우기위해서 사용
   display: flex;
   align-items: center;
   justify-content: center;
@@ -224,4 +224,4 @@
     margin-left: 25px;
     margin-top: 10px;
   }
-}
+} */
