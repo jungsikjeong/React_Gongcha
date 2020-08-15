@@ -7,11 +7,23 @@ import { FiFacebook } from 'react-icons/fi';
 import { FiInstagram } from 'react-icons/fi';
 import { FiTwitter } from 'react-icons/fi';
 import { FaPinterestP } from 'react-icons/fa';
+import { FaBars } from 'react-icons/fa';
+import { RiCloseLine } from 'react-icons/ri';
 
 import './Main.css';
 import smallImage from '../../assets/small-img.jpg';
 
 const Main = () => {
+  var show = document.getElementById('nav-links');
+
+  const onShowMenu = () => {
+    show.style.right = '0';
+  };
+
+  const onCloseMenu = () => {
+    show.style.right = '-200px';
+  };
+
   return (
     <div className='hero'>
       <div className='nav-bar'>
@@ -23,7 +35,13 @@ const Main = () => {
           </h1>
         </div>
 
-        <div className='nav-links'>
+        <div className='nav-links' id='nav-links'>
+          <RiCloseLine
+            className='icon-bars'
+            style={{ fontWeight: 'bold', fontSize: '2rem' }}
+            onClick={onCloseMenu}
+          />
+
           <ul>
             <Link to='#'>
               <li>HOME</li>
@@ -40,6 +58,8 @@ const Main = () => {
           </button>
         </div>
       </div>
+
+      <FaBars className='icon-bars' onClick={onShowMenu} />
 
       <div className='banner-title'>
         <h1>

@@ -166,3 +166,62 @@
   text-align: right;
   margin-top: 10px;
 }
+
+.icon-bars {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .vertical-bar {
+    display: none;
+  }
+
+  .banner-title {
+    margin: 80px 40px;
+  }
+
+  .banner-title h1 {
+    font-size: 50px;
+  }
+
+  .notifications {
+    width: 100%;
+  }
+
+  .nav-bar {
+    padding: 10px 30px;
+  }
+
+  .icon-bars {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    display: block;
+    color: #fff;
+    margin: 10px 25px;
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    height: 100vh;
+    width: 200px;
+    background: #000;
+    top: 0;
+    right: -200px;
+    position: absolute;
+    text-align: left;
+    z-index: 2;
+    transition: 0.5s;
+  }
+
+  .nav-links ul a {
+    display: block;
+  }
+
+  .nav-links .btn {
+    float: none;
+    margin-left: 25px;
+    margin-top: 10px;
+  }
+}
