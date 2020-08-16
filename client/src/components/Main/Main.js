@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../Header/Header';
 import styled from 'styled-components';
 import baImage from '../../assets/background.jpg';
+import WOW from 'wowjs';
 
-import Button from '../common/Button';
+// import Button from '../common/Button';
 import LeftSideBar from '../Layouts/LeftSideBar';
 import MainFooter from '../Layouts/MainFooter';
 
@@ -33,15 +34,23 @@ const BannerTitle = styled.div`
 `;
 
 const Main = () => {
+  useEffect(() => {
+    new WOW.WOW().init();
+  }, []);
   return (
     <Container>
       <Header />
+
       <BannerTitle>
-        <h1>
+        <h1
+          className='wow fadeInDown'
+          data-wow-iteration='1'
+          data-wow-delay='1s'
+        >
           <span>Tea</span>로 시작하는 <br />
           <span>The</span> 기분 좋은 아침!
         </h1>
-        <Button>EXPLORE</Button>
+        {/* <Button>EXPLORE</Button> */}
 
         <LeftSideBar />
 

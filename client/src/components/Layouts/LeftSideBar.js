@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import WOW from 'wowjs';
 
 import { BsSearch } from 'react-icons/bs';
 import { FaList } from 'react-icons/fa';
@@ -51,8 +52,16 @@ const SocialIconBox = styled.div`
 `;
 
 const LeftSideBar = () => {
+  useEffect(() => {
+    new WOW.WOW().init();
+  }, []);
+
   return (
-    <LeftSideBarContainer>
+    <LeftSideBarContainer
+      className='wow fadeInLeft'
+      data-wow-iteration='1'
+      data-wow-delay='1s'
+    >
       <SearchIconBox>
         <FaList className='icon' />
         <BsSearch className='icon' />
