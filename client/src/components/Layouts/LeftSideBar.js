@@ -6,8 +6,8 @@ import { BsSearch } from 'react-icons/bs';
 import { FaList } from 'react-icons/fa';
 import { FiFacebook } from 'react-icons/fi';
 import { FiInstagram } from 'react-icons/fi';
-import { FiTwitter } from 'react-icons/fi';
-import { FaPinterestP } from 'react-icons/fa';
+import { FiHome } from 'react-icons/fi';
+import { GoMarkGithub } from 'react-icons/go';
 import { FaBars } from 'react-icons/fa';
 import { RiCloseLine } from 'react-icons/ri';
 
@@ -70,8 +70,8 @@ const LeftSideBar = () => {
       <SocialIconBox>
         <FiFacebook className='icon' />
         <FiInstagram className='icon' />
-        <FiTwitter className='icon' />
-        <FaPinterestP className='icon' />
+        <FiHome className='icon' />
+        <GoMarkGithub className='icon' />
       </SocialIconBox>
     </LeftSideBarContainer>
   );

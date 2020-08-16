@@ -45,7 +45,7 @@ const Main = () => {
         <h1
           className='wow fadeInDown'
           data-wow-iteration='1'
-          data-wow-delay='1s'
+          data-wow-delay='1.8s'
         >
           <span>Tea</span>로 시작하는 <br />
           <span>The</span> 기분 좋은 아침!
