@@ -16,6 +16,10 @@ const MainFooterContainer = styled.div`
   bottom: 0;
   position: absolute;
   background: rgba(0, 0, 0, 0.3);
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 const Contents = styled.div`

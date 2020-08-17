@@ -17,6 +17,10 @@ const LeftSideBarContainer = styled.div`
   top: 0;
   left: 0;
   background: #000;
+
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;
 
 const SearchIconBox = styled.div`

@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-  margin-left: auto;
-  height: 35px;
-  padding: 10px 20px;
   border: 0;
-  background: #fff5f5;
+  color: #fff;
+  font-weight: bold;
+  border: 1px solid #fff;
+  font-size: 17px;
+  background: rgba(0, 0, 0, 0);
   font-weight: bold;
   cursor: pointer;
 `;

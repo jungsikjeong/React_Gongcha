@@ -13,7 +13,7 @@ code {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  box-sizing: boerder-box;
+  box-sizing: inherit;
 }
 
 a {

@@ -2,11 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import { RiCloseLine } from 'react-icons/ri';
+
 import Button from '../common/Button';
 
 const NavBar = styled.div`
   display: flex;
   padding: 40px 120px;
+
+  @media (max-width: 700px) {
+    padding: 10px 30px;
+  }
 `;
 
 const NavMenu = styled.div`
@@ -18,11 +24,47 @@ const NavLogo = styled.div`
 `;
 
 const NavLinks = styled.div`
+  display: flex;
   flex: 1;
+  align-items: center;
+
+  .icon-bars {
+    display: none;
+  }
+
+  @media (max-width: 700px) {
+    height: 100vh;
+    width: 200px;
+    background: #000;
+    top: 0;
+    /* right: -200px; */
+    right: 0;
+    position: absolute;
+    text-align: left;
+    z-index: 2;
+    transition: 0.5s;
+
+    .icon-bars {
+      display: block;
+      position: absolute;
+      /* right: 20px; */
+      top: 0px;
+      display: block;
+      color: #fff;
+      margin: 10px 25px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+  }
 `;
 
 const Ul = styled.ul`
   margin-left: 50px;
+
+  @media (max-width: 700px) {
+    margin-left: 9px;
+    margin-top: 45px;
+  }
 `;
 
 const Li = styled.li`
@@ -47,6 +89,26 @@ const Li = styled.li`
 
 const SLink = styled(Link)`
   font-size: 13px;
+
+  @media (max-width: 700px) {
+    display: block;
+  }
+`;
+
+const ButtonStyle = styled(Button)`
+  position: absolute;
+  height: 30px;
+  right: 3rem;
+
+  @media (max-width: 700px) {
+    position: absolute;
+    left: 305px;
+    top: 10rem;
+    z-index: 2;
+    margin-left: 25px;
+    margin-right: 50px;
+    margin-top: 10px;
+  }
 `;
 
 const Header = () => {
@@ -62,6 +124,12 @@ const Header = () => {
         </NavLogo>
 
         <NavLinks>
+          <RiCloseLine
+            className='icon-bars'
+            style={{ fontWeight: 'bold', fontSize: '2rem' }}
+            // onClick={onCloseMenu}
+          />
+
           <Ul>
             <Link to='#'>
               <Li>HOME</Li>
@@ -73,9 +141,9 @@ const Header = () => {
               <Li>RECIPE</Li>
             </Link>
           </Ul>
+          <ButtonStyle>SIGN IN</ButtonStyle>
         </NavLinks>
       </NavMenu>
-      <Button>SIGN IN</Button>
     </NavBar>
   );
 };

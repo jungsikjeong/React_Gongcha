@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import baImage from '../../assets/background.jpg';
 import WOW from 'wowjs';
 
-// import Button from '../common/Button';
 import LeftSideBar from '../Layouts/LeftSideBar';
 import MainFooter from '../Layouts/MainFooter';
+import { FaBars } from 'react-icons/fa';
 
 const Container = styled.div`
   height: 100vh;
@@ -16,6 +16,21 @@ const Container = styled.div`
   background-size: cover;
   overflow-x: hidden;
   position: relative;
+
+  .open-icon {
+    display: none;
+    @media (max-width: 700px) {
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      color: #fff;
+      margin: 10px 25px;
+      font-size: 22px;
+      z-index: 2;
+      cursor: pointer;
+    }
+  }
 `;
 
 const BannerTitle = styled.div`
@@ -31,6 +46,14 @@ const BannerTitle = styled.div`
     color: #cf3e58;
     opacity: 0.8;
   }
+
+  @media (max-width: 700px) {
+    margin: 80px 40px;
+
+    h1 {
+      font-size: 50px;
+    }
+  }
 `;
 
 const Main = () => {
@@ -40,6 +63,8 @@ const Main = () => {
   return (
     <Container>
       <Header />
+      {/* onClick={onShowMenu} */}
+      <FaBars className='open-icon' />
 
       <BannerTitle>
         <h1
