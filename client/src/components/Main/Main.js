@@ -23,7 +23,7 @@ const Container = styled.div`
       display: block;
       position: absolute;
       right: 20px;
-      top: 10px;
+      top: 5px;
       color: #fff;
       margin: 10px 25px;
       font-size: 22px;
@@ -60,6 +60,7 @@ const Main = () => {
   useEffect(() => {
     new WOW.WOW().init();
   }, []);
+
   return (
     <Container>
       <Header />

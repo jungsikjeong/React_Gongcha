@@ -33,6 +33,7 @@ const NavLinks = styled.div`
   }
 
   @media (max-width: 700px) {
+    display: block;
     height: 100vh;
     width: 200px;
     background: #000;
@@ -97,17 +98,44 @@ const SLink = styled(Link)`
 
 const ButtonStyle = styled(Button)`
   position: absolute;
-  height: 30px;
   right: 3rem;
+
+  ::after {
+    content: '';
+    width: 0;
+    height: 2px;
+    background: #cf3e58;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+  }
+
+  :hover::after {
+    width: 100%;
+  }
 
   @media (max-width: 700px) {
     position: absolute;
-    left: 305px;
+    left: 0px;
     top: 10rem;
     z-index: 2;
-    margin-left: 25px;
+    margin-left: 33px;
     margin-right: 50px;
     margin-top: 10px;
+
+    ::after {
+      content: '';
+      width: 0;
+      height: 2px;
+      background: #cf3e58;
+      display: block;
+      margin: auto;
+      transition: 0.5s;
+    }
+
+    :hover::after {
+      width: 100%;
+    }
   }
 `;
 
