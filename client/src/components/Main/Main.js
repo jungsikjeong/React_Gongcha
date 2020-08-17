@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import styled from 'styled-components';
 import baImage from '../../assets/background.jpg';
@@ -19,7 +19,8 @@ const Container = styled.div`
 
   .open-icon {
     display: none;
-    @media (max-width: 700px) {
+
+    @media (max-width: 768px) {
       display: block;
       position: absolute;
       right: 20px;
@@ -47,7 +48,7 @@ const BannerTitle = styled.div`
     opacity: 0.8;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     margin: 80px 40px;
 
     h1 {
@@ -57,15 +58,29 @@ const BannerTitle = styled.div`
 `;
 
 const Main = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuActive, setMenuActive] = useState(true);
+
   useEffect(() => {
     new WOW.WOW().init();
   }, []);
 
+  // 테스트
+  const onShowMenu = () => {
+    setMenuOpen(true);
+    setMenuActive(false);
+  };
+
+  const onCloseMenu = () => {
+    setMenuOpen(false);
+    setMenuActive(true);
+  };
+
   return (
     <Container>
-      <Header />
-      {/* onClick={onShowMenu} */}
-      <FaBars className='open-icon' />
+      <Header onCloseMenu={onCloseMenu} menuOpen={menuOpen} />
+
+      {menuActive && <FaBars className='open-icon' onClick={onShowMenu} />}
 
       <BannerTitle>
         <h1

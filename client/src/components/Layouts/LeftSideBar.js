@@ -18,7 +18,7 @@ const LeftSideBarContainer = styled.div`
   left: 0;
   background: #000;
 
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;

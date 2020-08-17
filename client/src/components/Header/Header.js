@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ const NavBar = styled.div`
   display: flex;
   padding: 40px 120px;
 
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     padding: 10px 30px;
   }
 `;
@@ -32,18 +32,16 @@ const NavLinks = styled.div`
     display: none;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     display: block;
     height: 100vh;
     width: 200px;
-    background: #000;
+    background: rgba(0, 0, 0, 0.8);
     top: 0;
-    /* right: -200px; */
     right: 0;
     position: absolute;
     text-align: left;
     z-index: 2;
-    transition: 0.5s;
 
     .icon-bars {
       display: block;
@@ -62,7 +60,7 @@ const NavLinks = styled.div`
 const Ul = styled.ul`
   margin-left: 50px;
 
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     margin-left: 9px;
     margin-top: 45px;
   }
@@ -91,7 +89,7 @@ const Li = styled.li`
 const SLink = styled(Link)`
   font-size: 13px;
 
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     display: block;
   }
 `;
@@ -114,7 +112,7 @@ const ButtonStyle = styled(Button)`
     width: 100%;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     position: absolute;
     left: 0px;
     top: 10rem;
@@ -139,7 +137,7 @@ const ButtonStyle = styled(Button)`
   }
 `;
 
-const Header = () => {
+const Header = ({ onCloseMenu, menuOpen }) => {
   return (
     <NavBar>
       <NavMenu>
@@ -150,27 +148,28 @@ const Header = () => {
             공차
           </h1>
         </NavLogo>
+        {menuOpen && (
+          <NavLinks>
+            <RiCloseLine
+              className='icon-bars'
+              style={{ fontWeight: 'bold', fontSize: '2rem' }}
+              onClick={onCloseMenu}
+            />
 
-        <NavLinks>
-          <RiCloseLine
-            className='icon-bars'
-            style={{ fontWeight: 'bold', fontSize: '2rem' }}
-            // onClick={onCloseMenu}
-          />
-
-          <Ul>
-            <Link to='#'>
-              <Li>HOME</Li>
-            </Link>
-            <Link to='#'>
-              <Li>ABOUT</Li>
-            </Link>
-            <Link to='#'>
-              <Li>RECIPE</Li>
-            </Link>
-          </Ul>
-          <ButtonStyle>SIGN IN</ButtonStyle>
-        </NavLinks>
+            <Ul>
+              <Link to='#'>
+                <Li>HOME</Li>
+              </Link>
+              <Link to='#'>
+                <Li>ABOUT</Li>
+              </Link>
+              <Link to='#'>
+                <Li>RECIPE</Li>
+              </Link>
+            </Ul>
+            <ButtonStyle>SIGN IN</ButtonStyle>
+          </NavLinks>
+        )}
       </NavMenu>
     </NavBar>
   );

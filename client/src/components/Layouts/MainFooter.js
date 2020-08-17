@@ -17,7 +17,7 @@ const MainFooterContainer = styled.div`
   position: absolute;
   background: rgba(0, 0, 0, 0.3);
 
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     width: 100%;
   }
 `;
