@@ -57,6 +57,16 @@ const NavLinks = styled.div`
   }
 `;
 
+const DesktopNavLinks = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
 const Ul = styled.ul`
   margin-left: 50px;
 
@@ -148,6 +158,24 @@ const Header = ({ onCloseMenu, menuOpen }) => {
             공차
           </h1>
         </NavLogo>
+
+        {/*메뉴  데스크탑 사이즈에서 활성화 */}
+        <DesktopNavLinks>
+          <Ul>
+            <Link to='#'>
+              <Li>HOME</Li>
+            </Link>
+            <Link to='#'>
+              <Li>ABOUT</Li>
+            </Link>
+            <Link to='#'>
+              <Li>RECIPE</Li>
+            </Link>
+          </Ul>
+          <ButtonStyle>SIGN IN</ButtonStyle>
+        </DesktopNavLinks>
+
+        {/* 메뉴 모바일 사이즈에서 활성화  */}
         {menuOpen && (
           <NavLinks>
             <RiCloseLine
