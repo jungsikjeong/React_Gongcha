@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../Header/Header';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import bgImage from '../../assets/background.jpg';
 import WOW from 'wowjs';
 
@@ -24,11 +24,12 @@ const BannerTitle = styled.div`
   h1 {
     font-size: 64px;
     margin-bottom: 30px;
-  }
+    letter-spacing: -5px;
 
-  span {
-    color: #cf3e58;
-    opacity: 0.8;
+    .textColor {
+      color: #cf3e58;
+      opacity: 0.8;
+    }
   }
 
   @media (max-width: 768px) {
@@ -36,6 +37,7 @@ const BannerTitle = styled.div`
 
     h1 {
       font-size: 50px;
+      letter-spacing: -5px;
     }
   }
 `;
@@ -50,13 +52,9 @@ const Main = () => {
       <Header />
 
       <BannerTitle>
-        <h1
-          className='wow fadeInDown'
-          data-wow-iteration='1'
-          data-wow-delay='.7s'
-        >
-          <span>Tea</span>로 시작하는 <br />
-          <span>The</span> 기분 좋은 아침!
+        <h1 className='wow fadeIn' data-wow-iteration='1' data-wow-delay='1.5s'>
+          <span className='textColor'>Tea</span> 로 시작하는 <br />
+          <span className='textColor'>The</span> 기분 좋은 아침!
         </h1>
         {/* <Button>EXPLORE</Button> */}
 

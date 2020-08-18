@@ -11,17 +11,21 @@ import imageFour from '../../assets/about-img04.jpg';
 import LeftSideBar from './LeftSideBar';
 import Header from '../Header/Header';
 
-// const ScreenFrames = keyframes`
-//  from{
-//   opacity:.6;
-//  }
-//  to{
-//   opacity:1;
-//  }
-// `;
+// 페이지 전환효과
+const ScreenFrames = keyframes`
+ from{
+  opacity:0.9;
+  transform:translateY(-10px);
+ }
+ to{
+  opacity:1;
+  transform:translateY(0);
+ }
+`;
 
 const AboutContainer = styled.div`
   background: black;
+  animation: ${ScreenFrames} 0.75s;
 `;
 
 const Section = styled.div`
@@ -41,16 +45,6 @@ const Section = styled.div`
   .Section-text {
     position: relative;
     width: 100%;
-
-    /* ::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 1px;
-      height: 100%;
-      background: red;
-    } */
 
     h1,
     h3 {
@@ -73,8 +67,6 @@ const Section = styled.div`
 `;
 
 const About = () => {
-  // const [] = useState(true);
-
   return (
     <AboutContainer>
       <Header />
