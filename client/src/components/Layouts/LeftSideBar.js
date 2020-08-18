@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import WOW from 'wowjs';
 import { Link } from 'react-router-dom';
 
+import { FaPagelines } from 'react-icons/fa';
 import { BsSearch } from 'react-icons/bs';
-import { FaList } from 'react-icons/fa';
 import { FiFacebook } from 'react-icons/fi';
 import { FiInstagram } from 'react-icons/fi';
 import { FiHome } from 'react-icons/fi';
@@ -34,6 +34,12 @@ const SearchIconBox = styled.div`
     color: #fff;
     font-size: 30px;
     cursor: pointer;
+    transition: 0.6s;
+
+    :hover {
+      /* 마우스 위로 올리면 아이콘 위로 올라감 */
+      transform: translate(0, -10px);
+    }
   }
 `;
 
@@ -92,7 +98,9 @@ const LeftSideBar = () => {
       data-wow-delay='.3s'
     >
       <SearchIconBox>
-        <FaList className='icon' />
+        <Link to='/postList'>
+          <FaPagelines className='icon' style={{ color: '#02b875' }} />
+        </Link>
         <BsSearch className='icon' />
       </SearchIconBox>
 

@@ -142,7 +142,7 @@ const ButtonStyle = styled(Button)`
   @media (max-width: 768px) {
     position: absolute;
     left: 0px;
-    top: 10rem;
+    top: 15rem;
     z-index: 2;
     margin-left: 33px;
     margin-right: 50px;
@@ -192,7 +192,7 @@ const Header = () => {
         {/* 모바일 사이즈에서 메뉴 아이콘 */}
         {menuActive && <FaBars className='open-icon' onClick={onShowMenu} />}
 
-        {/*메뉴  데스크탑 사이즈에서 활성화 */}
+        {/*데스크탑 사이즈에서 메뉴 활성화 */}
         <DesktopNavLinks>
           <Ul>
             <Link to='/'>
@@ -208,7 +208,7 @@ const Header = () => {
           <ButtonStyle>SIGN IN</ButtonStyle>
         </DesktopNavLinks>
 
-        {/* 메뉴 모바일 사이즈에서 활성화  */}
+        {/*  모바일 사이즈에서 메뉴 활성화  */}
         {menuOpen && (
           <NavLinks>
             <RiCloseLine
@@ -226,6 +226,9 @@ const Header = () => {
               </Link>
               <Link to='/recipe'>
                 <Li>RECIPE</Li>
+              </Link>
+              <Link to='/postList'>
+                <Li>POSTS</Li>
               </Link>
             </Ul>
             <ButtonStyle>SIGN IN</ButtonStyle>
