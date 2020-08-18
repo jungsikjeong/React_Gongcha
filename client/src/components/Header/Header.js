@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { RiCloseLine } from 'react-icons/ri';
+import { FaBars } from 'react-icons/fa';
 
 import Button from '../common/Button';
 
@@ -17,6 +18,22 @@ const NavBar = styled.div`
 
 const NavMenu = styled.div`
   display: flex;
+
+  .open-icon {
+    display: none;
+
+    @media (max-width: 768px) {
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 2rem;
+      color: #fff;
+      margin: 10px 25px;
+      font-size: 22px;
+      z-index: 2;
+      cursor: pointer;
+    }
+  }
 `;
 
 const NavLogo = styled.div`
@@ -147,7 +164,20 @@ const ButtonStyle = styled(Button)`
   }
 `;
 
-const Header = ({ onCloseMenu, menuOpen }) => {
+const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuActive, setMenuActive] = useState(true);
+
+  const onShowMenu = () => {
+    setMenuOpen(true);
+    setMenuActive(false);
+  };
+
+  const onCloseMenu = () => {
+    setMenuOpen(false);
+    setMenuActive(true);
+  };
+
   return (
     <NavBar>
       <NavMenu>
@@ -155,20 +185,23 @@ const Header = ({ onCloseMenu, menuOpen }) => {
           <h1>
             공들여 <br />
             맛있는 차 <br />
-            공차
+            <span>공차</span>
           </h1>
         </NavLogo>
+
+        {/* 모바일 사이즈에서 메뉴 아이콘 */}
+        {menuActive && <FaBars className='open-icon' onClick={onShowMenu} />}
 
         {/*메뉴  데스크탑 사이즈에서 활성화 */}
         <DesktopNavLinks>
           <Ul>
-            <Link to='#'>
+            <Link to='/'>
               <Li>HOME</Li>
             </Link>
-            <Link to='#'>
+            <Link to='/about'>
               <Li>ABOUT</Li>
             </Link>
-            <Link to='#'>
+            <Link to='/recipe'>
               <Li>RECIPE</Li>
             </Link>
           </Ul>
@@ -185,13 +218,13 @@ const Header = ({ onCloseMenu, menuOpen }) => {
             />
 
             <Ul>
-              <Link to='#'>
+              <Link to='/'>
                 <Li>HOME</Li>
               </Link>
-              <Link to='#'>
+              <Link to='/about'>
                 <Li>ABOUT</Li>
               </Link>
-              <Link to='#'>
+              <Link to='/recipe'>
                 <Li>RECIPE</Li>
               </Link>
             </Ul>

@@ -13,9 +13,10 @@ import { FaBars } from 'react-icons/fa';
 import { RiCloseLine } from 'react-icons/ri';
 
 const LeftSideBarContainer = styled.div`
-  height: 100%;
-  position: absolute;
+  /* height: 100%; */
+  position: fixed;
   top: 0;
+  bottom: 0;
   left: 0;
   background: #000;
 
@@ -86,9 +87,9 @@ const LeftSideBar = () => {
 
   return (
     <LeftSideBarContainer
-    // className='wow fadeInLeft'
-    // data-wow-iteration='1'
-    // data-wow-delay='1s'
+      className='wow fadeInLeft'
+      data-wow-iteration='1'
+      data-wow-delay='.3s'
     >
       <SearchIconBox>
         <FaList className='icon' />

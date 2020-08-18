@@ -101,7 +101,7 @@ const MainFooter = () => {
     <MainFooterContainer
       className='wow fadeInUp'
       data-wow-iteration='1'
-      data-wow-delay='1s'
+      data-wow-delay='.3s'
     >
       <Contents>
         <small>
