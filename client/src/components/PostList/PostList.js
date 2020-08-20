@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import Header from '../Header/Header';
+import Header from '../Header';
 import LeftSideBar from '../Layouts/LeftSideBar';
 
 // 페이지 전환효과

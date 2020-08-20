@@ -54,6 +54,7 @@ const SocialIconBox = styled.div`
 
   .icon {
     margin: 15px 23px;
+
     display: block;
     padding: 8px;
     border: 1px solid #000;
@@ -101,7 +102,7 @@ const LeftSideBar = () => {
         <Link to='/postList'>
           <FaPagelines className='icon' style={{ color: '#02b875' }} />
         </Link>
-        <BsSearch className='icon' />
+        <BsSearch className='icon' style={{ color: '#ff5700' }} />
       </SearchIconBox>
 
       <SocialIconBox>

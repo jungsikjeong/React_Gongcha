@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { RiCloseLine } from 'react-icons/ri';
 import { FaBars } from 'react-icons/fa';
 
-import Button from '../common/Button';
+import Button from './common/Button';
 
 const NavBar = styled.div`
   display: flex;

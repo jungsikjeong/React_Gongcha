@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Main from './components/Main/Main';
-import About from './components/Layouts/About';
-import Recipe from './components/Layouts/Recipe';
+import About from './components/About';
+import Recipe from './components/Recipe';
 import PostList from './components/PostList/PostList';
 
 const App = () => {
@@ -11,8 +11,6 @@ const App = () => {
     <Router>
       <Fragment>
         <Route exact path='/' component={Main} />
-        {/* <Route exact path='/default' component={Default} /> */}
-
         <Route path='/about' component={About} />
         <Route path='/recipe' component={Recipe} />
         <Route path='/postList' component={PostList} />

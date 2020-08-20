@@ -22,8 +22,14 @@ a {
 }
 
 ol,
-ul {
+ul,
+h2,
+p {
   list-style: none;
   margin: 0px;
   padding: 0px;
+}
+
+li {
+  list-style-type: none;
 }

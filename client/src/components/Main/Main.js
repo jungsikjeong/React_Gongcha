@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../Header/Header';
 import styled, { keyframes } from 'styled-components';
 import bgImage from '../../assets/background.jpg';
 import WOW from 'wowjs';
 
-import LeftSideBar from '../Layouts/LeftSideBar';
 import MainFooter from '../Layouts/MainFooter';
+import Header from '../Header';
 
 const Container = styled.div`
   height: 100vh;
@@ -57,8 +56,6 @@ const Main = () => {
           <span className='textColor'>The</span> 기분 좋은 아침!
         </h1>
         {/* <Button>EXPLORE</Button> */}
-
-        <LeftSideBar />
 
         <MainFooter />
       </BannerTitle>

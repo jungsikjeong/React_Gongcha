@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 // images
-import imageOwn from '../../assets/about-img01.jpg';
-import imageTwo from '../../assets/about-img02.jpg';
-import imageThree from '../../assets/about-img03.jpg';
-import imageFour from '../../assets/about-img04.jpg';
+import imageOwn from '../assets/about-img01.jpg';
+import imageTwo from '../assets/about-img02.jpg';
+import imageThree from '../assets/about-img03.jpg';
+import imageFour from '../assets/about-img04.jpg';
 
 // Components
-import LeftSideBar from './LeftSideBar';
-import Header from '../Header/Header';
+import Header from './Header';
 
 // 페이지 전환효과
 const ScreenFrames = keyframes`
@@ -24,7 +23,7 @@ const ScreenFrames = keyframes`
 `;
 
 const AboutContainer = styled.div`
-  background: black;
+  background: #000;
   animation: ${ScreenFrames} 0.75s;
 `;
 
@@ -70,7 +69,6 @@ const About = () => {
   return (
     <AboutContainer>
       <Header />
-      <LeftSideBar />
 
       <Section bgUrl={imageOwn}>
         <div className='Section-text'>
