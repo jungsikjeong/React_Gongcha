@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Header from '../Header';
-import LeftSideBar from '../Layouts/LeftSideBar';
 
 // 페이지 전환효과
 const ScreenFrames = keyframes`
@@ -18,6 +17,7 @@ const ScreenFrames = keyframes`
 const PostListContainer = styled.div`
   background: black;
   height: 100vh;
+  overflow: hidden;
 
   animation: ${ScreenFrames} 0.75s;
 `;
@@ -26,8 +26,16 @@ const PostList = () => {
   return (
     <PostListContainer>
       <Header />
-      <LeftSideBar />
-      PostLIST
+
+      <h2
+        style={{
+          color: 'white',
+          margin: '50% auto',
+          textAlign: 'center',
+        }}
+      >
+        준비중입니다.😅
+      </h2>
     </PostListContainer>
   );
 };
