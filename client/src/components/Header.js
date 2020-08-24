@@ -7,6 +7,8 @@ import { FaBars } from 'react-icons/fa';
 
 import Button from './common/Button';
 
+import logo from '../assets/logo.png';
+
 const NavBar = styled.div`
   display: flex;
   padding: 40px 120px;
@@ -38,6 +40,10 @@ const NavMenu = styled.div`
 
 const NavLogo = styled.div`
   color: #fff;
+  img {
+    vertical-align: middle;
+    width: 30px;
+  }
 `;
 
 const NavLinks = styled.div`
@@ -182,11 +188,14 @@ const Header = () => {
     <NavBar>
       <NavMenu>
         <NavLogo>
-          <h1>
-            공들여 <br />
-            맛있는 차 <br />
-            <span>공차</span>
-          </h1>
+          <Link to='/'>
+            <h1>
+              공들여 <br />
+              맛있는 차 <br />
+              공차
+              <img src={logo} alt='logo' />
+            </h1>
+          </Link>
         </NavLogo>
 
         {/* 모바일 사이즈에서 메뉴 아이콘 */}

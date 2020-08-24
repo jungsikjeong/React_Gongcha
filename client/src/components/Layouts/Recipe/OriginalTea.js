@@ -1,15 +1,13 @@
 import React, { useState, Fragment } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
-import Header from './Header';
+import Header from '../../Header';
 
-import milktea01 from '../assets/milktea01.png';
-import milktea02 from '../assets/milktea02.png';
-import milktea03 from '../assets/milktea03.jpg';
-import milktea04 from '../assets/milktea04.jpg';
-import milktea05 from '../assets/milktea05.jpg';
-import milktea06 from '../assets/milktea06.jpg';
-import bullet2 from '../assets/bullet2.png';
+import milktea07 from '../../../assets/milktea07.jpg';
+import milktea08 from '../../../assets/milktea08.jpg';
+import milktea09 from '../../../assets/milktea09.jpg';
+import milktea10 from '../../../assets/milktea10.jpg';
+import bullet2 from '../../../assets/bullet2.png';
 
 // 페이지 전환효과
 const ScreenFrames = keyframes`
@@ -32,7 +30,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  max-width: 1000px;
+  max-width: 1260px;
   margin: 50px auto;
   display: flex;
   flex-wrap: wrap;
@@ -114,20 +112,6 @@ const Ul = styled.ul`
 
 const Li = styled.li`
   color: white;
-
-  ::after {
-    content: '';
-    width: 0;
-    height: 2px;
-    background: #983b43;
-    display: block;
-    margin: auto;
-    transition: 0.5s;
-  }
-
-  :hover::after {
-    width: 100%;
-  }
 `;
 
 const SLink = styled(Link)`
@@ -137,7 +121,7 @@ const SLink = styled(Link)`
   background: url(${(props) => props.bgurl}) 0 center no-repeat;
 `;
 
-const Recipe = () => {
+const OriginalTea = () => {
   return (
     <Container>
       <Header />
@@ -166,71 +150,47 @@ const Recipe = () => {
           textAlign: 'center',
         }}
       >
-        베스트 콤비네이션
+        오리지널 티
       </h2>
 
       <Wrapper>
         <Card>
           <ImageBox className='imagebox'>
-            <img src={milktea01} alt='views' />
+            <img src={milktea07} alt='views' />
           </ImageBox>
           <Details>
-            <h2 style={{ color: '#B48F68' }}>블랙 밀크티 + 펄</h2>
-            <p>공차 대표 메뉴 블랙밀크티와 쫄깃쫄깃한 펄의 콤비네이션</p>
+            <h2 style={{ color: '#DBAF31' }}>자스민 그린티</h2>
+            <p>향긋한 자스민 꽃잎을 함께 우려내는 그린티 (HOT / ICED)</p>
           </Details>
         </Card>
         <Card>
           <ImageBox className='imagebox'>
-            <img src={milktea02} alt='views' />
+            <img src={milktea08} alt='views' />
           </ImageBox>
           <Details>
-            <h2 style={{ color: '#BC8A9A' }}>타로 밀크티 + 펄</h2>
-            <p>고소한 타로밀크티와 쫀득한 펄이 만난 공차의 베스트 셀러</p>
+            <h2 style={{ color: '#E5B034' }}>우롱티</h2>
+            <p>묵직하고 깊은 향을 간직한 고소한 우롱차 (HOT / ICED)​</p>
           </Details>
         </Card>
         <Card>
           <ImageBox className='imagebox'>
-            <img src={milktea03} alt='views' />
+            <img src={milktea09} alt='views' />
           </ImageBox>
           <Details>
-            <h2 style={{ color: '#681C01' }}>초콜렛 밀크티 + 밀크폼</h2>
+            <h2 style={{ color: '#C06026' }}>블랙티</h2>
             <p>
-              공차만의 깊고 풍부한 초콜렛 밀크티에 부드러운 밀크폼을 더한 최고의
-              조합
+              진한 향과 감미로운 맛을 느낄 수있는 대표적인 홍차, 블랙티 (HOT /
+              ICED)​
             </p>
           </Details>
         </Card>
         <Card>
           <ImageBox className='imagebox'>
-            <img src={milktea04} alt='views' />
+            <img src={milktea10} alt='views' />
           </ImageBox>
           <Details>
-            <h2 style={{ color: '#FDCD0E' }}>망고 요구르트 + 화이트펄</h2>
-            <p>
-              달콤한 망고 과육과 요구르트에 화이트펄의 꼬들꼬들함이 느껴지는
-              주스
-            </p>
-          </Details>
-        </Card>
-        <Card>
-          <ImageBox className='imagebox'>
-            <img src={milktea05} alt='views' />
-          </ImageBox>
-          <Details>
-            <h2 style={{ color: '#EBDEC6' }}>우롱 밀크티 + 코코넛</h2>
-            <p>깊은 향의 우롱밀크티에 쫄깃쫄깃한 식감의 코코넛을 더한 밀크티</p>
-          </Details>
-        </Card>
-        <Card>
-          <ImageBox className='imagebox'>
-            <img src={milktea06} alt='views' />
-          </ImageBox>
-          <Details>
-            <h2 style={{ color: '#B0AF31' }}>청포도 에이드 + 알로에</h2>
-            <p>
-              상큼 달콤한 청포도 그린티에이드와 사각사각한 알로에 토핑을 더한
-              그린티에이드
-            </p>
+            <h2 style={{ color: '#EF9122' }}>얼그레이티</h2>
+            <p>향긋한 베르가못향이 가미된 얼그레이티 (HOT / ICED)​</p>
           </Details>
         </Card>
       </Wrapper>
@@ -238,4 +198,4 @@ const Recipe = () => {
   );
 };
 
-export default Recipe;
+export default OriginalTea;

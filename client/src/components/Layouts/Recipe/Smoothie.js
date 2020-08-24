@@ -1,15 +1,17 @@
 import React, { useState, Fragment } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
-import Header from './Header';
+import Header from '../../Header';
 
-import milktea01 from '../assets/milktea01.png';
-import milktea02 from '../assets/milktea02.png';
-import milktea03 from '../assets/milktea03.jpg';
-import milktea04 from '../assets/milktea04.jpg';
-import milktea05 from '../assets/milktea05.jpg';
-import milktea06 from '../assets/milktea06.jpg';
-import bullet2 from '../assets/bullet2.png';
+import milktea11 from '../../../assets/milktea11.jpg';
+import milktea12 from '../../../assets/milktea12.jpg';
+import milktea13 from '../../../assets/milktea13.jpg';
+import milktea14 from '../../../assets/milktea14.jpg';
+import milktea15 from '../../../assets/milktea15.jpg';
+import milktea16 from '../../../assets/milktea16.jpg';
+import milktea17 from '../../../assets/milktea17.jpg';
+import milktea18 from '../../../assets/milktea18.jpg';
+import bullet2 from '../../../assets/bullet2.png';
 
 // 페이지 전환효과
 const ScreenFrames = keyframes`
@@ -32,7 +34,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  max-width: 1000px;
+  max-width: 1260px;
   margin: 50px auto;
   display: flex;
   flex-wrap: wrap;
@@ -114,20 +116,6 @@ const Ul = styled.ul`
 
 const Li = styled.li`
   color: white;
-
-  ::after {
-    content: '';
-    width: 0;
-    height: 2px;
-    background: #983b43;
-    display: block;
-    margin: auto;
-    transition: 0.5s;
-  }
-
-  :hover::after {
-    width: 100%;
-  }
 `;
 
 const SLink = styled(Link)`
@@ -137,7 +125,7 @@ const SLink = styled(Link)`
   background: url(${(props) => props.bgurl}) 0 center no-repeat;
 `;
 
-const Recipe = () => {
+const Smoothie = () => {
   return (
     <Container>
       <Header />
@@ -172,64 +160,102 @@ const Recipe = () => {
       <Wrapper>
         <Card>
           <ImageBox className='imagebox'>
-            <img src={milktea01} alt='views' />
+            <img src={milktea11} alt='views' />
           </ImageBox>
           <Details>
-            <h2 style={{ color: '#B48F68' }}>블랙 밀크티 + 펄</h2>
-            <p>공차 대표 메뉴 블랙밀크티와 쫄깃쫄깃한 펄의 콤비네이션</p>
-          </Details>
-        </Card>
-        <Card>
-          <ImageBox className='imagebox'>
-            <img src={milktea02} alt='views' />
-          </ImageBox>
-          <Details>
-            <h2 style={{ color: '#BC8A9A' }}>타로 밀크티 + 펄</h2>
-            <p>고소한 타로밀크티와 쫀득한 펄이 만난 공차의 베스트 셀러</p>
-          </Details>
-        </Card>
-        <Card>
-          <ImageBox className='imagebox'>
-            <img src={milktea03} alt='views' />
-          </ImageBox>
-          <Details>
-            <h2 style={{ color: '#681C01' }}>초콜렛 밀크티 + 밀크폼</h2>
+            <h2 style={{ color: '#FDCD0E' }}>망고 스무디</h2>
             <p>
-              공차만의 깊고 풍부한 초콜렛 밀크티에 부드러운 밀크폼을 더한 최고의
-              조합
+              농축된 달콤한 망고와 밀크를 함께 갈아만든 망고 스무디(ONLY ICED)​
             </p>
           </Details>
         </Card>
         <Card>
           <ImageBox className='imagebox'>
-            <img src={milktea04} alt='views' />
+            <img src={milktea12} alt='views' />
           </ImageBox>
           <Details>
-            <h2 style={{ color: '#FDCD0E' }}>망고 요구르트 + 화이트펄</h2>
+            <h2 style={{ color: '#BC8A9A' }}>초코 쿠앤크 스무디</h2>
             <p>
-              달콤한 망고 과육과 요구르트에 화이트펄의 꼬들꼬들함이 느껴지는
-              주스
+              진한 초콜렛과 달콤한쿠키앤크림을 밀크와 함께 갈아만든 오레오
+              초콜렛 스무디(ONLY ICED)​
             </p>
           </Details>
         </Card>
         <Card>
           <ImageBox className='imagebox'>
-            <img src={milktea05} alt='views' />
+            <img src={milktea13} alt='views' />
           </ImageBox>
           <Details>
-            <h2 style={{ color: '#EBDEC6' }}>우롱 밀크티 + 코코넛</h2>
-            <p>깊은 향의 우롱밀크티에 쫄깃쫄깃한 식감의 코코넛을 더한 밀크티</p>
+            <h2 style={{ color: '#B0AF31' }}>청포도 스무디</h2>
+            <p>
+              시원달콤한 청포도과즙과 알로에 알갱이가 쏙쏙 들어오는 재미가
+              일품인 청포도 스무디 (ONLY ICED)
+            </p>
           </Details>
         </Card>
         <Card>
           <ImageBox className='imagebox'>
-            <img src={milktea06} alt='views' />
+            <img src={milktea14} alt='views' />
           </ImageBox>
           <Details>
-            <h2 style={{ color: '#B0AF31' }}>청포도 에이드 + 알로에</h2>
+            <h2 style={{ color: '#FDCD0E' }}>블랙 밀크티 크러쉬</h2>
             <p>
-              상큼 달콤한 청포도 그린티에이드와 사각사각한 알로에 토핑을 더한
-              그린티에이드
+              공차 NO.1 메뉴인 블랙밀크티와 얼음을 함께 갈아 만든 크러쉬의
+              청량함과 쫀득쫀득한 펄의 식감을 즐길 수 있는 시그니처 음료(ONLY
+              ICED)
+            </p>
+          </Details>
+        </Card>
+
+        <Card>
+          <ImageBox className='imagebox'>
+            <img src={milktea15} alt='views' />
+          </ImageBox>
+          <Details>
+            <h2 style={{ color: '#BC8E61' }}>커피 밀크티 크러쉬 + 펄</h2>
+            <p>
+              향긋한 블랙 밀크 티에 진한 커피를 더해 한여름 얼음과 함께 갈아
+              더욱 시원하게 즐기는 음료 (ONLY ICED)
+            </p>
+          </Details>
+        </Card>
+
+        <Card>
+          <ImageBox className='imagebox'>
+            <img src={milktea16} alt='views' />
+          </ImageBox>
+          <Details>
+            <h2 style={{ color: '#BA484B' }}>딸기&요구르트 크러쉬</h2>
+            <p>
+              얼그레이티를 넣어 만든 요구르트 크러쉬에 리얼 딸기 과즙이 함유된
+              새콤달콤한 딸기 쥬얼리를 더한 시즌 음료 (ONLY ICED)
+            </p>
+          </Details>
+        </Card>
+
+        <Card>
+          <ImageBox className='imagebox'>
+            <img src={milktea17} alt='views' />
+          </ImageBox>
+          <Details>
+            <h2 style={{ color: '#BC8E61', letterSpacing: '-4px' }}>
+              커피 밀크티 크러쉬 + 밀크폼
+            </h2>
+            <p>
+              향긋한 블랙 밀크 티에 진한 커피를 더해 한여름 얼음과 함께 갈아
+              더욱 시원하게 즐기는 시즌 한정 음료 (ONLY ICED)
+            </p>
+          </Details>
+        </Card>
+
+        <Card>
+          <ImageBox className='imagebox'>
+            <img src={milktea18} alt='views' />
+          </ImageBox>
+          <Details>
+            <h2 style={{ color: '#AFBC61' }}>제주 그린티 스무디</h2>
+            <p>
+              녹차가루와 부드러운 밀크폼을 함께 즐길 수 있는 제주 그린티 스무디
             </p>
           </Details>
         </Card>
@@ -238,4 +264,4 @@ const Recipe = () => {
   );
 };
 
-export default Recipe;
+export default Smoothie;
