@@ -32,6 +32,7 @@ const Section = styled.div`
     url(${(props) => props.bgUrl});
   background-position: center;
   background-size: cover;
+  /* 마법의 코드 */
   background-attachment: fixed;
   overflow-x: hidden;
   height: 30rem;
@@ -40,6 +41,10 @@ const Section = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    background-attachment: scroll;
+  }
 
   .Section-text {
     position: relative;
