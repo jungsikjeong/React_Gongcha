@@ -244,7 +244,7 @@ const Header = () => {
                 <Li>POSTS</Li>
               </Link>
             </Ul>
-            <Link to='/login'>
+            <Link to='#'>
               <ButtonStyle>SIGN IN</ButtonStyle>
             </Link>
           </NavLinks>
