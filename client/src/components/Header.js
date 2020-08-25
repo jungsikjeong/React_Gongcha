@@ -213,8 +213,13 @@ const Header = () => {
             <Link to='/recipe'>
               <Li>RECIPE</Li>
             </Link>
+            <Link to='/postList'>
+              <Li>POSTS</Li>
+            </Link>
           </Ul>
-          <ButtonStyle>SIGN IN</ButtonStyle>
+          <Link to='/login'>
+            <ButtonStyle>SIGN IN</ButtonStyle>
+          </Link>
         </DesktopNavLinks>
 
         {/*  모바일 사이즈에서 메뉴 활성화  */}
@@ -225,7 +230,6 @@ const Header = () => {
               style={{ fontWeight: 'bold', fontSize: '2rem' }}
               onClick={onCloseMenu}
             />
-
             <Ul>
               <Link to='/'>
                 <Li>HOME</Li>
@@ -240,7 +244,9 @@ const Header = () => {
                 <Li>POSTS</Li>
               </Link>
             </Ul>
-            <ButtonStyle>SIGN IN</ButtonStyle>
+            <Link to='/login'>
+              <ButtonStyle>SIGN IN</ButtonStyle>
+            </Link>
           </NavLinks>
         )}
       </NavMenu>
