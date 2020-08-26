@@ -1,7 +1,7 @@
-import React, { useState, Fragment } from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../Header';
+import styled from 'styled-components';
 
 import milktea07 from '../../../assets/milktea07.jpg';
 import milktea08 from '../../../assets/milktea08.jpg';
@@ -9,93 +9,130 @@ import milktea09 from '../../../assets/milktea09.jpg';
 import milktea10 from '../../../assets/milktea10.jpg';
 import bullet2 from '../../../assets/bullet2.png';
 
-// 페이지 전환효과
-const ScreenFrames = keyframes`
- from{
-  opacity:0.9;
-  transform:translateY(-10px);
- }
- to{
-  opacity:1;
-  transform:translateY(0);
- }
-`;
-
 const Container = styled.div`
+  margin: 0;
+  padding: 0;
   min-height: 100vh;
-  background: black;
-  overflow: hidden;
-
-  animation: ${ScreenFrames} 0.75s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  font-family: consolas;
 `;
 
 const Wrapper = styled.div`
+  position: relative;
   max-width: 1260px;
-  margin: 50px auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 `;
 
-const Card = styled.div`
+const Box = styled.div`
   position: relative;
-  margin: 20px 0;
-  width: 300px;
+  width: 280px;
   height: 400px;
-  background: #fff;
-  transform-style: preserve-3d;
-  transform: perspective(2000px);
-  transition: 1s;
-  box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5);
+  margin: 20px 10px;
+  box-sizing: border-box;
+  overflow: hidden;
 
   :hover {
-    transform: perspective(2000px) rotate(-10deg);
-    box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-
-    .imagebox {
-      transform: rotateY(-135deg);
+    .imgBox {
+      clip-path: circle(80px at center 100px);
+      transition-delay: 0s;
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* object-fit: cover; */
+      }
     }
+
+    h2 {
+      opacity: 1;
+      transition: translateY(0px);
+      transition-delay: 0.5s;
+    }
+
+    p {
+      opacity: 1;
+      transition: translateY(0px);
+      transition-delay: 0.7s;
+    }
+
+    /* .link {
+      opacity: 1;
+      transition: translateY(0px);
+      transition-delay: 0.9s;
+    } */
   }
 `;
 
-const ImageBox = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border: 1px solid #000;
-  box-sizing: border-box;
-  transform-origin: left;
-  z-index: 1;
-  transition: 1s;
-
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
-
-const Details = styled.div`
+const ImgBox = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  clip-path: circle(400px at center 100px);
+  transition: 0.5s;
+  transition-delay: 0.5s;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const Content = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 55%;
   padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
 
   h2 {
-    letter-spacing: -3px;
+    margin: 0;
     margin-bottom: 10px;
-    font-weight: bold;
+    padding: 0;
+    letter-spacing: -3px;
+
+    opacity: 0;
+    transition: 0.5s;
+    transform: translateY(20px);
   }
 
   p {
-    font-size: 1.2rem;
-    color: #666666;
+    opacity: 0;
+    transition: 0.5s;
+    transform: translateY(20px);
+    margin-bottom: 10px;
+    color: #fff;
   }
+`;
+
+// const SLink = styled(Link)`
+//   background: #000;
+//   color: #fff;
+//   padding: 5px;
+//   display: inline-block;
+
+//   opacity: 0;
+//   transition: 0.5s;
+//   transform: translateY(20px);
+// `;
+
+const TLink = styled(Link)`
+  display: block;
+  height: 22px;
+  padding: 12px 0 12px 19px;
+  background: url(${(props) => props.bgurl}) 0 center no-repeat;
 `;
 
 const Ul = styled.ul`
@@ -112,89 +149,94 @@ const Ul = styled.ul`
 
 const Li = styled.li`
   color: white;
-`;
 
-const SLink = styled(Link)`
-  display: block;
-  height: 22px;
-  padding: 12px 0 12px 19px;
-  background: url(${(props) => props.bgurl}) 0 center no-repeat;
+  ::after {
+    content: '';
+    width: 0;
+    height: 2px;
+    background: #983b43;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+  }
+
+  :hover::after {
+    width: 100%;
+  }
 `;
 
 const OriginalTea = () => {
   return (
-    <Container>
+    <div style={{ background: '#000' }}>
       <Header />
       <Ul>
         <Li>
-          <SLink to='/recipe' bgurl={bullet2}>
+          <TLink to='/recipe' bgurl={bullet2}>
             베스트 콤비네이션
-          </SLink>
+          </TLink>
         </Li>
         <Li>
-          <SLink to='/originalTea' bgurl={bullet2}>
+          <TLink to='/originalTea' bgurl={bullet2}>
             오리지널 티
-          </SLink>
+          </TLink>
         </Li>
 
         <Li>
-          <SLink to='/smoothie' bgurl={bullet2}>
+          <TLink to='/smoothie' bgurl={bullet2}>
             스무디 & 크러쉬
-          </SLink>
+          </TLink>
         </Li>
       </Ul>
+      <Container>
+        <Wrapper>
+          <Box>
+            <ImgBox className='imgBox'>
+              <img src={milktea07} alt='view' />
+            </ImgBox>
+            <Content>
+              <h2 style={{ color: '#DBAF31' }}>자스민 그린티</h2>
+              <p>향긋한 자스민 꽃잎을 함께 우려내는 그린티 (HOT / ICED)</p>
+              {/* <SLink to='#' className='link'>
+                Read More
+              </SLink> */}
+            </Content>
+          </Box>
 
-      <h2
-        style={{
-          color: '#fff',
-          textAlign: 'center',
-        }}
-      >
-        오리지널 티
-      </h2>
+          <Box>
+            <ImgBox className='imgBox'>
+              <img src={milktea08} alt='view' />
+            </ImgBox>
+            <Content>
+              <h2 style={{ color: '#E5B034' }}>우롱티</h2>
+              <p>묵직하고 깊은 향을 간직한 고소한 우롱차 (HOT / ICED)​</p>
+            </Content>
+          </Box>
 
-      <Wrapper>
-        <Card>
-          <ImageBox className='imagebox'>
-            <img src={milktea07} alt='views' />
-          </ImageBox>
-          <Details>
-            <h2 style={{ color: '#DBAF31' }}>자스민 그린티</h2>
-            <p>향긋한 자스민 꽃잎을 함께 우려내는 그린티 (HOT / ICED)</p>
-          </Details>
-        </Card>
-        <Card>
-          <ImageBox className='imagebox'>
-            <img src={milktea08} alt='views' />
-          </ImageBox>
-          <Details>
-            <h2 style={{ color: '#E5B034' }}>우롱티</h2>
-            <p>묵직하고 깊은 향을 간직한 고소한 우롱차 (HOT / ICED)​</p>
-          </Details>
-        </Card>
-        <Card>
-          <ImageBox className='imagebox'>
-            <img src={milktea09} alt='views' />
-          </ImageBox>
-          <Details>
-            <h2 style={{ color: '#C06026' }}>블랙티</h2>
-            <p>
-              진한 향과 감미로운 맛을 느낄 수있는 대표적인 홍차, 블랙티 (HOT /
-              ICED)​
-            </p>
-          </Details>
-        </Card>
-        <Card>
-          <ImageBox className='imagebox'>
-            <img src={milktea10} alt='views' />
-          </ImageBox>
-          <Details>
-            <h2 style={{ color: '#EF9122' }}>얼그레이티</h2>
-            <p>향긋한 베르가못향이 가미된 얼그레이티 (HOT / ICED)​</p>
-          </Details>
-        </Card>
-      </Wrapper>
-    </Container>
+          <Box>
+            <ImgBox className='imgBox'>
+              <img src={milktea09} alt='view' />
+            </ImgBox>
+            <Content>
+              <h2 style={{ color: '#C06026' }}>블랙티</h2>
+              <p>
+                진한 향과 감미로운 맛을 느낄 수있는 대표적인 홍차, 블랙티 (HOT /
+                ICED)​
+              </p>
+            </Content>
+          </Box>
+
+          <Box>
+            <ImgBox className='imgBox'>
+              <img src={milktea10} alt='view' />
+            </ImgBox>
+            <Content>
+              <h2 style={{ color: '#EF9122' }}>얼그레이티</h2>
+              <p>향긋한 베르가못향이 가미된 얼그레이티 (HOT / ICED)​</p>
+            </Content>
+          </Box>
+        </Wrapper>
+      </Container>
+    </div>
   );
 };
 

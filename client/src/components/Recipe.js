@@ -25,7 +25,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   position: relative;
-  max-width: 1260px;
+  max-width: 1000px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
