@@ -29,11 +29,11 @@ const Form = styled.form`
   width: 25%;
 
   @media (max-width: 768px) {
-    width: 55%;
+    width: 70%;
   }
 
   @media (max-width: 1024px) {
-    width: 55%;
+    width: 70%;
   }
 
   input {
@@ -62,8 +62,23 @@ const Button = styled.button`
   color: white;
   outline: none;
   cursor: pointer;
-
   background: red;
+`;
+
+const SLink = styled(Link)`
+  margin-top: 5px;
+  background: #c1575f;
+  text-align: center;
+
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.25rem 1rem;
+  color: white;
+  outline: none;
+  cursor: pointer;
 `;
 
 const Register = () => {
@@ -91,9 +106,7 @@ const Register = () => {
           />
           <Button style={{ marginTop: '15px' }}>sign up</Button>
           <span>or</span>
-          <Button style={{ marginTop: '5px', background: '#C1575F' }}>
-            <Link to='/login'>sign in</Link>
-          </Button>
+          <SLink to='/login'>sign in</SLink>
         </Form>
       </Wrapper>
     </LoginContainer>
