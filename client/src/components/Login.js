@@ -1,8 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import bgImage from '../assets/background.jpg';
+import Header from './Header';
+
+// 페이지 전환효과
+const ScreenFrames = keyframes`
+ from{
+  transform:translateY(-10px);
+ }
+ to{
+  transform:translateY(0);
+ }
+`;
 
 const LoginContainer = styled.div`
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)),
@@ -11,12 +22,14 @@ const LoginContainer = styled.div`
   background-size: cover;
   overflow-x: hidden;
   position: relative;
+  height: 100vh;
 `;
 
 const Wrapper = styled.div`
+  margin-top: 5rem;
   width: 100%;
-  height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
@@ -27,6 +40,7 @@ const Form = styled.form`
   align-items: center;
   justify-content: center;
   width: 25%;
+  animation: ${ScreenFrames} 0.75s;
 
   @media (max-width: 768px) {
     width: 70%;
@@ -58,7 +72,7 @@ const Button = styled.button`
   border-radius: 4px;
   font-size: 1rem;
   font-weight: bold;
-  padding: 0.25rem 1rem;
+  padding: 0.5rem 1rem;
   color: white;
   outline: none;
   cursor: pointer;
@@ -75,7 +89,7 @@ const SLink = styled(Link)`
   border-radius: 4px;
   font-size: 1rem;
   font-weight: bold;
-  padding: 0.25rem 1rem;
+  padding: 0.5rem 1rem;
   color: white;
   outline: none;
   cursor: pointer;
@@ -84,6 +98,7 @@ const SLink = styled(Link)`
 const Login = () => {
   return (
     <LoginContainer>
+      <Header />
       <Wrapper>
         <Form>
           <input
@@ -99,9 +114,7 @@ const Login = () => {
           />
           <Button style={{ marginTop: '15px' }}>sign in</Button>
           <span>or</span>
-          <Button style={{ marginTop: '5px', background: '#C1575F' }}>
-            <SLink to='/register'> sign up </SLink>
-          </Button>
+          <SLink to='/register'> sign up </SLink>
         </Form>
       </Wrapper>
     </LoginContainer>
