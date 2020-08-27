@@ -57,7 +57,7 @@ const Button = styled.button`
   background: red;
 `;
 
-const Login = () => {
+const Register = () => {
   return (
     <LoginContainer>
       <Wrapper>
@@ -67,11 +67,18 @@ const Login = () => {
             name='email'
             placeholder='Email@admin.com'
           />
+          <input autoComplete='name' name='username' placeholder='userName' />
           <input
             autoComplete='new-password'
             type='password'
             name='password'
             placeholder='Password'
+          />
+          <input
+            autoComplete='new-password'
+            type='password'
+            name='passwordConfirm'
+            placeholder='passwordCheck'
           />
           <Button style={{ marginTop: '15px' }}>sign in</Button>
           <span>or</span>
@@ -84,4 +91,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
