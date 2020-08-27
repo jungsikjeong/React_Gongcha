@@ -222,7 +222,7 @@ const Header = () => {
           </Link>
         </DesktopNavLinks>
 
-        {/*  모바일 사이즈에서 메뉴 활성화  */}
+        {/* 모바일 사이즈에서 메뉴 활성화 */}
         {menuOpen && (
           <NavLinks>
             <RiCloseLine
@@ -244,7 +244,7 @@ const Header = () => {
                 <Li>POSTS</Li>
               </Link>
             </Ul>
-            <Link to='#'>
+            <Link to='/login'>
               <ButtonStyle>SIGN IN</ButtonStyle>
             </Link>
           </NavLinks>

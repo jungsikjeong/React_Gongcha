@@ -26,6 +26,15 @@ const Form = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 25%;
+
+  @media (max-width: 768px) {
+    width: 55%;
+  }
+
+  @media (max-width: 1024px) {
+    width: 55%;
+  }
 
   input {
     width: 100%;
@@ -80,10 +89,10 @@ const Register = () => {
             name='passwordConfirm'
             placeholder='passwordCheck'
           />
-          <Button style={{ marginTop: '15px' }}>sign in</Button>
+          <Button style={{ marginTop: '15px' }}>sign up</Button>
           <span>or</span>
           <Button style={{ marginTop: '5px', background: '#C1575F' }}>
-            <Link to='/register'> sign up </Link>
+            <Link to='/login'>sign in</Link>
           </Button>
         </Form>
       </Wrapper>
