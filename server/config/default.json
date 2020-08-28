@@ -1,0 +1,7 @@
+{
+  "mongoURI": "mongodb+srv://webadmin:qorrn1024@gongcha.yb77n.mongodb.net/gongcha?retryWrites=true&w=majority",
+  "jwtSecret": "myfsf32r32",
+  "githubClientId": "241f58fa01b08cfeec3c",
+  "githubSecret": "a74edd67ff30c2249faffd340ff8164f7554574b",
+  "githubToken": "c767d7162dfabaeea92fa04ecb2021e2e8826f44"
+}
