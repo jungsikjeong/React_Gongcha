@@ -14,16 +14,15 @@ const User = require('../../models/User');
 router.post(
   '/',
   [
-    check('name', '이름을 입력해주세요').not().isEmpty(),
-    check('email', '유효한 email을 입력해주세요').isEmail(),
-    check('password', '6 자 이상의 비밀번호를 입력하세요.').isLength({
+    check('name', '이름을 입력해주세요😥').not().isEmpty(),
+    check('email', '유효한 이메일을 입력해주세요😥').isEmail(),
+    check('password', '6자 이상의 비밀번호를 입력해주세요😥').isLength({
       min: 6,
     }),
   ],
   async (req, res) => {
-    const error = validationResult(req);
-
-    if (!error.isEmpty()) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
@@ -38,7 +37,6 @@ router.post(
           .status(400)
           .json({ errors: [{ msg: '사용자가 이미 존재합니다.' }] });
       }
-
       // 사용자 Gravatar 가져 오기
       const avatar = gravatar.url(email, {
         s: '200',
@@ -61,6 +59,7 @@ router.post(
       await user.save();
 
       // Return jsonwebtoken
+      // 원래는 로그인에쓰이지만, 회원가입하자마자 바로 로그인 할 수 있게하려고 회원가입에쓰임
       const payload = {
         user: {
           id: user.id,
@@ -69,7 +68,7 @@ router.post(
 
       jwt.sign(
         payload,
-        config.get(jwtSecret),
+        config.get('jwtSecret'),
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;

@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setAlert } from '../actions/alert';
+import { register } from '../actions/auth';
+import PropTypes from 'prop-types';
 
 import bgImage from '../assets/background.jpg';
 import Header from './Header';
+import Alert from './common/Alert';
 
 // 페이지 전환효과
 const ScreenFrames = keyframes`
@@ -94,28 +99,69 @@ const SLink = styled(Link)`
   cursor: pointer;
 `;
 
-const Register = () => {
+const Register = ({ isAuthenticated, setAlert, register, history }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    password2: '',
+  });
+
+  const { name, email, password, password2 } = formData;
+
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    if (password !== password2) {
+      return setAlert('패스워드가 일치하지 않습니다.', 'danger');
+    } else {
+      register({ name, email, password });
+    }
+
+    if (isAuthenticated) {
+      return <Redirect to='/' />;
+    }
+  };
+
   return (
     <LoginContainer>
       <Header />
+      <Alert />
       <Wrapper>
-        <Form>
+        <Form onSubmit={(e) => onSubmit(e)}>
+          <input
+            autoComplete='name'
+            name='name'
+            value={name}
+            onChange={(e) => onChange(e)}
+            placeholder='userName'
+          />
+
           <input
             autoComplete='email'
             name='email'
+            value={email}
+            onChange={(e) => onChange(e)}
             placeholder='Email@admin.com'
           />
-          <input autoComplete='name' name='username' placeholder='userName' />
           <input
             autoComplete='new-password'
             type='password'
             name='password'
+            value={password}
+            onChange={(e) => onChange(e)}
             placeholder='Password'
           />
           <input
             autoComplete='new-password'
             type='password'
-            name='passwordConfirm'
+            name='password2'
+            value={password2}
+            onChange={(e) => onChange(e)}
             placeholder='passwordCheck'
           />
           <Button style={{ marginTop: '15px' }}>sign up</Button>
@@ -127,4 +173,8 @@ const Register = () => {
   );
 };
 
-export default Register;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);
