@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+// 아이콘 및 사진
 import { RiCloseLine } from 'react-icons/ri';
 import { FaBars } from 'react-icons/fa';
-
-import Button from './common/Button';
-
 import logo from '../assets/logo.png';
+
+// 컴포넌트
+import Button from './common/Button';
 
 const NavBar = styled.div`
   display: flex;
@@ -130,19 +132,32 @@ const SLink = styled(Link)`
 const ButtonStyle = styled(Button)`
   position: absolute;
   right: 3rem;
+  top: 5rem;
 
-  ::after {
-    content: '';
-    width: 0;
-    height: 2px;
-    background: #cf3e58;
-    display: block;
-    margin: auto;
-    transition: 0.5s;
+  img {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+    object-fit: cover;
   }
 
-  :hover::after {
-    width: 100%;
+  .user-text {
+    display: block;
+
+    ::after {
+      content: '';
+      width: 0;
+      height: 2px;
+      background: #cf3e58;
+      display: block;
+      margin: auto;
+      transition: 0.5s;
+    }
+
+    :hover::after {
+      width: 100%;
+    }
   }
 
   @media (max-width: 768px) {
@@ -170,7 +185,7 @@ const ButtonStyle = styled(Button)`
   }
 `;
 
-const Header = () => {
+const Header = ({ user }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuActive, setMenuActive] = useState(true);
 
@@ -217,9 +232,20 @@ const Header = () => {
               <Li>POSTS</Li>
             </Link>
           </Ul>
-          <Link to='/login'>
-            <ButtonStyle>SIGN IN</ButtonStyle>
-          </Link>
+
+          {user ? (
+            <Link to='/profile'>
+              <ButtonStyle>
+                <img src={user.avatar} alt='userAvatar' />
+
+                <span className='user-text'> {user.name}님</span>
+              </ButtonStyle>
+            </Link>
+          ) : (
+            <Link to='/login'>
+              <ButtonStyle>SIGN IN</ButtonStyle>
+            </Link>
+          )}
         </DesktopNavLinks>
 
         {/* 모바일 사이즈에서 메뉴 활성화 */}
@@ -244,9 +270,15 @@ const Header = () => {
                 <Li>POSTS</Li>
               </Link>
             </Ul>
-            <Link to='/login'>
-              <ButtonStyle>SIGN IN</ButtonStyle>
-            </Link>
+            {user ? (
+              <Link to='/profile'>
+                <ButtonStyle>{user.name}님</ButtonStyle>
+              </Link>
+            ) : (
+              <Link to='/login'>
+                <ButtonStyle>SIGN IN</ButtonStyle>
+              </Link>
+            )}
           </NavLinks>
         )}
       </NavMenu>
@@ -254,4 +286,8 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(Header);

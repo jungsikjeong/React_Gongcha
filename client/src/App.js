@@ -9,6 +9,7 @@ import OriginalTea from './components/Layouts/Recipe/OriginalTea';
 import Smoothie from './components/Layouts/Recipe/Smoothie';
 import Login from './components/Login';
 import Register from './components/Register';
+import Profile from './components/Profile';
 
 //Redux
 import { Provider } from 'react-redux';
@@ -32,6 +33,7 @@ const App = () => {
           <Route exact path='/' component={Main} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
+          <Route path='/profile' component={Profile} />
           <Route path='/about' component={About} />
           <Route path='/recipe' component={Recipe} />
           <Route path='/originalTea' component={OriginalTea} />

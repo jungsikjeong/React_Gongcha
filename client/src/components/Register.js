@@ -99,7 +99,7 @@ const SLink = styled(Link)`
   cursor: pointer;
 `;
 
-const Register = ({ isAuthenticated, setAlert, register, history }) => {
+const Register = ({ isAuthenticated, setAlert, register }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
