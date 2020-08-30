@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { login } from '../actions/auth';
 
 import bgImage from '../assets/background.jpg';
 import Header from './Header';
@@ -95,21 +97,44 @@ const SLink = styled(Link)`
   cursor: pointer;
 `;
 
-const Login = () => {
+const Login = ({ isAuthenticated, login }) => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const { email, password } = formData;
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    login(email, password);
+  };
+
+  if (isAuthenticated) {
+    return <Redirect to='/' />;
+  }
+
   return (
     <LoginContainer>
       <Header />
       <Wrapper>
-        <Form>
+        <Form onSubmit={onSubmit}>
           <input
             autoComplete='email'
             name='email'
+            value={email}
+            onChange={(e) => onChange(e)}
             placeholder='Email@admin.com'
           />
           <input
             autoComplete='new-password'
             type='password'
             name='password'
+            value={password}
+            onChange={(e) => onChange(e)}
             placeholder='Password'
           />
           <Button style={{ marginTop: '15px' }}>sign in</Button>
@@ -121,4 +146,8 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { login })(Login);

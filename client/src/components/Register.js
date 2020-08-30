@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -121,11 +121,11 @@ const Register = ({ isAuthenticated, setAlert, register, history }) => {
     } else {
       register({ name, email, password });
     }
-
-    if (isAuthenticated) {
-      return <Redirect to='/' />;
-    }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to='/' />;
+  }
 
   return (
     <LoginContainer>

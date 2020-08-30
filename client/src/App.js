@@ -30,8 +30,8 @@ const App = () => {
       <Router>
         <Fragment>
           <Route exact path='/' component={Main} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/register' component={Register} />
+          <Route path='/login' component={Login} />
+          <Route path='/register' component={Register} />
           <Route path='/about' component={About} />
           <Route path='/recipe' component={Recipe} />
           <Route path='/originalTea' component={OriginalTea} />
