@@ -269,13 +269,11 @@ const Header = ({ user }) => {
                 <Li>POSTS</Li>
               </Link>
             </Ul>
-            {user && (
+            {user ? (
               <Link to='/profile'>
                 <ButtonStyle>{user.name}님</ButtonStyle>
               </Link>
-            )}
-
-            {!user && (
+            ) : (
               <Link to='/login'>
                 <ButtonStyle>SIGN IN</ButtonStyle>
               </Link>

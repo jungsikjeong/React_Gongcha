@@ -17,7 +17,7 @@ const ScreenFrames = keyframes`
 
 const Container = styled.div`
   min-height: 100vh;
-  background: #000;
+  background: #fff;
   overflow: hidden;
 `;
 
@@ -45,6 +45,7 @@ const Columns = styled.div`
       width: 100%;
       height: auto;
       transition: transform 1s;
+
       :hover {
         transform: scale(1.1);
         /* transform: translateY(-6px);
