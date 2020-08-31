@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import Header from '../Header';
 import { Link } from 'react-router-dom';
 
-// 페이지 전환효과
+// 페이지 전환 효과
 const ScreenFrames = keyframes`
  from{
   opacity:0.9;
