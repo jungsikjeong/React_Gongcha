@@ -17,7 +17,7 @@ const ScreenFrames = keyframes`
 
 const Container = styled.div`
   min-height: 100vh;
-  background: #fff;
+  background: #000;
   overflow: hidden;
 `;
 
@@ -40,6 +40,10 @@ const Columns = styled.div`
     overflow: hidden;
     /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); */
     /* box-shadow: 0px 5px 7px 1px rgba(0, 10, 20, 0.14); */
+
+    @media (max-width: 768px) {
+      overflow: hidden;
+    }
 
     img {
       width: 100%;
