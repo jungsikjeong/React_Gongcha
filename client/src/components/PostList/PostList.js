@@ -80,7 +80,7 @@ const PostList = () => {
     <Container>
       <Header />
       <Columns>
-        <Link to='#'>
+        <Link to='/postPage'>
           <figure>
             <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
             <figcaption>

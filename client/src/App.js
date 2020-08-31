@@ -10,6 +10,7 @@ import Smoothie from './components/Layouts/Recipe/Smoothie';
 import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
+import PostPage from './components/PostList/PostPage';
 
 //Redux
 import { Provider } from 'react-redux';
@@ -31,14 +32,22 @@ const App = () => {
       <Router>
         <Fragment>
           <Route exact path='/' component={Main} />
+          {/* auth페이지 */}
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
-          <Route path='/profile' component={Profile} />
+
+          {/* Menu */}
           <Route path='/about' component={About} />
           <Route path='/recipe' component={Recipe} />
           <Route path='/originalTea' component={OriginalTea} />
           <Route path='/smoothie' component={Smoothie} />
+          {/* Post */}
           <Route path='/postList' component={PostList} />
+          {/* <Route component={PostPage} path="/@:username/:postId" /> */}
+          <Route component={PostPage} path='/postPage' />
+
+          {/* 내 정보 */}
+          <Route path='/profile' component={Profile} />
         </Fragment>
       </Router>
     </Provider>

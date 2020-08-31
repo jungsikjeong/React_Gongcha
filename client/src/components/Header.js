@@ -133,6 +133,19 @@ const ButtonStyle = styled(Button)`
   position: absolute;
   right: 3rem;
   top: 5rem;
+  ::after {
+    content: '';
+    width: 0;
+    height: 2px;
+    background: #cf3e58;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+  }
+
+  :hover::after {
+    width: 100%;
+  }
 
   img {
     width: 50px;
@@ -144,20 +157,6 @@ const ButtonStyle = styled(Button)`
 
   .user-text {
     display: block;
-
-    ::after {
-      content: '';
-      width: 0;
-      height: 2px;
-      background: #cf3e58;
-      display: block;
-      margin: auto;
-      transition: 0.5s;
-    }
-
-    :hover::after {
-      width: 100%;
-    }
   }
 
   @media (max-width: 768px) {
@@ -270,11 +269,13 @@ const Header = ({ user }) => {
                 <Li>POSTS</Li>
               </Link>
             </Ul>
-            {user ? (
+            {user && (
               <Link to='/profile'>
                 <ButtonStyle>{user.name}님</ButtonStyle>
               </Link>
-            ) : (
+            )}
+
+            {!user && (
               <Link to='/login'>
                 <ButtonStyle>SIGN IN</ButtonStyle>
               </Link>
