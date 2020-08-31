@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../Header';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import milktea07 from '../../../assets/milktea07.jpg';
 import milktea08 from '../../../assets/milktea08.jpg';
@@ -9,15 +9,26 @@ import milktea09 from '../../../assets/milktea09.jpg';
 import milktea10 from '../../../assets/milktea10.jpg';
 import bullet2 from '../../../assets/bullet2.png';
 
+// 페이지 전환효과
+const ScreenFrames = keyframes`
+ from{
+  transform:translateY(-10px);
+ }
+ to{
+  transform:translateY(0);
+ }
+`;
+
 const Container = styled.div`
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;
   background: #000;
   font-family: consolas;
+  animation: ${ScreenFrames} 0.75s;
 `;
 
 const Wrapper = styled.div`
@@ -140,7 +151,6 @@ const Ul = styled.ul`
   overflow: hidden;
   border-top: 1px solid white;
   border-bottom: '1px solid white';
-
   font-family: 'NanumGothic', 'dotum', 'Arial', 'sans-serif';
 
   display: flex;
@@ -167,7 +177,7 @@ const Li = styled.li`
 
 const OriginalTea = () => {
   return (
-    <div style={{ background: '#000' }}>
+    <div style={{ background: '#000', minHeight: '100vh' }}>
       <Header />
       <Ul>
         <Li>
@@ -187,6 +197,7 @@ const OriginalTea = () => {
           </TLink>
         </Li>
       </Ul>
+
       <Container>
         <Wrapper>
           <Box>

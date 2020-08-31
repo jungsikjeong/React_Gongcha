@@ -20,6 +20,8 @@ const Container = styled.div`
   margin: 0;
   padding: 0;
   min-height: 100vh;
+
+  /* 다른 컴포넌트에 적용예정 */
   animation: ${ScreenFrames} 0.75s;
 `;
 

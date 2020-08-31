@@ -24,10 +24,11 @@ const ScreenFrames = keyframes`
 
 const AboutContainer = styled.div`
   background: #000;
-  animation: ${ScreenFrames} 0.75s;
 `;
 
 const Section = styled.div`
+  animation: ${ScreenFrames} 0.75s;
+
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)),
     url(${(props) => props.bgUrl});
   background-position: center;

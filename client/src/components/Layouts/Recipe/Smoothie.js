@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 import Header from '../../Header';
 
@@ -13,6 +13,16 @@ import milktea17 from '../../../assets/milktea17.jpg';
 import milktea18 from '../../../assets/milktea18.jpg';
 import bullet2 from '../../../assets/bullet2.png';
 
+// 페이지 전환효과
+const ScreenFrames = keyframes`
+ from{
+  transform:translateY(-10px);
+ }
+ to{
+  transform:translateY(0);
+ }
+`;
+
 const Container = styled.div`
   margin: 0;
   padding: 0;
@@ -22,6 +32,7 @@ const Container = styled.div`
   align-items: center;
   background: #000;
   font-family: consolas;
+  animation: ${ScreenFrames} 0.75s;
 `;
 
 const Wrapper = styled.div`
@@ -191,6 +202,7 @@ const Smoothie = () => {
           </TLink>
         </Li>
       </Ul>
+
       <Container>
         <Wrapper>
           <Box>

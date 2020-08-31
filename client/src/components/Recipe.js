@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Header from './Header';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import milktea01 from '../assets/milktea01.png';
 import milktea02 from '../assets/milktea02.png';
@@ -12,6 +12,16 @@ import bullet2 from '../assets/bullet2.png';
 
 import { Link } from 'react-router-dom';
 
+// 페이지 전환효과
+const ScreenFrames = keyframes`
+ from{
+  transform:translateY(-10px);
+ }
+ to{
+  transform:translateY(0);
+ }
+`;
+
 const Container = styled.div`
   margin: 0;
   padding: 0;
@@ -21,6 +31,7 @@ const Container = styled.div`
   align-items: center;
   background: #000;
   font-family: consolas;
+  animation: ${ScreenFrames} 0.75s;
 `;
 
 const Wrapper = styled.div`
@@ -190,6 +201,7 @@ const Recipe = () => {
           </TLink>
         </Li>
       </Ul>
+
       <Container>
         <Wrapper>
           <Box>
