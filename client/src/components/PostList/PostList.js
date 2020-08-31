@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Header from '../Header';
+import { Link } from 'react-router-dom';
 
 // 페이지 전환효과
 const ScreenFrames = keyframes`
@@ -36,18 +37,19 @@ const Columns = styled.div`
     margin: 0;
     margin-bottom: 15px;
     padding: 15px;
-
+    overflow: hidden;
     /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); */
     /* box-shadow: 0px 5px 7px 1px rgba(0, 10, 20, 0.14); */
-
-    :hover {
-      transform: translateY(-6px);
-      transition: all 200ms;
-    }
 
     img {
       width: 100%;
       height: auto;
+      transition: transform 1s;
+      :hover {
+        transform: scale(1.1);
+        /* transform: translateY(-6px);
+      transition: all 200ms; */
+      }
     }
 
     figcaption {
@@ -78,106 +80,134 @@ const PostList = () => {
     <Container>
       <Header />
       <Columns>
-        <figure>
-          <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
-          <figcaption>
-            <p>테스트1</p>
-            Cinderella wearing European fashion of the mid-1860’s
-          </figcaption>
-        </figure>
+        <Link to='#'>
+          <figure>
+            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
+            <figcaption>
+              <p>테스트1</p>
+              Cinderella wearing European fashion of the mid-1860’s
+            </figcaption>
+          </figure>
+        </Link>
 
-        <figure>
-          <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/rapunzel.jpg' />
-          <figcaption>
-            <p>테스트2</p>
-            Cinderella wearing European fashion of the mid-1860’s
-          </figcaption>
-        </figure>
+        <Link to='#'>
+          <figure>
+            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/rapunzel.jpg' />
+            <figcaption>
+              <p>테스트2</p>
+              Cinderella wearing European fashion of the mid-1860’s
+            </figcaption>
+          </figure>
+        </Link>
 
-        <figure>
-          <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/belle.jpg' />
-          <figcaption>
-            <p>테스트3</p>
-            Cinderella wearing European fashion of the mid-1860’s
-          </figcaption>
-        </figure>
+        <Link to='#'>
+          <figure>
+            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/belle.jpg' />
+            <figcaption>
+              <p>테스트3</p>
+              Cinderella wearing European fashion of the mid-1860’s
+            </figcaption>
+          </figure>
+        </Link>
 
-        <figure>
-          <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/mulan_2.jpg' />
-          <figcaption>
-            <p>테스트4</p>
-            Cinderella wearing European fashion of the mid-1860’s
-          </figcaption>
-        </figure>
+        <Link to='#'>
+          <figure>
+            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/mulan_2.jpg' />
+            <figcaption>
+              <p>테스트4</p>
+              Cinderella wearing European fashion of the mid-1860’s
+            </figcaption>
+          </figure>
+        </Link>
+        <Link to='#'>
+          <figure>
+            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/sleeping-beauty.jpg' />
+            <figcaption>
+              <p>테스트5</p>
+              Cinderella wearing European fashion of the mid-1860’s
+            </figcaption>
+          </figure>
+        </Link>
 
-        <figure>
-          <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/sleeping-beauty.jpg' />
-          <figcaption>
-            <p>테스트5</p>
-            Cinderella wearing European fashion of the mid-1860’s
-          </figcaption>
-        </figure>
+        <Link to='#'>
+          <figure>
+            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/pocahontas_2.jpg' />
+            <figcaption>
+              <p>테스트6</p>
+              Cinderella wearing European fashion of the mid-1860’s
+            </figcaption>
+          </figure>
+        </Link>
 
-        <figure>
-          <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/pocahontas_2.jpg' />
-          <figcaption>
-            <p>테스트6</p>
-            Cinderella wearing European fashion of the mid-1860’s
-          </figcaption>
-        </figure>
+        <Link to='#'>
+          <figure>
+            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/snow-white.jpg' />
+            <figcaption>
+              <p>테스트7</p>
+              Cinderella wearing European fashion of the mid-1860’s
+            </figcaption>
+          </figure>
+        </Link>
 
-        <figure>
-          <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/snow-white.jpg' />
-          <figcaption>
-            <p>테스트7</p>
-            Cinderella wearing European fashion of the mid-1860’s
-          </figcaption>
-        </figure>
+        <Link to='#'>
+          <figure>
+            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/ariel.jpg' />
+            <figcaption>
+              <p>테스트8</p>
+              Cinderella wearing European fashion of the mid-1860’s
+            </figcaption>
+          </figure>
+        </Link>
 
-        <figure>
-          <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/ariel.jpg' />
-          <figcaption>
-            <p>테스트8</p>
-            Cinderella wearing European fashion of the mid-1860’s
-          </figcaption>
-        </figure>
+        <Link to='#'>
+          <figure>
+            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/tiana.jpg' />
+            <figcaption>
+              <p>테스트9</p>
+              Cinderella wearing European fashion of the mid-1860’s
+            </figcaption>
+          </figure>
+        </Link>
 
-        <figure>
-          <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/tiana.jpg' />
-          <figcaption>
-            <p>테스트9</p>
-            Cinderella wearing European fashion of the mid-1860’s
-          </figcaption>
-        </figure>
+        <Link to='#'>
+          <figure>
+            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
+            <figcaption>
+              <p>테스트</p>
+              Cinderella wearing European fashion of the mid-1860’s
+            </figcaption>
+          </figure>
+        </Link>
 
-        <figure>
-          <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
-          <figcaption>
-            <p>테스트</p>
-            Cinderella wearing European fashion of the mid-1860’s
-          </figcaption>
-        </figure>
-        <figure>
-          <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
-          <figcaption>
-            <p>테스트</p>
-            Cinderella wearing European fashion of the mid-1860’s
-          </figcaption>
-        </figure>
-        <figure>
-          <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
-          <figcaption>
-            <p>테스트</p>
-            Cinderella wearing European fashion of the mid-1860’s
-          </figcaption>
-        </figure>
-        <figure>
-          <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
-          <figcaption>
-            <p>테스트</p>
-            Cinderella wearing European fashion of the mid-1860’s
-          </figcaption>
-        </figure>
+        <Link to='#'>
+          <figure>
+            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
+            <figcaption>
+              <p>테스트</p>
+              Cinderella wearing European fashion of the mid-1860’s
+            </figcaption>
+          </figure>
+        </Link>
+
+        <Link to='#'>
+          <figure>
+            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
+            <figcaption>
+              <p>테스트</p>
+              Cinderella wearing European fashion of the mid-1860’s
+            </figcaption>
+          </figure>
+        </Link>
+
+        <Link to='#'>
+          <figure>
+            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
+            <figcaption>
+              <p>테스트</p>
+              Cinderella wearing European fashion of the mid-1860’s
+            </figcaption>
+          </figure>
+        </Link>
       </Columns>
     </Container>
   );
