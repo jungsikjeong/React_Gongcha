@@ -87,7 +87,7 @@ const PostList = () => {
       <Columns>
         <Link to='/postPage'>
           <figure>
-            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRq6MvximRKiu0XTDp7J2omL4ZgOT6zMzseIg&usqp=CAU' />
             <figcaption>
               <p>테스트1</p>
               Cinderella wearing European fashion of the mid-1860’s
@@ -97,7 +97,7 @@ const PostList = () => {
 
         <Link to='#'>
           <figure>
-            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/rapunzel.jpg' />
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQh2TM-trBZcxJMFJm-mLFkloU2HDHHkZzZXQ&usqp=CAU' />
             <figcaption>
               <p>테스트2</p>
               Cinderella wearing European fashion of the mid-1860’s
@@ -107,7 +107,7 @@ const PostList = () => {
 
         <Link to='#'>
           <figure>
-            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/belle.jpg' />
+            <img src='https://nimage.g-enews.com/phpwas/restmb_allidxmake.php?idx=5&simg=2018052309411600967fd4d2b07dc12114162187.jpg' />
             <figcaption>
               <p>테스트3</p>
               Cinderella wearing European fashion of the mid-1860’s
@@ -117,7 +117,7 @@ const PostList = () => {
 
         <Link to='#'>
           <figure>
-            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/mulan_2.jpg' />
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRhR9_x9NyLSp1VXFtwTbZOU-mHADy8heQNfg&usqp=CAU' />
             <figcaption>
               <p>테스트4</p>
               Cinderella wearing European fashion of the mid-1860’s
@@ -126,7 +126,7 @@ const PostList = () => {
         </Link>
         <Link to='#'>
           <figure>
-            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/sleeping-beauty.jpg' />
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRCINfG09lpCiQQWSgzppcxubNh643jbqoEVA&usqp=CAU' />
             <figcaption>
               <p>테스트5</p>
               Cinderella wearing European fashion of the mid-1860’s
@@ -136,7 +136,7 @@ const PostList = () => {
 
         <Link to='#'>
           <figure>
-            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/pocahontas_2.jpg' />
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSdvXcKyxJVuTL0ExD32a2daSWSn6TgPhiugA&usqp=CAU' />
             <figcaption>
               <p>테스트6</p>
               Cinderella wearing European fashion of the mid-1860’s
@@ -146,7 +146,7 @@ const PostList = () => {
 
         <Link to='#'>
           <figure>
-            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/snow-white.jpg' />
+            <img src='https://scontent-yyz1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/80753420_281993532760075_1734338305723573751_n.jpg?_nc_ht=scontent-yyz1-1.cdninstagram.com&_nc_cat=107&_nc_ohc=JwOPH0gLWEgAX8db4Sn&oh=93e7ed740904ea3ba55f6da4a905d574&oe=5F5B4934' />
             <figcaption>
               <p>테스트7</p>
               Cinderella wearing European fashion of the mid-1860’s
@@ -156,7 +156,7 @@ const PostList = () => {
 
         <Link to='#'>
           <figure>
-            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/ariel.jpg' />
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSTtoNEEKROdvsObn6oRIv1aUUKvldDdu4Paw&usqp=CAU' />
             <figcaption>
               <p>테스트8</p>
               Cinderella wearing European fashion of the mid-1860’s
@@ -166,7 +166,7 @@ const PostList = () => {
 
         <Link to='#'>
           <figure>
-            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/tiana.jpg' />
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS417N_I3kJuQqLXHbUTu0kbXMLP9TY2xLodw&usqp=CAU' />
             <figcaption>
               <p>테스트9</p>
               Cinderella wearing European fashion of the mid-1860’s
@@ -176,7 +176,7 @@ const PostList = () => {
 
         <Link to='#'>
           <figure>
-            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT5qhZ5UfXeqrkn-cSsB483oyb6ADrlV1xQ-g&usqp=CAU' />
             <figcaption>
               <p>테스트</p>
               Cinderella wearing European fashion of the mid-1860’s
@@ -186,7 +186,7 @@ const PostList = () => {
 
         <Link to='#'>
           <figure>
-            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRzUQ52Yd97u08XWbNNuGmwiSYfUttNfcGerA&usqp=CAU' />
             <figcaption>
               <p>테스트</p>
               Cinderella wearing European fashion of the mid-1860’s
@@ -196,7 +196,7 @@ const PostList = () => {
 
         <Link to='#'>
           <figure>
-            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI1IfH0uOhF2eHmF8dVXkcXO9hO5jfQIHfAw&usqp=CAU' />
             <figcaption>
               <p>테스트</p>
               Cinderella wearing European fashion of the mid-1860’s
@@ -206,7 +206,7 @@ const PostList = () => {
 
         <Link to='#'>
           <figure>
-            <img src='//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/cinderella.jpg' />
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTMgUKaLHWTgg6zcVcM4GBsijBA3nyanRCQ0w&usqp=CAU' />
             <figcaption>
               <p>테스트</p>
               Cinderella wearing European fashion of the mid-1860’s
