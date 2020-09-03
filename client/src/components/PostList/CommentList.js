@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import { Link } from 'react-router-dom';
+import { AiOutlineHeart } from 'react-icons/ai';
+// 이후 좋아요 누를시 보여줄 하트
+import { FcLike } from 'react-icons/fc';
+import { GoTrashcan } from 'react-icons/go';
 
 const Container = styled.div`
   width: 100%;
@@ -11,13 +16,18 @@ const Wrapper = styled.div`
   display: flex;
   padding: 16px 16px 16px 0px;
   align-items: center;
+
+  :hover {
+    .comment-remove {
+      opacity: 1;
+    }
+  }
 `;
 
 const Avatar = styled.div`
   width: 32px;
   height: 32px;
   margin-right: 17px;
-
   overflow: hidden;
 
   img {
@@ -53,11 +63,13 @@ const SubContents = styled.div`
     font-size: 12px;
     font-weight: 400;
     margin-right: 12px;
+    color: #808080;
   }
 
   button {
     background: 0 0;
     border: 0;
+    color: #808080;
     cursor: pointer;
     display: inline;
     font-size: 12px;
@@ -65,13 +77,32 @@ const SubContents = styled.div`
     line-height: 14px;
     margin-right: 12px;
     padding: 0;
-    color: #fff;
   }
 `;
 
 const SubContentBox = styled.div``;
 
+const CommentRemove = styled.div`
+  opacity: 0;
+  cursor: pointer;
+  margin-right: 15px;
+
+  :hover {
+    color: #ff6b6b;
+  }
+`;
+
+const LikeButton = styled.div`
+  cursor: pointer;
+`;
+
 const CommentList = () => {
+  const [commentOpenToggle, setCommentOpenToggle] = useState(false);
+
+  const onCommentOpenToggle = () => {
+    setCommentOpenToggle(!commentOpenToggle);
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -91,10 +122,21 @@ const CommentList = () => {
           <SubContents>
             <SubContentBox>
               <span>2주</span>
-              <button>답글 달기</button>
+              {/* to do:: list && <span좋아요2개</span> */}
+              <span>좋아요 2개</span>
+              <button onClick={onCommentOpenToggle}>답글 달기</button>
             </SubContentBox>
           </SubContents>
         </Contents>
+
+        <CommentRemove className='comment-remove'>
+          <GoTrashcan />
+        </CommentRemove>
+
+        {/* 좋아요 버튼 */}
+        <LikeButton>
+          <AiOutlineHeart />
+        </LikeButton>
       </Wrapper>
 
       <Wrapper>
@@ -114,10 +156,21 @@ const CommentList = () => {
           <SubContents>
             <SubContentBox>
               <span>2주</span>
-              <button>답글 달기</button>
+              {/* to do:: list && <span좋아요2개</span> */}
+              <span>좋아요 2개</span>
+              <button onClick={onCommentOpenToggle}>답글 달기</button>
             </SubContentBox>
           </SubContents>
         </Contents>
+
+        <CommentRemove className='comment-remove'>
+          <GoTrashcan />
+        </CommentRemove>
+
+        {/* 좋아요 버튼 */}
+        <LikeButton>
+          <AiOutlineHeart />
+        </LikeButton>
       </Wrapper>
 
       <Wrapper>
@@ -137,10 +190,21 @@ const CommentList = () => {
           <SubContents>
             <SubContentBox>
               <span>2주</span>
-              <button>답글 달기</button>
+              {/* to do:: list && <span좋아요2개</span> */}
+              <span>좋아요 2개</span>
+              <button onClick={onCommentOpenToggle}>답글 달기</button>
             </SubContentBox>
           </SubContents>
         </Contents>
+
+        <CommentRemove className='comment-remove'>
+          <GoTrashcan />
+        </CommentRemove>
+
+        {/* 좋아요 버튼 */}
+        <LikeButton>
+          <AiOutlineHeart />
+        </LikeButton>
       </Wrapper>
 
       <Wrapper>
@@ -160,10 +224,21 @@ const CommentList = () => {
           <SubContents>
             <SubContentBox>
               <span>2주</span>
-              <button>답글 달기</button>
+              {/* to do:: list && <span좋아요2개</span> */}
+              <span>좋아요 2개</span>
+              <button onClick={onCommentOpenToggle}>답글 달기</button>
             </SubContentBox>
           </SubContents>
         </Contents>
+
+        <CommentRemove className='comment-remove'>
+          <GoTrashcan />
+        </CommentRemove>
+
+        {/* 좋아요 버튼 */}
+        <LikeButton>
+          <AiOutlineHeart />
+        </LikeButton>
       </Wrapper>
 
       <Wrapper>
@@ -183,10 +258,21 @@ const CommentList = () => {
           <SubContents>
             <SubContentBox>
               <span>2주</span>
-              <button>답글 달기</button>
+              {/* to do:: list && <span좋아요2개</span> */}
+              <span>좋아요 2개</span>
+              <button onClick={onCommentOpenToggle}>답글 달기</button>
             </SubContentBox>
           </SubContents>
         </Contents>
+
+        <CommentRemove className='comment-remove'>
+          <GoTrashcan />
+        </CommentRemove>
+
+        {/* 좋아요 버튼 */}
+        <LikeButton>
+          <AiOutlineHeart />
+        </LikeButton>
       </Wrapper>
     </Container>
   );
