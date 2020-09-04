@@ -1,7 +1,11 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { connect } from 'react-redux';
+import { logout } from '../actions/auth';
+import PropTypes from 'prop-types';
 // components
 import Header from './Header';
+import Button from '../components/common/Button';
 
 // 페이지 전환효과
 const ScreenFrames = keyframes`
@@ -15,27 +19,50 @@ const ScreenFrames = keyframes`
  }
  `;
 
-const Container = styled.div`
+const ProfileContainer = styled.div`
   background: #000;
   margin: 0;
   padding: 0;
   min-height: 100vh;
+`;
 
-  /* 다른 컴포넌트에 적용예정 */
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   animation: ${ScreenFrames} 0.75s;
 `;
+
+const UserContainer = styled.div``;
+
+const Avatar = styled.div``;
+
+const StyledButton = styled(Button)``;
 
 const Span = styled.span`
   color: white;
 `;
 
-const Profile = () => {
+const Profile = ({ history, logout }) => {
+  const onClick = () => {
+    logout(history);
+  };
   return (
-    <Container>
+    <ProfileContainer>
       <Header />
-      <Span>Profile페이지</Span>
-    </Container>
+
+      <Wrapper>
+        <UserContainer>
+          <StyledButton onClick={onClick}>로그아웃</StyledButton>
+        </UserContainer>
+      </Wrapper>
+    </ProfileContainer>
   );
 };
 
-export default Profile;
+Profile.propTypes = {
+  logout: PropTypes.func.isRequired,
+};
+
+export default connect(null, { logout })(Profile);

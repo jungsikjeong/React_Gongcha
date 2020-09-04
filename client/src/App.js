@@ -11,6 +11,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
 import PostPage from './components/PostList/PostPage';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 //Redux
 import { Provider } from 'react-redux';
@@ -47,7 +48,7 @@ const App = () => {
           <Route component={PostPage} path='/postPage' />
 
           {/* 내 정보 */}
-          <Route path='/profile' component={Profile} />
+          <PrivateRoute path='/profile' component={Profile} />
         </Fragment>
       </Router>
     </Provider>

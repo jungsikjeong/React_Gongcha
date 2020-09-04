@@ -7,6 +7,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  LOGOUT,
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -84,7 +85,9 @@ export const login = (email, password) => async (dispatch) => {
     });
 
     dispatch(loadUser());
+    dispatch(setAlert('오늘도 공차하세요!', 'success'));
   } catch (err) {
+    console.error(err);
     const errors = err.response.data.errors;
 
     if (errors) {
@@ -94,5 +97,17 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({
       type: LOGIN_FAIL,
     });
+  }
+};
+
+// 로그아웃
+export const logout = (history, isLoggedIn = false) => async (dispatch) => {
+  dispatch({ type: LOGOUT });
+
+  dispatch(setAlert('로그아웃 되었습니다', 'success'));
+
+  if (!isLoggedIn) {
+    // eslint-disable-next-line no-restricted-globals
+    history.push('/');
   }
 };

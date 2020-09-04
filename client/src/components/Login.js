@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
+import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../actions/auth';
 
 import bgImage from '../assets/background.jpg';
 import Header from './Header';
+import Alert from './common/Alert';
 
 // 페이지 전환효과
 const ScreenFrames = keyframes`
@@ -97,7 +99,7 @@ const SLink = styled(Link)`
   cursor: pointer;
 `;
 
-const Login = ({ isAuthenticated, login }) => {
+const Login = ({ auth: { isAuthenticated }, login }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -120,6 +122,7 @@ const Login = ({ isAuthenticated, login }) => {
   return (
     <LoginContainer>
       <Header />
+      <Alert />
       <Wrapper>
         <Form onSubmit={onSubmit}>
           <input
@@ -145,9 +148,13 @@ const Login = ({ isAuthenticated, login }) => {
     </LoginContainer>
   );
 };
+Header.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  login: PropTypes.func,
+};
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { login })(Login);

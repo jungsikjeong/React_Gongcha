@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import bgImage from '../../assets/background.jpg';
 import WOW from 'wowjs';
 
 import MainFooter from '../Layouts/MainFooter';
 import Header from '../Header';
+import Loading from '../common/Loading';
+import Alert from '../common/Alert';
 
 const Container = styled.div`
   height: 100vh;
@@ -41,26 +45,44 @@ const BannerTitle = styled.div`
   }
 `;
 
-const Main = () => {
+const Main = ({ auth: { loading } }) => {
   useEffect(() => {
     new WOW.WOW().init();
   }, []);
 
   return (
     <Container>
-      <Header />
+      {loading && loading ? (
+        <Loading />
+      ) : (
+        <Fragment>
+          <Alert />
+          <Header />
+          <BannerTitle>
+            <h1
+              className='wow fadeIn'
+              data-wow-iteration='1'
+              data-wow-delay='1.5s'
+            >
+              <span className='textColor'>Tea</span> 로 시작하는 <br />
+              <span className='textColor'>The</span> 기분 좋은 아침!
+            </h1>
+            {/* <Button>EXPLORE</Button> */}
 
-      <BannerTitle>
-        <h1 className='wow fadeIn' data-wow-iteration='1' data-wow-delay='1.5s'>
-          <span className='textColor'>Tea</span> 로 시작하는 <br />
-          <span className='textColor'>The</span> 기분 좋은 아침!
-        </h1>
-        {/* <Button>EXPLORE</Button> */}
-
-        <MainFooter />
-      </BannerTitle>
+            <MainFooter />
+          </BannerTitle>
+        </Fragment>
+      )}
     </Container>
   );
 };
 
-export default Main;
+Main.propTypes = {
+  loading: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, {})(Main);

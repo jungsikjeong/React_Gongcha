@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 // 아이콘 및 사진
 import { RiCloseLine } from 'react-icons/ri';
 import { FaBars } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 import logo from '../assets/logo.png';
 
 // 컴포넌트
@@ -184,7 +185,7 @@ const ButtonStyle = styled(Button)`
   }
 `;
 
-const Header = ({ user }) => {
+const Header = ({ auth: { isAuthenticated, user } }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuActive, setMenuActive] = useState(true);
 
@@ -231,8 +232,7 @@ const Header = ({ user }) => {
               <Li>POSTS</Li>
             </Link>
           </Ul>
-
-          {user ? (
+          {isAuthenticated && isAuthenticated ? (
             <Link to='/profile'>
               <ButtonStyle>
                 <img src={user.avatar} alt='userAvatar' />
@@ -269,7 +269,7 @@ const Header = ({ user }) => {
                 <Li>POSTS</Li>
               </Link>
             </Ul>
-            {user ? (
+            {isAuthenticated && isAuthenticated ? (
               <Link to='/profile'>
                 <ButtonStyle>{user.name}님</ButtonStyle>
               </Link>
@@ -285,8 +285,13 @@ const Header = ({ user }) => {
   );
 };
 
+Header.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  user: PropTypes.object,
+};
+
 const mapStateToProps = (state) => ({
-  user: state.auth.user,
+  auth: state.auth,
 });
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, {})(Header);

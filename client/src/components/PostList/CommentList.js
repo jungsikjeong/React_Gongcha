@@ -121,7 +121,9 @@ const CommentList = () => {
           </div>
           <SubContents>
             <SubContentBox>
+              {/* to do:: time tag */}
               <span>2주</span>
+
               {/* to do:: list && <span좋아요2개</span> */}
               <span>좋아요 2개</span>
               <button onClick={onCommentOpenToggle}>답글 달기</button>
@@ -130,6 +132,7 @@ const CommentList = () => {
         </Contents>
 
         <CommentRemove className='comment-remove'>
+          {/* to do:: 본인댓글만 삭제하는 아이콘 보이게 */}
           <GoTrashcan />
         </CommentRemove>
 
