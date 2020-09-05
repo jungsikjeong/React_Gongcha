@@ -28,6 +28,7 @@ const BannerTitle = styled.div`
     font-size: 64px;
     margin-bottom: 30px;
     letter-spacing: -5px;
+    font-weight: bold;
 
     .textColor {
       color: #cf3e58;

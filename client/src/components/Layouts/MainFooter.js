@@ -26,6 +26,7 @@ const Contents = styled.div`
   flex-basis: 50%;
   padding: 10px;
   color: #fff;
+  font-size: 1rem;
 
   p {
     text-align: right;

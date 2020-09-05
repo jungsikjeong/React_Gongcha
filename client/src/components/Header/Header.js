@@ -24,6 +24,7 @@ const NavBar = styled.div`
 
 const NavMenu = styled.div`
   display: flex;
+  line-height: 2rem;
 
   .open-icon {
     display: none;
@@ -44,6 +45,10 @@ const NavMenu = styled.div`
 
 const NavLogo = styled.div`
   color: #fff;
+
+  h1 {
+    font-weight: bold;
+  }
   img {
     vertical-align: middle;
     width: 30px;
@@ -96,6 +101,7 @@ const DesktopNavLinks = styled.div`
 
 const Ul = styled.ul`
   margin-left: 50px;
+  font-weight: bold;
 
   @media (max-width: 768px) {
     margin-left: 9px;
@@ -127,6 +133,7 @@ const Li = styled.li`
 
 const SLink = styled(Link)`
   font-size: 13px;
+  font-weight: 900;
 
   @media (max-width: 768px) {
     display: block;
@@ -270,7 +277,9 @@ const Header = ({ auth: { isAuthenticated, user } }) => {
               <Fragment>
                 {/* to do:: 로그인한 유저의 마이페이지로 가게끔 */}
                 <Link to='/profile'>
-                  <ButtonStyle>My Pages</ButtonStyle>
+                  <ButtonStyle style={{ fontSize: '14px' }}>
+                    My Pages
+                  </ButtonStyle>
                 </Link>
               </Fragment>
             ) : (

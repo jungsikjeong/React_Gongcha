@@ -71,42 +71,22 @@ const menu = ({ onClick, history }) => {
   return (
     <Menu
       style={{
-        marginTop: '3rem',
+        marginTop: '2.9rem',
         marginRight: 'auto',
         marginLeft: 'auto',
         position: 'absolute',
-        right: '-2.5rem',
+        right: '-1.2rem',
       }}
     >
       <Menu.Item>
-        <Link
-          target='_blank'
-          rel='noopener noreferrer'
-          href='http://www.alipay.com/'
-        >
-          1st menu item
-        </Link>
+        <Link to='/write'>Write a post</Link>
       </Menu.Item>
       <Menu.Item>
-        <Link
-          target='_blank'
-          rel='noopener noreferrer'
-          href='http://www.taobao.com/'
-        >
-          2nd menu item
-        </Link>
-      </Menu.Item>
-      <Menu.Item>
-        <Link
-          target='_blank'
-          rel='noopener noreferrer'
-          href='http://www.tmall.com/'
-        >
-          3rd menu item
-        </Link>
+        {/* to do:: 로그인한 유저의 마이페이지로 가게끔 */}
+        <Link to='/profile'>My Pages</Link>
       </Menu.Item>
       <Menu.Item danger onClick={onClick}>
-        log out
+        Log out
       </Menu.Item>
     </Menu>
   );
@@ -136,8 +116,8 @@ const ProfileMenu = ({ auth: { isAuthenticated, user }, logout, history }) => {
 
 ProfileMenu.propTypes = {
   isAuthenticated: PropTypes.bool,
-  user: PropTypes.object.isRequired,
-  logout: PropTypes.func.isRequired,
+  user: PropTypes.object,
+  logout: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
