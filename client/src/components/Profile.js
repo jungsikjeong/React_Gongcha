@@ -52,11 +52,6 @@ const Avatar = styled.div`
   }
 `;
 
-const StyledButton = styled(Button)`
-  margin-top: 10px;
-  background: red;
-`;
-
 const Span = styled.span`
   color: white;
 `;
@@ -82,7 +77,10 @@ const Profile = ({ auth: { user, loading }, history, logout }) => {
             <Avatar>
               <img src={user.avatar} />
             </Avatar>
-            <StyledButton onClick={onClick}>로그아웃</StyledButton>
+
+            <Button logoutBtn onClick={onClick}>
+              로그아웃
+            </Button>
           </UserContainer>
         </Wrapper>
       )}
