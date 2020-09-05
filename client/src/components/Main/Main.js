@@ -66,7 +66,8 @@ const Main = ({ auth: { loading } }) => {
               data-wow-delay='1.5s'
             >
               <span className='textColor'>Tea</span> 로 시작하는 <br />
-              <span className='textColor'>The</span> 기분 좋은 아침!
+              <span className='textColor'>The</span>{' '}
+              <span style={{ letterSpacing: '-.4rem' }}>기분 좋은 아침!</span>
             </h1>
             {/* <Button>EXPLORE</Button> */}
 

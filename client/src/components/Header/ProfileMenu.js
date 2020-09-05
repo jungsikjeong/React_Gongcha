@@ -101,7 +101,7 @@ const ProfileMenu = ({ auth: { isAuthenticated, user }, logout, history }) => {
     <ProfileMenuContainer>
       {isAuthenticated && (
         <Dropdown overlay={menu({ onClick, history })}>
-          <Link to='/profile'>
+          <Link to='#'>
             <ButtonStyle>
               <img src={user.avatar} alt='userAvatar' />
 
