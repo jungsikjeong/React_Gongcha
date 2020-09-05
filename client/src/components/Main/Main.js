@@ -37,7 +37,10 @@ const BannerTitle = styled.div`
   }
 
   @media (max-width: 768px) {
-    margin: 80px 40px;
+    margin-bottom: 80px;
+    margin-top: 80px;
+    margin-left: 0;
+    margin-right: 0;
 
     h1 {
       font-size: 50px;
@@ -67,7 +70,8 @@ const Main = ({ auth: { loading } }) => {
             >
               <span className='textColor'>Tea</span> 로 시작하는 <br />
               <span className='textColor'>The</span>{' '}
-              <span style={{ letterSpacing: '-.4rem' }}>기분 좋은 아침!</span>
+              {/* <span style={{ letterSpacing: '-.7rem' }}>기분 좋은 아침!</span> */}
+              기분 좋은 아침!
             </h1>
             {/* <Button>EXPLORE</Button> */}
 
