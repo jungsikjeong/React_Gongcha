@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -100,6 +100,8 @@ const Ul = styled.ul`
   @media (max-width: 768px) {
     margin-left: 9px;
     margin-top: 45px;
+    display: flex;
+    flex-direction: column;
   }
 `;
 
@@ -265,9 +267,12 @@ const Header = ({ auth: { isAuthenticated, user } }) => {
               </Link>
             </Ul>
             {isAuthenticated && isAuthenticated ? (
-              <Link to='/profile'>
-                <ButtonStyle>{user.name}님</ButtonStyle>
-              </Link>
+              <Fragment>
+                {/* to do:: 로그인한 유저의 마이페이지로 가게끔 */}
+                <Link to='/profile'>
+                  <ButtonStyle>My Pages</ButtonStyle>
+                </Link>
+              </Fragment>
             ) : (
               <Link to='/login'>
                 <ButtonStyle>SIGN IN</ButtonStyle>
