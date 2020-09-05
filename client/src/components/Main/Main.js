@@ -37,10 +37,7 @@ const BannerTitle = styled.div`
   }
 
   @media (max-width: 768px) {
-    margin-bottom: 80px;
-    margin-top: 80px;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 80px 0 80px 0;
 
     h1 {
       font-size: 50px;
