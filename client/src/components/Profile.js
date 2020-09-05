@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
 import PropTypes from 'prop-types';
 // components
-import Header from './Header';
+import Header from './Header/Header';
 import Button from '../components/common/Button';
 import Loading from './common/Loading';
 

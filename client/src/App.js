@@ -18,6 +18,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
+import ProfileMenu from './components/Header/ProfileMenu';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -49,6 +50,8 @@ const App = () => {
 
           {/* 내 정보 */}
           <PrivateRoute path='/profile' component={Profile} />
+
+          <PrivateRoute path='/test' component={ProfileMenu} />
         </Fragment>
       </Router>
     </Provider>

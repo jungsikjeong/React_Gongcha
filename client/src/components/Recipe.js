@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Header from './Header';
+import Header from './Header/Header';
 import styled, { keyframes } from 'styled-components';
 
 import milktea01 from '../assets/milktea01.png';

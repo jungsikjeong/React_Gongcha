@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
-import Header from '../../Header';
+import Header from '../../Header/Header';
 
 import milktea11 from '../../../assets/milktea11.jpg';
 import milktea12 from '../../../assets/milktea12.jpg';

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import Header from '../Header';
+import Header from '../Header/Header';
 import { Link } from 'react-router-dom';
 
 // 페이지 전환 효과

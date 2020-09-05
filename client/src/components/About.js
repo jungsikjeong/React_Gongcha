@@ -8,7 +8,7 @@ import imageThree from '../assets/about-img03.jpg';
 import imageFour from '../assets/about-img04.jpg';
 
 // Components
-import Header from './Header';
+import Header from './Header/Header';
 
 // 페이지 전환효과
 const ScreenFrames = keyframes`

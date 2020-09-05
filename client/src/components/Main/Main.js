@@ -6,7 +6,7 @@ import bgImage from '../../assets/background.jpg';
 import WOW from 'wowjs';
 
 import MainFooter from '../Layouts/MainFooter';
-import Header from '../Header';
+import Header from '../Header/Header';
 import Loading from '../common/Loading';
 import Alert from '../common/Alert';
 

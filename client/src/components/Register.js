@@ -7,7 +7,7 @@ import { register } from '../actions/auth';
 import PropTypes from 'prop-types';
 
 import bgImage from '../assets/background.jpg';
-import Header from './Header';
+import Header from './Header/Header';
 import Alert from './common/Alert';
 
 // 페이지 전환효과

@@ -7,10 +7,11 @@ import { connect } from 'react-redux';
 import { RiCloseLine } from 'react-icons/ri';
 import { FaBars } from 'react-icons/fa';
 import PropTypes from 'prop-types';
-import logo from '../assets/logo.png';
+import logo from '../../assets/logo.png';
 
 // 컴포넌트
-import Button from './common/Button';
+import Button from '../common/Button';
+import ProfileMenu from './ProfileMenu';
 
 const NavBar = styled.div`
   display: flex;
@@ -233,13 +234,7 @@ const Header = ({ auth: { isAuthenticated, user } }) => {
             </Link>
           </Ul>
           {isAuthenticated && isAuthenticated ? (
-            <Link to='/profile'>
-              <ButtonStyle>
-                <img src={user.avatar} alt='userAvatar' />
-
-                <span className='user-text'> {user.name}님</span>
-              </ButtonStyle>
-            </Link>
+            <ProfileMenu />
           ) : (
             <Link to='/login'>
               <ButtonStyle>SIGN IN</ButtonStyle>

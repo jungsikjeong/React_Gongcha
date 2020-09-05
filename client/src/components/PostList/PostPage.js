@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 // Component
-import Header from '../Header';
+import Header from '../Header/Header';
 import CommentList from './CommentList';
 import CommentPost from './CommentPost';
 

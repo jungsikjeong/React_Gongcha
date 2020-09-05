@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { login } from '../actions/auth';
 
 import bgImage from '../assets/background.jpg';
-import Header from './Header';
+import Header from './Header/Header';
 import Alert from './common/Alert';
 
 // 페이지 전환효과
@@ -62,6 +62,7 @@ const Form = styled.form`
     outline: 0;
     padding: 10px 15px;
     margin-top: 15px;
+    color: #000;
   }
 
   span {

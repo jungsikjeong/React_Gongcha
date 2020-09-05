@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../../Header';
+import Header from '../../Header/Header';
 import styled, { keyframes } from 'styled-components';
 
 import milktea07 from '../../../assets/milktea07.jpg';
