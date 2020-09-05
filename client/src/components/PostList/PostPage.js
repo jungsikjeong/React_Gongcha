@@ -5,6 +5,10 @@ import Header from '../Header/Header';
 import CommentList from './CommentList';
 import CommentPost from './CommentPost';
 
+import { AiOutlineHeart } from 'react-icons/ai';
+import { FcLike } from 'react-icons/fc';
+import { GoTrashcan } from 'react-icons/go';
+
 /**
  * first 모바일 화면
  */
@@ -162,6 +166,18 @@ const PostPage = () => {
               오늘 공차에서 블랙밀크티를 먹었다. 근데 아주 친절한 알바생이
               글쎄.. 사이즈업을 무료로 시켜주겠다잖아!? 난 너무좋은걸~🥰
             </Text>
+
+            {/* to do: 좋아요 누를시 하트 색깔 변하게 */}
+            {/* to do: 게시글 작성자가 아니면 휴지통이 안보이게 */}
+            <AiOutlineHeart
+              size='24'
+              style={{ padding: '10px', cursor: 'pointer' }}
+            />
+            <GoTrashcan
+              size='24'
+              style={{ padding: '10px', cursor: 'pointer' }}
+            />
+
             {/* 댓글 창 */}
             <CommentList />
           </TwoBox>

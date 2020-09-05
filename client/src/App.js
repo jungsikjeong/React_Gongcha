@@ -12,13 +12,14 @@ import Register from './components/Register';
 import Profile from './components/Profile';
 import PostPage from './components/PostList/PostPage';
 import PrivateRoute from './components/routing/PrivateRoute';
+import ProfileMenu from './components/Header/ProfileMenu';
+import Write from './components/Write/Write';
 
 //Redux
 import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
-import ProfileMenu from './components/Header/ProfileMenu';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -43,8 +44,11 @@ const App = () => {
           <Route path='/recipe' component={Recipe} />
           <Route path='/originalTea' component={OriginalTea} />
           <Route path='/smoothie' component={Smoothie} />
+
           {/* Post */}
           <Route path='/postList' component={PostList} />
+          <Route path='/write' component={Write} />
+
           {/* <Route component={PostPage} path="/@:username/:postId" /> */}
           <Route component={PostPage} path='/postPage' />
 
