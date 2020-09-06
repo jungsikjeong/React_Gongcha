@@ -272,21 +272,22 @@ const Header = ({ auth: { isAuthenticated, user } }) => {
               <Link to='/postList'>
                 <Li>POSTS</Li>
               </Link>
-            </Ul>
-            {isAuthenticated && isAuthenticated ? (
-              <Fragment>
-                {/* to do:: 로그인한 유저의 마이페이지로 가게끔 */}
-                <Link to='/profile'>
-                  <ButtonStyle style={{ fontSize: '14px' }}>
-                    My Pages
-                  </ButtonStyle>
+              {isAuthenticated && isAuthenticated ? (
+                <Fragment>
+                  <Link to='/write'>
+                    <Li>WRITE</Li>
+                  </Link>
+                  {/* to do:: 로그인한 유저의 마이페이지로 가게끔 */}
+                  <Link to='/profile'>
+                    <Li>My Pages</Li>
+                  </Link>
+                </Fragment>
+              ) : (
+                <Link to='/login'>
+                  <Li>SIGN IN</Li>
                 </Link>
-              </Fragment>
-            ) : (
-              <Link to='/login'>
-                <ButtonStyle>SIGN IN</ButtonStyle>
-              </Link>
-            )}
+              )}
+            </Ul>
           </NavLinks>
         )}
       </NavMenu>
