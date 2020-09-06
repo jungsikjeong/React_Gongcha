@@ -43,6 +43,11 @@ const Section = styled.div`
   align-items: center;
   flex-direction: column;
 
+  h1,
+  h3 {
+    font-weight: bold;
+  }
+
   @media (max-width: 768px) {
     background-attachment: scroll;
   }

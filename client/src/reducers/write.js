@@ -1,7 +1,7 @@
 import { WRITE_PAGE_ON, WRITE_PAGE_CLOSE } from '../actions/types';
 
 const initialState = {
-  visible: false,
+  visible: true,
 };
 
 export default function (state = initialState, action) {
