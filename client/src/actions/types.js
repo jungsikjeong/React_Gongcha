@@ -13,3 +13,6 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
+
+export const WRITE_PAGE_ON = 'WRITE_PAGE_ON';
+export const WRITE_PAGE_CLOSE = 'WRITE_PAGE_CLOSE';

@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Modal, Button } from 'antd';
 import { logout } from '../../actions/auth';
+import { writePageOn } from '../../actions/write';
+import { writePageClose } from '../../actions/write';
 import Form from 'antd/lib/form/Form';
 import { Input } from 'antd';
 import { PictureFilled } from '@ant-design/icons';
@@ -87,19 +89,26 @@ const Title = () => {
   );
 };
 
-const Write = ({ user, isAuthenticated }) => {
-  const [visible, setVisible] = useState(false);
-
+const Write = ({
+  user,
+  isAuthenticated,
+  visible,
+  writePageOn,
+  writePageClose,
+}) => {
   const showModal = () => {
-    setVisible(true);
+    // setVisible(true);
+    writePageOn();
   };
 
   const handleOk = (e) => {
-    setVisible(false);
+    // setVisible(false);
+    writePageClose();
   };
 
   const handleCancel = (e) => {
-    setVisible(false);
+    // setVisible(false);
+    writePageClose();
   };
 
   return (
@@ -136,11 +145,18 @@ const Write = ({ user, isAuthenticated }) => {
 Write.propTypes = {
   isAuthenticated: PropTypes.bool,
   user: PropTypes.object,
+  writePageOn: PropTypes.func,
+  writePageClose: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   isAuthenticated: state.auth.isAuthenticated,
+  visible: state.write.visible,
 });
 
-export default connect(mapStateToProps, { logout })(Write);
+export default connect(mapStateToProps, {
+  logout,
+  writePageOn,
+  writePageClose,
+})(Write);
