@@ -70,6 +70,7 @@ const Main = ({ auth: { loading } }) => {
               {/* <span style={{ letterSpacing: '-.7rem' }}>기분 좋은 아침!</span> */}
               기분 좋은 아침!
             </h1>
+
             {/* <Button>EXPLORE</Button> */}
 
             <MainFooter />
