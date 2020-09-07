@@ -1,23 +1,25 @@
-import { WRITE_PAGE_ON, WRITE_PAGE_CLOSE } from '../actions/types';
+import { POST_SUCCESS, POST_FAILURE } from '../actions/types';
 
 const initialState = {
-  visible: true,
+  loading: true,
+  post: null,
 };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case WRITE_PAGE_ON:
+    case POST_SUCCESS:
       return {
         ...state,
-        visible: payload,
+        post: payload,
+        loading: false,
       };
 
-    case WRITE_PAGE_CLOSE:
+    case POST_FAILURE:
       return {
         ...state,
-        visible: payload,
+        loading: false,
       };
 
     default:

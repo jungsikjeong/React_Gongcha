@@ -1,15 +1,29 @@
 import axios from 'axios';
-import { WRITE_PAGE_ON, WRITE_PAGE_CLOSE } from './types';
+import { POST_SUCCESS, POST_FAILURE } from './types';
+import { setAlert } from './alert';
 
-export const writePageOn = (visible = true) => async (dispatch) => {
-  dispatch({
-    type: WRITE_PAGE_ON,
-    payload: visible,
-  });
-};
-export const writePageClose = (visible = false) => async (dispatch) => {
-  dispatch({
-    type: WRITE_PAGE_CLOSE,
-    payload: visible,
-  });
+export const writePost = ({ title, text }) => async (dispatch) => {
+  try {
+    const res = axios.post('/api/posts', title, text);
+
+    dispatch({
+      type: POST_SUCCESS,
+      payload: res.data,
+    });
+
+    dispatch(setAlert('게시글 작성 완료', 'success'));
+
+    // 이후 게시글 작성된 URL로 이동시켜주는 로직 작성??
+  } catch (error) {
+    const errors = err.response.data.errors;
+    console.log(err.response.data.errors);
+
+    if (errors) {
+      // 서버에서 오는 에러메시지가 array임
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+    dispatch({
+      type: POST_FAILURE,
+    });
+  }
 };
