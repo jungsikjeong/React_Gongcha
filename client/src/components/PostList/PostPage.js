@@ -195,12 +195,12 @@ const PostPage = ({ match, readPost, write: { post, loading }, user }) => {
               </UserAndTitle>
               {/* to do: 좋아요 누를시 하트 색깔 변하게 */}
               <AiOutlineHeart size='24' className='icon-like' />
-              {/* {isDelete && (
+              {isDelete && (
                 <GoTrashcan
                   size='24'
                   style={{ marginRight: '20px', cursor: 'pointer' }}
                 />
-              )} */}
+              )}
             </OneBox>
             <TwoBox>
               <Text>{post.text}</Text>
