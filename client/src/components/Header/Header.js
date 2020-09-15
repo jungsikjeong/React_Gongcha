@@ -242,7 +242,7 @@ const Header = ({ auth: { isAuthenticated, user } }) => {
               <Li>POSTS</Li>
             </Link>
           </Ul>
-          {isAuthenticated && isAuthenticated ? (
+          {isAuthenticated ? (
             <ProfileMenu />
           ) : (
             <Link to='/login'>

@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 import { Modal } from 'antd';
 import Button from '../../components/common/Button';
 import { logout } from '../../actions/auth';
-import { writePageOn } from '../../actions/write';
-import { writePageClose } from '../../actions/write';
+import { writePost } from '../../actions/write';
 import { PictureFilled } from '@ant-design/icons';
 import Header from '../Header/Header';
 
@@ -52,7 +51,19 @@ const Form = styled.form`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   margin-top: 10px;
+
+  .actionBox {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -65,6 +76,7 @@ const TextArea = styled.textarea`
   width: 50%;
   height: 50vh;
   padding: 10px;
+
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -94,22 +106,19 @@ const ButtonStyle = styled(Button)`
     `}
 `;
 
-const Contents = styled.div`
-  width: 50%;
-  padding: 10px;
-  display: flex;
-  align-items: center;
+const Write = ({ isAuthenticated, writePost }) => {
+  const [text, setText] = useState('');
 
-  .action-btn {
-    margin-left: auto;
-  }
+  const onChange = (e) => {
+    setText(e.target.value);
+    console.log(text);
+  };
 
-  @media (max-width: 768px) {
-    width: 90%;
-  }
-`;
+  const onSubmit = (e) => {
+    e.preventDefault();
 
-const Write = ({ user, isAuthenticated }) => {
+    writePost({ text });
+  };
   return (
     <Container>
       <Header />
@@ -119,26 +128,30 @@ const Write = ({ user, isAuthenticated }) => {
           <h1>오늘의 공차 만들기</h1>
         </div>
 
-        <Form>
-          <TextArea placeholder='오늘 어떤 공차를 하셨나요?' />
-        </Form>
-
-        <Contents>
-          <PictureFilled
-            style={{
-              cursor: 'pointer',
-              fontSize: '24px',
-              color: '#08c',
-              padding: '10px',
-              border: '1px solid #8e8e8e',
-              borderRadius: '4px',
-            }}
+        <Form onSubmit={onSubmit}>
+          <TextArea
+            placeholder='오늘 어떤 공차를 하셨나요?'
+            onChange={onChange}
+            value={text}
           />
-          <div className='action-btn'>
+
+          <div className='actionBox'>
+            <PictureFilled
+              style={{
+                cursor: 'pointer',
+                fontSize: '24px',
+                color: '#08c',
+                padding: '10px',
+                border: '1px solid #8e8e8e',
+                borderRadius: '4px',
+                marginRight: 'auto',
+              }}
+            />
+
             <ButtonStyle cancel>취소</ButtonStyle>
             <ButtonStyle>등록</ButtonStyle>
           </div>
-        </Contents>
+        </Form>
       </Wrapper>
     </Container>
   );
@@ -146,14 +159,14 @@ const Write = ({ user, isAuthenticated }) => {
 
 Write.propTypes = {
   isAuthenticated: PropTypes.bool,
-  user: PropTypes.object,
+
+  writePost: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
-  user: state.auth.user,
   isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, {
-  logout,
+  writePost,
 })(Write);

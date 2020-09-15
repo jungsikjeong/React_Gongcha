@@ -2,9 +2,9 @@ import axios from 'axios';
 import { POST_SUCCESS, POST_FAILURE } from './types';
 import { setAlert } from './alert';
 
-export const writePost = ({ title, text }) => async (dispatch) => {
+export const writePost = ({ text }) => async (dispatch) => {
   try {
-    const res = axios.post('/api/posts', title, text);
+    const res = await axios.post('/api/posts', { text });
 
     dispatch({
       type: POST_SUCCESS,
@@ -14,7 +14,7 @@ export const writePost = ({ title, text }) => async (dispatch) => {
     dispatch(setAlert('게시글 작성 완료', 'success'));
 
     // 이후 게시글 작성된 URL로 이동시켜주는 로직 작성??
-  } catch (error) {
+  } catch (err) {
     const errors = err.response.data.errors;
     console.log(err.response.data.errors);
 

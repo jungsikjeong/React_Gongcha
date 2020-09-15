@@ -62,6 +62,7 @@ const Form = styled.form`
     outline: 0;
     padding: 10px 15px;
     margin-top: 15px;
+    color: black;
   }
 
   span {
