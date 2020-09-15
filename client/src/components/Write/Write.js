@@ -8,6 +8,7 @@ import { logout } from '../../actions/auth';
 import { writePost } from '../../actions/write';
 import { PictureFilled } from '@ant-design/icons';
 import Header from '../Header/Header';
+import { withRouter } from 'react-router-dom';
 
 // 페이지 전환 효과
 const ScreenFrames = keyframes`
@@ -106,18 +107,17 @@ const ButtonStyle = styled(Button)`
     `}
 `;
 
-const Write = ({ isAuthenticated, writePost }) => {
+const Write = ({ isAuthenticated, writePost, history }) => {
   const [text, setText] = useState('');
 
   const onChange = (e) => {
     setText(e.target.value);
-    console.log(text);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    writePost({ text });
+    writePost({ text, history });
   };
   return (
     <Container>
@@ -159,7 +159,6 @@ const Write = ({ isAuthenticated, writePost }) => {
 
 Write.propTypes = {
   isAuthenticated: PropTypes.bool,
-
   writePost: PropTypes.func,
 };
 
@@ -169,4 +168,4 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   writePost,
-})(Write);
+})(withRouter(Write));

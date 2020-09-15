@@ -1,4 +1,9 @@
-import { POST_SUCCESS, POST_FAILURE } from '../actions/types';
+import {
+  POST_SUCCESS,
+  POST_FAILURE,
+  POST_READ,
+  POST_READ_FAILURE,
+} from '../actions/types';
 
 const initialState = {
   loading: true,
@@ -10,6 +15,7 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case POST_SUCCESS:
+    case POST_READ:
       return {
         ...state,
         post: payload,
@@ -17,6 +23,7 @@ export default function (state = initialState, action) {
       };
 
     case POST_FAILURE:
+    case POST_READ_FAILURE:
       return {
         ...state,
         loading: false,

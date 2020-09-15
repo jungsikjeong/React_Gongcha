@@ -46,11 +46,9 @@ const App = () => {
           <Route path='/smoothie' component={Smoothie} />
 
           {/* Post */}
-          <Route path='/postList' component={PostList} />
-          <PrivateRoute path='/write' component={Write} />
-
-          {/* <Route component={PostPage} path="/@:username/:postId" /> */}
-          <Route component={PostPage} path='/postPage' />
+          <Route exact path='/postList' component={PostList} />
+          <PrivateRoute exact path='/write' component={Write} />
+          <Route exact path='/postPage/:id' component={PostPage} />
 
           {/* 내 정보 */}
           <PrivateRoute path='/profile' component={Profile} />

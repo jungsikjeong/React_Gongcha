@@ -1,8 +1,13 @@
 import axios from 'axios';
-import { POST_SUCCESS, POST_FAILURE } from './types';
+import {
+  POST_SUCCESS,
+  POST_FAILURE,
+  POST_READ,
+  POST_READ_FAILURE,
+} from './types';
 import { setAlert } from './alert';
 
-export const writePost = ({ text }) => async (dispatch) => {
+export const writePost = ({ text, history }) => async (dispatch) => {
   try {
     const res = await axios.post('/api/posts', { text });
 
@@ -13,7 +18,8 @@ export const writePost = ({ text }) => async (dispatch) => {
 
     dispatch(setAlert('게시글 작성 완료', 'success'));
 
-    // 이후 게시글 작성된 URL로 이동시켜주는 로직 작성??
+    const _id = res.data._id;
+    history.push(`/postpage/${_id}`);
   } catch (err) {
     const errors = err.response.data.errors;
     console.log(err.response.data.errors);
@@ -24,6 +30,26 @@ export const writePost = ({ text }) => async (dispatch) => {
     }
     dispatch({
       type: POST_FAILURE,
+    });
+  }
+};
+
+// id로 게시글 가져오기
+export const readPost = (postId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/posts/${postId}`);
+
+    dispatch({
+      type: POST_READ,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
+    console.log(err);
+
+    dispatch({
+      type: POST_READ_FAILURE,
+      payload: err.message,
     });
   }
 };

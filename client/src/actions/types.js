@@ -16,3 +16,5 @@ export const LOGOUT = 'LOGOUT';
 
 export const POST_SUCCESS = 'POST_SUCCESS';
 export const POST_FAILURE = 'POST_FAILURE';
+export const POST_READ = 'POST_READ';
+export const POST_READ_FAILURE = 'POST_READ_FAILURE';

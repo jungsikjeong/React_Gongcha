@@ -103,9 +103,12 @@ const ProfileMenu = ({ auth: { isAuthenticated, user }, logout, history }) => {
         <Dropdown overlay={menu({ onClick, history })}>
           <Link to='#'>
             <ButtonStyle>
-              <img src={user.avatar} alt='userAvatar' />
-
-              <span className='user-text'> {user.name}님</span>
+              {user !== null && (
+                <>
+                  <img src={user.avatar} alt='userAvatar' />
+                  <span className='user-text'> {user.name}님</span>
+                </>
+              )}
             </ButtonStyle>
           </Link>
         </Dropdown>
