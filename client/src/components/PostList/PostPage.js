@@ -85,6 +85,19 @@ const OneBox = styled.div`
   color: #fff;
   line-height: 1.5;
   padding: 16px;
+
+  .icon-like {
+    /* 데스크 탑 */
+    @media (min-width: 1024px) {
+      padding: 10px;
+      cursor: pointer;
+      margin-left: auto;
+    }
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    margin-left: auto;
+  }
 `;
 
 const TwoBox = styled.div`
@@ -181,17 +194,13 @@ const PostPage = ({ match, readPost, write: { post, loading }, user }) => {
                 <span>{post.date.slice(0, 10)}</span>
               </UserAndTitle>
               {/* to do: 좋아요 누를시 하트 색깔 변하게 */}
-              <AiOutlineHeart
-                size='24'
-                style={{
-                  padding: '10px',
-                  cursor: 'pointer',
-                  marginLeft: 'auto',
-                }}
-              />
-              {isDelete && (
-                <GoTrashcan size='24' style={{ cursor: 'pointer' }} />
-              )}
+              <AiOutlineHeart size='24' className='icon-like' />
+              {/* {isDelete && (
+                <GoTrashcan
+                  size='24'
+                  style={{ marginRight: '20px', cursor: 'pointer' }}
+                />
+              )} */}
             </OneBox>
             <TwoBox>
               <Text>{post.text}</Text>
