@@ -89,14 +89,15 @@ const OneBox = styled.div`
   .icon-like {
     /* 데스크 탑 */
     @media (min-width: 1024px) {
-      padding: 10px;
+      margin-right: 0;
       cursor: pointer;
       margin-left: auto;
     }
+
     padding: 10px;
     margin-right: 10px;
-    cursor: pointer;
     margin-left: auto;
+    cursor: pointer;
   }
 `;
 
