@@ -84,7 +84,7 @@ const OneBox = styled.div`
   font-size: 0.9rem;
   color: #fff;
   line-height: 1.5;
-  padding: 16px;
+  padding: 16px 16px 10px 16px;
 
   .icon-like {
     /* 데스크 탑 */
@@ -105,7 +105,7 @@ const TwoBox = styled.div`
   font-size: 0.9rem;
   color: #fff;
   line-height: 1.5;
-  padding: 16px;
+  padding: 0px 16px 16px 16px;
   height: 15rem;
   overflow-y: auto;
   overflow-x: hidden;
@@ -194,6 +194,7 @@ const PostPage = ({ match, readPost, write: { post, loading }, user }) => {
                 {/* <Title>today is very very Happy🥰🥰</Title> */}
                 <span>{post.date.slice(0, 10)}</span>
               </UserAndTitle>
+
               {/* to do: 좋아요 누를시 하트 색깔 변하게 */}
               <AiOutlineHeart size='24' className='icon-like' />
               {isDelete && (
