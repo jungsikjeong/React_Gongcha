@@ -4,6 +4,8 @@ import {
   POST_FAILURE,
   POST_READ,
   POST_READ_FAILURE,
+  GET_ALL_POSTS,
+  CLEAR_POST,
 } from './types';
 import { setAlert } from './alert';
 
@@ -18,6 +20,7 @@ export const writePost = ({ text, history }) => async (dispatch) => {
 
     dispatch(setAlert('게시글 작성 완료', 'success'));
 
+    // 게시글 작성후 방금 작성한 페이지로 이동
     const _id = res.data._id;
     history.push(`/postpage/${_id}`);
   } catch (err) {
@@ -36,6 +39,7 @@ export const writePost = ({ text, history }) => async (dispatch) => {
 
 // id로 게시글 가져오기
 export const readPost = (postId) => async (dispatch) => {
+  dispatch({ type: CLEAR_POST });
   try {
     const res = await axios.get(`/api/posts/${postId}`);
 
@@ -45,11 +49,24 @@ export const readPost = (postId) => async (dispatch) => {
     });
   } catch (err) {
     console.error(err);
-    console.log(err);
 
     dispatch({
       type: POST_READ_FAILURE,
       payload: err.message,
     });
+  }
+};
+
+// 모든 게시글 가져오기
+export const getAllPosts = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/api/posts');
+
+    dispatch({
+      type: GET_ALL_POSTS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
   }
 };

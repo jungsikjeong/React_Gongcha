@@ -7,8 +7,11 @@ import Button from '../../components/common/Button';
 import { logout } from '../../actions/auth';
 import { writePost } from '../../actions/write';
 import { PictureFilled } from '@ant-design/icons';
-import Header from '../Header/Header';
 import { withRouter } from 'react-router-dom';
+
+// components
+import Header from '../Header/Header';
+import Alert from '../common/Alert';
 
 // 페이지 전환 효과
 const ScreenFrames = keyframes`
@@ -122,7 +125,7 @@ const Write = ({ isAuthenticated, writePost, history }) => {
   return (
     <Container>
       <Header />
-
+      <Alert />
       <Wrapper>
         <div className='writeHeader'>
           <h1>오늘의 공차 만들기</h1>
@@ -130,7 +133,7 @@ const Write = ({ isAuthenticated, writePost, history }) => {
 
         <Form onSubmit={onSubmit}>
           <TextArea
-            placeholder='오늘 어떤 공차를 하셨나요?'
+            placeholder='오늘 어떤 공차를 하셨나요? (최소 25글자로 작성해주세요!)'
             onChange={onChange}
             value={text}
           />

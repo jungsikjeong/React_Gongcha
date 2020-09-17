@@ -12,7 +12,17 @@ const User = require('../../models/User');
 // @access  Private
 router.post(
   '/',
-  [auth, [check('text', 'Text is required').not().isEmpty()]],
+  [
+    auth,
+    [
+      check('text', '내용을 양식에 맞게 입력해주세요!')
+        .not()
+        .isEmpty()
+        .isLength({
+          min: 25,
+        }),
+    ],
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -41,8 +51,8 @@ router.post(
 
 // @route   GET api/posts
 // @desc    모든 게시물 가져 오기
-// @access  Private
-router.get('/', auth, async (req, res) => {
+// @access  Public
+router.get('/', async (req, res) => {
   try {
     const posts = await Post.find().sort({
       date: -1,
@@ -58,8 +68,8 @@ router.get('/', auth, async (req, res) => {
 
 // @route   GET api/posts/:id
 // @desc    ID로 게시물 받기(특정 게시글 받기)
-// @access  Private
-router.get('/:id', auth, async (req, res) => {
+// @access  Public
+router.get('/:id', async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
 

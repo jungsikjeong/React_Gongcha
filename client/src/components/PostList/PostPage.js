@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -19,6 +19,18 @@ import { readPost } from '../../actions/write';
 /**
  * first 모바일 화면
  */
+
+// 페이지 전환 효과
+const ScreenFrames = keyframes`
+ from{
+  opacity:0.9;
+  transform:translateY(-80px);
+ }
+ to{
+  opacity:1;
+  transform:translateY(0);
+ }
+`;
 
 const Container = styled.div`
   min-height: 100vh;
@@ -46,6 +58,7 @@ const Wrapper = styled.div`
     /* height: 100vh; */
     /* width: 1024px; */
     margin: 0 auto; /*중앙 정렬 */
+    animation: ${ScreenFrames} 0.75s;
   }
 `;
 
@@ -171,7 +184,7 @@ const PostPage = ({ match, readPost, write: { post, loading }, user }) => {
   return (
     <Container>
       <Header />
-      {loading ? (
+      {post === null ? (
         <Loading />
       ) : (
         <Wrapper>
