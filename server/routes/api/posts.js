@@ -4,7 +4,6 @@ const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 
 const Post = require('../../models/Post');
-// const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
 // @route   POST api/posts
@@ -92,10 +91,10 @@ router.get('/:id', async (req, res) => {
 // @access  Private
 router.delete('/:id', auth, async (req, res) => {
   try {
-    const post = Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id);
 
     if (!post) {
-      return res.status(404).json({ msg: '게시글을 찾을 수 없습니다.' });
+      return res.status(404).json({ msg: '게시글이 없습니다.' });
     }
 
     // check user

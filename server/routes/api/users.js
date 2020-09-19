@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -7,6 +8,22 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
+const auth = require('../../middleware/auth');
+
+//=================================
+//             (이미지업로드)
+//=================================
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, `${Date.now()}_${file.originalname}`);
+  },
+});
+
+var upload = multer({ storage: storage }).single('file');
 
 // @route   POST api/users (회원가입)
 // @desc    Register user
@@ -81,5 +98,25 @@ router.post(
     }
   }
 );
+
+// @route   POST api/users/edit/avatar (프로필 이미지 편집)
+// @desc    Register user
+// @access  Public
+router.post('/edit/avatar', async (req, res) => {
+  // 프론트 FileUpload.js에서 가져온 이미지를 저장을 해준다.
+  // 서버쪽엔 저장 X 프론트에만 저장 O
+  upload(req, res, (err) => {
+    if (err) {
+      return res.json({ success: false, err });
+    }
+    if (!req.file) return res.send('Please upload a file');
+
+    return res.json({
+      success: true,
+      filePath: res.req.file.path,
+      fileName: res.req.file.filename,
+    });
+  });
+});
 
 module.exports = router;

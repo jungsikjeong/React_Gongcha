@@ -13,9 +13,20 @@ const StyledButton = styled.button`
   cursor: pointer;
 
   ${(props) =>
+    props.imageChange &&
+    css`
+      width: 100%;
+      margin-top: 10px;
+      padding: 3px;
+      background: #00b9f6;
+    `}
+
+  ${(props) =>
     props.logoutBtn &&
     css`
+      width: 100%;
       margin-top: 10px;
+      padding: 3px;
       background: red;
     `}
 `;

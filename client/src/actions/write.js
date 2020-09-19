@@ -70,3 +70,17 @@ export const getAllPosts = () => async (dispatch) => {
     console.error(err);
   }
 };
+
+// 특정 게시글 지우기
+export const removePost = (postId, history) => async (dispatch) => {
+  try {
+    await axios.delete(`/api/posts/${postId}`);
+
+    dispatch({ type: CLEAR_POST });
+    dispatch(setAlert('게시글 삭제 완료', 'success'));
+
+    history.push('/postlist');
+  } catch (err) {
+    console.error(err);
+  }
+};

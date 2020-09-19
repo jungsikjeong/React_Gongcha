@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
+import { avatarChange } from '../actions/users';
 import PropTypes from 'prop-types';
+
 // components
 import Header from './Header/Header';
 import Button from '../components/common/Button';
@@ -42,8 +44,31 @@ const UserContainer = styled.div`
   flex-direction: column;
 `;
 
+const Form = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  margin-top: 10px;
+  padding: 3px;
+  background: #04aaff;
+  border: 0;
+  outline: none;
+  color: #fff;
+  font-weight: bold;
+
+  font-size: 17px;
+  cursor: pointer;
+`;
+
 const Avatar = styled.div`
   width: 7rem;
+  width: 200px;
+  height: 200px;
 
   img {
     border-radius: 50%;
@@ -56,9 +81,41 @@ const Span = styled.span`
   color: white;
 `;
 
-const Profile = ({ auth: { user, loading }, history, logout }) => {
-  const onClick = () => {
+const Profile = ({
+  auth: { user, loading },
+  history,
+  logout,
+  avatarChange,
+}) => {
+  const [newPhotoURL, setNewPhotoURL] = useState('');
+
+  const onHandleLogout = () => {
     logout(history);
+  };
+
+  const onFileChange = (event) => {
+    const {
+      target: { files },
+    } = event;
+
+    const reader = new FileReader();
+    const theFile = files[0];
+
+    reader.onloadend = (finishedEvent) => {
+      const {
+        currentTarget: { result },
+      } = finishedEvent;
+
+      setNewPhotoURL(result);
+    };
+
+    reader.readAsDataURL(theFile);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    avatarChange(newPhotoURL);
   };
 
   return (
@@ -74,11 +131,19 @@ const Profile = ({ auth: { user, loading }, history, logout }) => {
       ) : (
         <Wrapper>
           <UserContainer>
-            <Avatar>
-              <img src={user.avatar} />
-            </Avatar>
+            <Form onSubmit={onSubmit}>
+              <Avatar>
+                {newPhotoURL ? (
+                  <img src={newPhotoURL} />
+                ) : (
+                  <img src={user.avatar} />
+                )}
+              </Avatar>
 
-            <Button logoutBtn onClick={onClick}>
+              <Input type='file' accept='image/*' onChange={onFileChange} />
+              <Button>프로필 편집 완료</Button>
+            </Form>
+            <Button logoutBtn onClick={onHandleLogout}>
               로그아웃
             </Button>
           </UserContainer>
@@ -90,6 +155,7 @@ const Profile = ({ auth: { user, loading }, history, logout }) => {
 
 Profile.propTypes = {
   logout: PropTypes.func.isRequired,
+  avatarChange: PropTypes.func.isRequired,
   user: PropTypes.object,
   loading: PropTypes.bool,
 };
@@ -98,4 +164,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout })(Profile);
+export default connect(mapStateToProps, { logout, avatarChange })(Profile);

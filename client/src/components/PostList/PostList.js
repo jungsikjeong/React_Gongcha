@@ -8,6 +8,7 @@ import { getAllPosts } from '../../actions/write';
 // components
 import Header from '../Header/Header';
 import Loading from '../common/Loading';
+import Alert from '../../components/common/Alert';
 
 // 페이지 전환 효과
 const ScreenFrames = keyframes`
@@ -89,23 +90,25 @@ const Columns = styled.div`
 const PostList = ({ write: { posts, loading }, getAllPosts }) => {
   useEffect(() => {
     getAllPosts();
-  }, [getAllPosts, posts, loading]);
+  }, [getAllPosts]);
 
   return (
     <Container>
       <Header />
+      <Alert />
 
-      {loading ? (
+      {posts === null || loading ? (
         <Loading />
       ) : (
         <Columns>
-          <Link to={`/postpage/${posts[0]._id}`}>
-            <figure>
-              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRq6MvximRKiu0XTDp7J2omL4ZgOT6zMzseIg&usqp=CAU' />
-              <figcaption>{posts[0].text}</figcaption>
-            </figure>
-          </Link>
-
+          {posts.map((post) => (
+            <Link to={`/postpage/${post._id}`}>
+              <figure>
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRq6MvximRKiu0XTDp7J2omL4ZgOT6zMzseIg&usqp=CAU' />
+                <figcaption>{post.text}</figcaption>
+              </figure>
+            </Link>
+          ))}
           <Link to='/postPage'>
             <figure>
               <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRq6MvximRKiu0XTDp7J2omL4ZgOT6zMzseIg&usqp=CAU' />
