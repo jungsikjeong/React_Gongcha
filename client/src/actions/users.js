@@ -10,7 +10,7 @@ export const avatarChange = (formData) => async (dispatch) => {
 
     const res = await axios.post('/api/users/edit/avatar', formData, config);
 
-    console.log(res);
+    console.log(res.data);
   } catch (err) {
     console.error(err);
   }

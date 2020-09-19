@@ -88,6 +88,7 @@ const Profile = ({
   avatarChange,
 }) => {
   const [newPhotoURL, setNewPhotoURL] = useState('');
+  const [imageData, setImageData] = useState('');
 
   const onHandleLogout = () => {
     logout(history);
@@ -97,7 +98,7 @@ const Profile = ({
     const {
       target: { files },
     } = event;
-
+    // 파일을 문자열로바꿔서 프론트에 이미지 표시
     const reader = new FileReader();
     const theFile = files[0];
 
@@ -108,14 +109,22 @@ const Profile = ({
 
       setNewPhotoURL(result);
     };
-
+    // 파일을 서버에 전송하기위한것
     reader.readAsDataURL(theFile);
+
+    const formData = new FormData();
+
+    formData.append('file', files[0]);
+    avatarChange(formData);
+
+    setImageData(files[0]);
+    console.log(imageData);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    avatarChange(newPhotoURL);
+    avatarChange(imageData);
   };
 
   return (
