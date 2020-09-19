@@ -1,6 +1,8 @@
 import { AVATAR_CHANGE } from '../actions/types';
 
-const initialState = {};
+const initialState = {
+  userAvatarUrl: '',
+};
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
@@ -9,6 +11,7 @@ export default function (state = initialState, action) {
     case AVATAR_CHANGE:
       return {
         ...state,
+        userAvatarUrl: payload,
       };
 
     default:
