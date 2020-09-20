@@ -135,9 +135,6 @@ router.post('/edit/profile', auth, async (req, res) => {
         avatar: req.body.avatar,
       });
     }
-    const userRes = await user.save();
-
-    return res.json(userRes);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

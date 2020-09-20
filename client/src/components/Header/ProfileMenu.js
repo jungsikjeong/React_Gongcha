@@ -79,14 +79,13 @@ const menu = ({ onClick, history }) => {
       }}
     >
       <Menu.Item>
-        <Link to='/write'>Write a post</Link>
+        <Link to='/write'>🥤 공차작성하기</Link>
       </Menu.Item>
       <Menu.Item>
-        {/* to do:: 로그인한 유저의 마이페이지로 가게끔 */}
-        <Link to='/profile'>My Pages</Link>
+        <Link to='/profile'>🔒 마이페이지</Link>
       </Menu.Item>
       <Menu.Item danger onClick={onClick}>
-        Log out
+        🖐 로그아웃
       </Menu.Item>
     </Menu>
   );

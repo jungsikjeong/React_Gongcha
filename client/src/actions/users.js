@@ -22,9 +22,9 @@ export const avatarChange = (formData) => async (dispatch) => {
 };
 
 // 유저 프로필 변경
-export const profileChange = (newPhotoURL) => async (dispatch) => {
+export const profileChange = (body) => async (dispatch) => {
   try {
-    const res = await axios.post('/api/users/edit/profile', newPhotoURL);
+    await axios.post('/api/users/edit/profile', body);
 
     dispatch(setAlert('프로필 변경 완료', 'success'));
   } catch (err) {
