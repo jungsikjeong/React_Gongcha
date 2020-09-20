@@ -2,6 +2,7 @@
  * 액션 타입
  */
 export const AVATAR_CHANGE = 'AVATAR_CHANGE';
+export const CLEAR_USER_PROFILE = 'CLEAR_USER_PROFILE';
 
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';

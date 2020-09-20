@@ -100,8 +100,8 @@ router.post(
 );
 
 // @route   POST api/users/edit/avatar (프로필 이미지 편집)
-// @desc    Register user
-// @access  Public
+// @desc    AvatarChange user
+// @access  Private
 router.post('/edit/avatar', async (req, res) => {
   // 프론트 에서 가져온 이미지를 저장을 해준다.
   upload(req, res, (err) => {
@@ -116,6 +116,32 @@ router.post('/edit/avatar', async (req, res) => {
       fileName: res.req.file.filename,
     });
   });
+});
+
+// @route   POST api/users/edit/ (유저 정보 변경)
+// @desc    User information change
+// @access  Private
+router.post('/edit/profile', auth, async (req, res) => {
+  console.log(req.body);
+
+  try {
+    let user = await User.findOne({ _id: req.user.id });
+
+    if (user) {
+      // Update
+      console.log('user있음');
+      await User.findByIdAndUpdate(user, {
+        // name,
+        avatar: req.body.avatar,
+      });
+    }
+    const userRes = await user.save();
+
+    return res.json(userRes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 module.exports = router;

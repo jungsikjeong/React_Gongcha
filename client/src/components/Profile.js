@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
-import { avatarChange } from '../actions/users';
+import { avatarChange, profileChange } from '../actions/users';
 import PropTypes from 'prop-types';
 
 // components
@@ -87,6 +87,7 @@ const Profile = ({
   history,
   logout,
   avatarChange,
+  profileChange,
 }) => {
   const [newPhotoURL, setNewPhotoURL] = useState('');
 
@@ -109,12 +110,19 @@ const Profile = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    const body = {
+      avatar: newPhotoURL,
+    };
+
+    profileChange(body);
   };
 
   // 프로필 이미지 변경시 화면에 띄워줌
   useEffect(() => {
     setNewPhotoURL(userAvatarUrl);
   }, [userAvatarUrl]);
+
   return (
     <ProfileContainer>
       <Header />
@@ -162,4 +170,8 @@ const mapStateToProps = (state) => ({
   users: state.users,
 });
 
-export default connect(mapStateToProps, { logout, avatarChange })(Profile);
+export default connect(mapStateToProps, {
+  logout,
+  avatarChange,
+  profileChange,
+})(Profile);
