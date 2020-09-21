@@ -96,9 +96,6 @@ const ProfileMenu = ({ user, logout, history }) => {
     logout(history);
   };
 
-  useEffect(() => {
-    console.log(user);
-  }, []);
   return (
     <ProfileMenuContainer>
       {user && (
@@ -107,7 +104,10 @@ const ProfileMenu = ({ user, logout, history }) => {
             <ButtonStyle>
               {user !== null && (
                 <>
-                  <img src={user.avatar} alt='userAvatar' />
+                  <img
+                    src={`http://localhost:5000/${user.avatar}`}
+                    alt='userAvatar'
+                  />
                   <span className='user-text'> {user.name}님</span>
                 </>
               )}

@@ -184,6 +184,7 @@ const PostPage = ({
 
   useEffect(() => {
     readPost(id);
+    console.log('post:', post);
   }, [readPost, id]);
 
   const isDelete = (user && user._id) === (post && post.user);
@@ -209,13 +210,13 @@ const PostPage = ({
             <OneBox>
               {/* 모바일 버전에서는 비활성화됨 */}
               <Avatar>
-                <img src={post.avatar} />
+                <img src={`http://localhost:5000/${post.avatar}`} />
               </Avatar>
 
               <UserAndTitle>
                 {post.name}
                 <span className='RPhNB'>•</span>
-                <span>{post.date.slice(0, 10)}</span>
+                <span>{post.date.slice(0, 10)}</span>)
               </UserAndTitle>
 
               {/* to do: 좋아요 누를시 하트 색깔 변하게 */}
