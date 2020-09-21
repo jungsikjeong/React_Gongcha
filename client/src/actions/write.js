@@ -39,7 +39,7 @@ export const writePost = ({ text, history }) => async (dispatch) => {
 
 // id로 게시글 가져오기
 export const readPost = (postId) => async (dispatch) => {
-  dispatch({ type: CLEAR_POST });
+  // dispatch({ type: CLEAR_POST });
   try {
     const res = await axios.get(`/api/posts/${postId}`);
 

@@ -209,7 +209,7 @@ const PostPage = ({
             <OneBox>
               {/* 모바일 버전에서는 비활성화됨 */}
               <Avatar>
-                <img src={`${post._id}${post.avatar}`} />
+                <img src={post.avatar} />
               </Avatar>
 
               <UserAndTitle>
