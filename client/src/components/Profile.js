@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
-import { logout } from '../actions/auth';
-import { avatarChange, profileChange } from '../actions/users';
+import { logout, loadUser } from '../actions/auth';
+import {
+  avatarChange,
+  profileChange,
+  clearUserProfile,
+} from '../actions/users';
+import { setAlert } from '../actions/alert';
 import PropTypes from 'prop-types';
 
 // components
 import Header from './Header/Header';
 import Button from '../components/common/Button';
 import Loading from './common/Loading';
+import Alert from './common/Alert';
 
 // 페이지 전환효과
 const ScreenFrames = keyframes`
@@ -63,6 +69,11 @@ const Input = styled.input`
 
   font-size: 17px;
   cursor: pointer;
+
+  ::placeholder {
+    color: #fff;
+    text-align: center;
+  }
 `;
 
 const Avatar = styled.div`
@@ -77,10 +88,6 @@ const Avatar = styled.div`
   }
 `;
 
-const Span = styled.span`
-  color: white;
-`;
-
 const Profile = ({
   auth: { user, loading },
   users: { userAvatarUrl },
@@ -88,17 +95,21 @@ const Profile = ({
   logout,
   avatarChange,
   profileChange,
+  clearUserProfile,
+  loadUser,
+  setAlert,
 }) => {
   const [newPhotoURL, setNewPhotoURL] = useState('');
+  const [newName, setNewName] = useState('');
 
   const onHandleLogout = () => {
     logout(history);
   };
 
-  const onFileChange = (event) => {
+  const onFileChange = (e) => {
     const {
       target: { files },
-    } = event;
+    } = e;
 
     // 파일을 서버에 전송하기위한것
     const formData = new FormData();
@@ -108,14 +119,21 @@ const Profile = ({
     avatarChange(formData);
   };
 
+  const onNameChange = (e) => {
+    setNewName(e.target.value);
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
 
     const body = {
+      name: newName,
       avatar: newPhotoURL,
     };
-
+    // 유저프로필 변경후 재부팅시켜서 최신화시킴
     profileChange(body);
+    loadUser();
+    setAlert('프로필 변경 완료', 'success');
   };
 
   // 프로필 이미지 변경시 화면에 띄워줌
@@ -123,36 +141,51 @@ const Profile = ({
     setNewPhotoURL(userAvatarUrl);
   }, [userAvatarUrl]);
 
+  // 페이지 벗어날때 초기화
+  useEffect(() => {
+    return () => {
+      clearUserProfile();
+    };
+  }, []);
+
   return (
     <ProfileContainer>
       <Header />
 
       {/* to do:: 자기가 쓴 게시글 목록들 가져오기 */}
-      {/* to do:: 프로필 사진 편집 기능 */}
-      {/* to do:: 유저 이름 변경 기능 */}
+      {/* to do:: 유저프로필편집화면 CSS */}
 
       {loading ? (
         <Loading />
       ) : (
-        <Wrapper>
-          <UserContainer>
-            <Form onSubmit={onSubmit}>
-              <Avatar>
-                {newPhotoURL ? (
-                  <img src={newPhotoURL} />
-                ) : (
-                  <img src={user.avatar} />
-                )}
-              </Avatar>
+        <>
+          <Alert />
+          <Wrapper>
+            <UserContainer>
+              <Form onSubmit={onSubmit}>
+                <Avatar>
+                  {newPhotoURL ? (
+                    <img src={newPhotoURL} />
+                  ) : (
+                    <img src={user.avatar} />
+                  )}
+                </Avatar>
 
-              <Input type='file' accept='image/*' onChange={onFileChange} />
-              <Button>프로필 편집 완료</Button>
-            </Form>
-            <Button logoutBtn onClick={onHandleLogout}>
-              로그아웃
-            </Button>
-          </UserContainer>
-        </Wrapper>
+                <Input type='file' accept='image/*' onChange={onFileChange} />
+                <Input
+                  type='text'
+                  value={newName}
+                  onChange={onNameChange}
+                  placeholder={user.name}
+                />
+                <Button>프로필 편집 완료</Button>
+              </Form>
+              <Button logoutBtn onClick={onHandleLogout}>
+                로그아웃
+              </Button>
+            </UserContainer>
+          </Wrapper>
+        </>
       )}
     </ProfileContainer>
   );
@@ -163,6 +196,8 @@ Profile.propTypes = {
   users: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired,
   avatarChange: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -174,4 +209,7 @@ export default connect(mapStateToProps, {
   logout,
   avatarChange,
   profileChange,
+  clearUserProfile,
+  loadUser,
+  setAlert,
 })(Profile);

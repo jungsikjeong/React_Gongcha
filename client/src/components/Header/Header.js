@@ -223,7 +223,7 @@ const Header = ({ auth: { isAuthenticated, user } }) => {
           </Link>
         </NavLogo>
 
-        {/* 모바일 사이즈에서 메뉴 아이콘 */}
+        {/* 모바일 사이즈에서 메뉴 아이콘 활성화*/}
         {menuActive && <FaBars className='open-icon' onClick={onShowMenu} />}
 
         {/*데스크탑 사이즈에서 메뉴 활성화 */}
@@ -243,7 +243,7 @@ const Header = ({ auth: { isAuthenticated, user } }) => {
             </Link>
           </Ul>
           {isAuthenticated ? (
-            <ProfileMenu />
+            <ProfileMenu user={user} />
           ) : (
             <Link to='/login'>
               <ButtonStyle>SIGN IN</ButtonStyle>
@@ -297,7 +297,7 @@ const Header = ({ auth: { isAuthenticated, user } }) => {
 
 Header.propTypes = {
   isAuthenticated: PropTypes.bool,
-  user: PropTypes.object,
+  auth: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({

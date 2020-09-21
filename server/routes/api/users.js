@@ -122,17 +122,16 @@ router.post('/edit/avatar', async (req, res) => {
 // @desc    User information change
 // @access  Private
 router.post('/edit/profile', auth, async (req, res) => {
-  console.log(req.body);
+  const { name, avatar } = req.body;
 
   try {
     let user = await User.findOne({ _id: req.user.id });
 
     if (user) {
       // Update
-      console.log('user있음');
       await User.findByIdAndUpdate(user, {
-        // name,
-        avatar: req.body.avatar,
+        name: name ? name : user.name,
+        avatar: avatar ? avatar : user.avatar,
       });
     }
   } catch (err) {

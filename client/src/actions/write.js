@@ -47,6 +47,8 @@ export const readPost = (postId) => async (dispatch) => {
       type: POST_READ,
       payload: res.data,
     });
+
+    // console.log(res.data);
   } catch (err) {
     console.error(err);
 

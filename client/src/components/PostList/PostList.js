@@ -102,7 +102,7 @@ const PostList = ({ write: { posts, loading }, getAllPosts }) => {
       ) : (
         <Columns>
           {posts.map((post) => (
-            <Link to={`/postpage/${post._id}`}>
+            <Link to={`/postpage/${post._id}`} key={post._id}>
               <figure>
                 <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRq6MvximRKiu0XTDp7J2omL4ZgOT6zMzseIg&usqp=CAU' />
                 <figcaption>{post.text}</figcaption>

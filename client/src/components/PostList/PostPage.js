@@ -209,13 +209,12 @@ const PostPage = ({
             <OneBox>
               {/* 모바일 버전에서는 비활성화됨 */}
               <Avatar>
-                <img src={post.avatar} />
+                <img src={`${post._id}${post.avatar}`} />
               </Avatar>
 
               <UserAndTitle>
                 {post.name}
                 <span className='RPhNB'>•</span>
-                {/* <Title>today is very very Happy🥰🥰</Title> */}
                 <span>{post.date.slice(0, 10)}</span>
               </UserAndTitle>
 

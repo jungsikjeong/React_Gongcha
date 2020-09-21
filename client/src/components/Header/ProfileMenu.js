@@ -91,14 +91,17 @@ const menu = ({ onClick, history }) => {
   );
 };
 
-const ProfileMenu = ({ auth: { isAuthenticated, user }, logout, history }) => {
+const ProfileMenu = ({ user, logout, history }) => {
   const onClick = () => {
     logout(history);
   };
 
+  useEffect(() => {
+    console.log(user);
+  }, []);
   return (
     <ProfileMenuContainer>
-      {isAuthenticated && (
+      {user && (
         <Dropdown overlay={menu({ onClick, history })}>
           <Link to='#'>
             <ButtonStyle>
@@ -122,8 +125,4 @@ ProfileMenu.propTypes = {
   logout: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-});
-
-export default connect(mapStateToProps, { logout })(withRouter(ProfileMenu));
+export default connect(null, { logout })(withRouter(ProfileMenu));

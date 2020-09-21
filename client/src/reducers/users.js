@@ -13,10 +13,12 @@ export default function (state = initialState, action) {
         ...state,
         userAvatarUrl: payload,
       };
+
     case CLEAR_USER_PROFILE:
       return {
         ...state,
         userAvatarUrl: '',
+        newUser: '',
       };
 
     default:

@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { AVATAR_CHANGE, CLEAR_USER_PROFILE } from './types';
-import { setAlert } from './alert';
 
-// 유저 프로필 이미지변경
+// 유저 프로필 이미지변경,multer때문에 필요
 export const avatarChange = (formData) => async (dispatch) => {
   try {
     const config = {
@@ -11,7 +10,6 @@ export const avatarChange = (formData) => async (dispatch) => {
 
     const res = await axios.post('/api/users/edit/avatar', formData, config);
 
-    console.log(res.data);
     dispatch({
       type: AVATAR_CHANGE,
       payload: res.data.filePath,
@@ -21,12 +19,10 @@ export const avatarChange = (formData) => async (dispatch) => {
   }
 };
 
-// 유저 프로필 변경
+// 유저 프로필 변경(유저 프로필 이미지변경 및 닉네임변경)
 export const profileChange = (body) => async (dispatch) => {
   try {
     await axios.post('/api/users/edit/profile', body);
-
-    dispatch(setAlert('프로필 변경 완료', 'success'));
   } catch (err) {
     console.error(err);
   }
