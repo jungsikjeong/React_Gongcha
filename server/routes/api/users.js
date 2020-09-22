@@ -8,6 +8,7 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
+const Post = require('../../models/Post');
 const auth = require('../../middleware/auth');
 
 //=================================
@@ -130,14 +131,32 @@ router.post('/edit/profile', auth, async (req, res) => {
   const { name, avatar } = req.body;
 
   try {
-    let user = await User.findOne({ _id: req.user.id });
+    let user = await User.findOne({ _id: req.user.id }).select('-password');
 
     if (user) {
       // Update
-      await User.findByIdAndUpdate(user, {
-        name: name ? name : user.name,
-        avatar: avatar ? avatar : user.avatar,
-      });
+      const newUser = await User.findByIdAndUpdate(
+        user,
+        {
+          $set: {
+            name: name ? name : user.name,
+            avatar: avatar ? avatar : user.avatar,
+          },
+        },
+        { new: true }
+      ).select('-password');
+
+      const post = await Post.findByIdAndUpdate(
+        user,
+        {
+          $set: {
+            user: req.user.id,
+          },
+        },
+        { multi: true, new: true }
+      ).exec();
+
+      console.log('newUser:', newUser);
     }
   } catch (err) {
     console.error(err.message);

@@ -1,7 +1,12 @@
-import { AVATAR_CHANGE, CLEAR_USER_PROFILE } from '../actions/types';
+import {
+  AVATAR_CHANGE,
+  CLEAR_USER_PROFILE,
+  PROFILE_CHANGE_SUCCESS,
+} from '../actions/types';
 
 const initialState = {
   userAvatarUrl: '',
+  profile: '',
 };
 
 export default function (state = initialState, action) {
@@ -12,6 +17,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         userAvatarUrl: payload,
+      };
+
+    case PROFILE_CHANGE_SUCCESS:
+      return {
+        ...state,
+        profile: payload,
       };
 
     case CLEAR_USER_PROFILE:

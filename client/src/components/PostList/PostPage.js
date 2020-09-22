@@ -184,7 +184,6 @@ const PostPage = ({
 
   useEffect(() => {
     readPost(id);
-    console.log('post:', post);
   }, [readPost, id]);
 
   const isDelete = (user && user._id) === (post && post.user);

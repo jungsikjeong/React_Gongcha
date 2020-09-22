@@ -126,7 +126,7 @@ const Profile = ({
   const [newPhotoURL, setNewPhotoURL] = useState('');
   const [newName, setNewName] = useState('');
 
-  const onHandleLogout = () => {
+  const onLogout = () => {
     logout(history);
   };
 
@@ -158,11 +158,12 @@ const Profile = ({
       name: newName,
       avatar: newPhotoURL,
     };
+
+    console.log(body);
     // 유저프로필 변경후 재부팅시켜서 최신화시킴
     profileChange(body);
     loadUser();
     setAlert('프로필 변경 완료', 'success');
-
     setNewName('');
   };
 
@@ -183,7 +184,6 @@ const Profile = ({
       <Header />
 
       {/* to do:: 자기가 쓴 게시글 목록들 가져오기 */}
-      {/* to do:: 유저프로필편집화면 CSS */}
 
       {loading ? (
         <Loading />
@@ -224,7 +224,7 @@ const Profile = ({
                   </Details>
                 </Section>
               </Form>
-              <Button logoutBtn onClick={onHandleLogout}>
+              <Button logoutBtn onClick={onLogout}>
                 로그아웃
               </Button>
             </UserContainer>
