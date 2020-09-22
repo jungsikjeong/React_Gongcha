@@ -139,7 +139,7 @@ const Register = ({ isAuthenticated, setAlert, register }) => {
             name='name'
             value={name}
             onChange={(e) => onChange(e)}
-            placeholder='userName'
+            placeholder='Nickname'
           />
 
           <input

@@ -31,7 +31,12 @@ var upload = multer({ storage: storage }).single('file');
 router.post(
   '/',
   [
-    check('name', '이름을 입력해주세요😥').not().isEmpty(),
+    check('name', '닉네임을 확인해주세요😥 (최대 5글자)')
+      .not()
+      .isEmpty()
+      .isLength({
+        max: 5,
+      }),
     check('email', '유효한 이메일을 입력해주세요😥').isEmail(),
     check('password', '6자 이상의 비밀번호를 입력해주세요😥').isLength({
       min: 6,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { connect } from 'react-redux';
 import { logout, loadUser } from '../actions/auth';
 import {
@@ -61,19 +61,26 @@ const Input = styled.input`
   width: 100%;
   margin-top: 10px;
   padding: 3px;
-  background: #04aaff;
+  background: #ced4da;
   border: 0;
   outline: none;
-  color: #fff;
+  color: #495057;
   font-weight: bold;
 
   font-size: 17px;
   cursor: pointer;
 
-  ::placeholder {
-    color: #fff;
-    text-align: center;
-  }
+  ${(props) =>
+    props.nameInput &&
+    css`
+      cursor: auto;
+      color: black;
+
+      ::placeholder {
+        color: #495057;
+        text-align: center;
+      }
+    `}
 `;
 
 const Avatar = styled.div`
@@ -86,6 +93,23 @@ const Avatar = styled.div`
     width: 100%;
     height: 100%;
   }
+`;
+
+const Section = styled.section``;
+
+const Details = styled.details`
+  width: 100%;
+`;
+
+const Summary = styled.summary`
+  padding: 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  outline: none;
+`;
+
+const Box = styled.div`
+  animation: ${ScreenFrames} 0.75s;
 `;
 
 const Profile = ({
@@ -126,6 +150,10 @@ const Profile = ({
   const onSubmit = (e) => {
     e.preventDefault();
 
+    if (newName.length > 5) {
+      return setAlert('닉네임을 확인해주세요😥 (최대 5글자)', 'danger');
+    }
+
     const body = {
       name: newName,
       avatar: newPhotoURL,
@@ -134,6 +162,8 @@ const Profile = ({
     profileChange(body);
     loadUser();
     setAlert('프로필 변경 완료', 'success');
+
+    setNewName('');
   };
 
   // 프로필 이미지 변경시 화면에 띄워줌
@@ -162,23 +192,37 @@ const Profile = ({
           <Alert />
           <Wrapper>
             <UserContainer>
-              <Form onSubmit={onSubmit}>
-                <Avatar>
-                  {newPhotoURL ? (
-                    <img src={newPhotoURL} />
-                  ) : (
-                    <img src={user.avatar} />
-                  )}
-                </Avatar>
+              <Avatar>
+                {newPhotoURL ? (
+                  <img src={newPhotoURL} />
+                ) : (
+                  <img src={user.avatar} />
+                )}
+              </Avatar>
 
-                <Input type='file' accept='image/*' onChange={onFileChange} />
-                <Input
-                  type='text'
-                  value={newName}
-                  onChange={onNameChange}
-                  placeholder={user.name}
-                />
-                <Button>프로필 편집 완료</Button>
+              <Form onSubmit={onSubmit}>
+                <Section>
+                  <Details close>
+                    {/* 디폴트 값 open */}
+                    <Summary>프로필 편집하기</Summary>
+
+                    <Box>
+                      <Input
+                        type='file'
+                        accept='image/*'
+                        onChange={onFileChange}
+                      />
+                      <Input
+                        nameInput
+                        type='text'
+                        value={newName}
+                        onChange={onNameChange}
+                        placeholder={user.name}
+                      />
+                      <Button profileBtn>프로필 편집 완료</Button>
+                    </Box>
+                  </Details>
+                </Section>
               </Form>
               <Button logoutBtn onClick={onHandleLogout}>
                 로그아웃

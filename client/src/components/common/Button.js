@@ -22,6 +22,16 @@ const StyledButton = styled.button`
     `}
 
   ${(props) =>
+    props.profileBtn &&
+    css`
+      width: 100%;
+      margin-top: 10px;
+      padding: 3px;
+      background: #04aaff;
+    `}
+
+
+  ${(props) =>
     props.logoutBtn &&
     css`
       width: 100%;
