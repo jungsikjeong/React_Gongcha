@@ -25,3 +25,5 @@ export const POST_FAILURE = 'POST_FAILURE';
 export const POST_READ = 'POST_READ';
 export const POST_READ_FAILURE = 'POST_READ_FAILURE';
 export const GET_ALL_POSTS = 'GET_ALL_POSTS';
+
+export const UPDATE_LIKES = 'UPDATE_LIKES';

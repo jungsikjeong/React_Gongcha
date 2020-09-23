@@ -219,9 +219,10 @@ const PostPage = ({
               </UserAndTitle>
 
               {/* to do: 좋아요 누를시 하트 색깔 변하게 */}
+              {/* likes[ user 정보가 담기니까 이안의 user.id가있다면 하트 색깔^^] */}
               <AiOutlineHeart size='24' className='icon-like' />
 
-              {/* 로그인한 사용자와 포스트작성자가 일치하면 나타남 */}
+              {/* 로그인한 사용자와 포스트작성자가 일치하면 삭제 버튼 나타남 */}
               {isDelete && (
                 <GoTrashcan
                   size='24'

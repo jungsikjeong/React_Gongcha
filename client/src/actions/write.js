@@ -6,6 +6,7 @@ import {
   POST_READ_FAILURE,
   GET_ALL_POSTS,
   CLEAR_POST,
+  UPDATE_LIKES,
 } from './types';
 import { setAlert } from './alert';
 
@@ -54,7 +55,7 @@ export const readPost = (postId) => async (dispatch) => {
 
     dispatch({
       type: POST_READ_FAILURE,
-      payload: err.message,
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };
@@ -69,7 +70,10 @@ export const getAllPosts = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.error(err);
+    dispatch({
+      type: POST_FAILURE,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
   }
 };
 
@@ -83,6 +87,43 @@ export const removePost = (postId, history) => async (dispatch) => {
 
     history.push('/postlist');
   } catch (err) {
-    console.error(err);
+    dispatch({
+      type: POST_FAILURE,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Add Post Like
+export const addLike = (id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/posts/like/${id}`);
+
+    dispatch({
+      type: UPDATE_LIKES,
+      payload: { id, likes: res.data },
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_FAILURE,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Remove Post Like
+export const removeLike = (id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/posts/unlike/${id}`);
+
+    dispatch({
+      type: UPDATE_LIKES,
+      payload: { id, likes: res.data },
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_FAILURE,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
   }
 };
