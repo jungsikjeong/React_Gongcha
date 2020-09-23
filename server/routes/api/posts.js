@@ -129,7 +129,6 @@ router.put('/like/:id', auth, async (req, res) => {
     }
 
     post.likes.unshift({ user: req.user.id });
-
     await post.save();
 
     res.json(post.likes);

@@ -104,6 +104,7 @@ export const addLike = (id) => async (dispatch) => {
       payload: { id, likes: res.data },
     });
   } catch (err) {
+    console.error(err);
     dispatch({
       type: POST_FAILURE,
       payload: { msg: err.response.statusText, status: err.response.status },

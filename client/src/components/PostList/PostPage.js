@@ -11,10 +11,11 @@ import Loading from '../common/Loading';
 
 // icons
 import { AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
 import { FcLike } from 'react-icons/fc';
 import { GoTrashcan } from 'react-icons/go';
 // actions
-import { readPost, removePost } from '../../actions/write';
+import { readPost, removePost, addLike, removeLike } from '../../actions/write';
 
 /**
  * first 모바일 화면
@@ -176,6 +177,8 @@ const PostPage = ({
   match,
   readPost,
   removePost,
+  addLike,
+  removeLike,
   history,
   write: { post, loading },
   user,
@@ -191,6 +194,8 @@ const PostPage = ({
   const onHandleRemove = () => {
     removePost(id, history);
   };
+
+  // const isLike = post.likes.find(({ user }) => user === post.user);
 
   return (
     <Container>
@@ -219,8 +224,26 @@ const PostPage = ({
               </UserAndTitle>
 
               {/* to do: 좋아요 누를시 하트 색깔 변하게 */}
-              {/* likes[ user 정보가 담기니까 이안의 user.id가있다면 하트 색깔^^] */}
-              <AiOutlineHeart size='24' className='icon-like' />
+              {/* likes[ user 정보가 담기니까 이안에 user.id가있다면 하트 색깔^^] */}
+              {/* 좋아요를 눌렀다면 하트 색깔이 칠해진 아이콘 */}
+              <AiFillHeart
+                onClick={(e) => addLike(id)}
+                size='24'
+                className='icon-like'
+              />
+              {/* {isLike ? (
+                <AiFillHeart
+                  onClick={addLike(id)}
+                  size='24'
+                  className='icon-like'
+                />
+              ) : (
+                <AiOutlineHeart
+                  onClick={addLike(id)}
+                  size='24'
+                  className='icon-like'
+                />
+              )} */}
 
               {/* 로그인한 사용자와 포스트작성자가 일치하면 삭제 버튼 나타남 */}
               {isDelete && (
@@ -251,6 +274,8 @@ PostPage.propTypes = {
   user: PropTypes.object,
   readPost: PropTypes.func.isRequired,
   removePost: PropTypes.func.isRequired,
+  addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -258,7 +283,10 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { readPost, removePost })(
-  withRouter(PostPage)
-);
+export default connect(mapStateToProps, {
+  readPost,
+  removePost,
+  addLike,
+  removeLike,
+})(withRouter(PostPage));
 // const ownPost = (user && user._id) === (post && post.user._id);
