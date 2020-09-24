@@ -12,6 +12,7 @@ import { withRouter } from 'react-router-dom';
 // components
 import Header from '../Header/Header';
 import Alert from '../common/Alert';
+import FileUpload from './FileUpload';
 
 // 페이지 전환 효과
 const ScreenFrames = keyframes`
@@ -139,17 +140,7 @@ const Write = ({ isAuthenticated, writePost, history }) => {
           />
 
           <div className='actionBox'>
-            <PictureFilled
-              style={{
-                cursor: 'pointer',
-                fontSize: '24px',
-                color: '#08c',
-                padding: '10px',
-                border: '1px solid #8e8e8e',
-                borderRadius: '4px',
-                marginRight: 'auto',
-              }}
-            />
+            <FileUpload />
 
             <ButtonStyle cancel>취소</ButtonStyle>
             <ButtonStyle>등록</ButtonStyle>

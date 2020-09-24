@@ -189,10 +189,17 @@ const PostPage = ({
     readPost(id);
   }, [readPost, id]);
 
-  const isDelete = (user && user._id) === (post && post.user);
+  const isDelete = (user && user._id) === (post && post.user._id);
 
   const onHandleRemove = () => {
     removePost(id, history);
+  };
+
+  const onPostLike = (e) => {
+    if (!user) {
+      alert('로그인을 해주세요!');
+    }
+    addLike(id);
   };
 
   // const isLike = post.likes.find(({ user }) => user === post.user);
@@ -214,23 +221,36 @@ const PostPage = ({
             <OneBox>
               {/* 모바일 버전에서는 비활성화됨 */}
               <Avatar>
-                <img src={`http://localhost:5000/${post.avatar}`} />
+                <img src={`http://localhost:5000/${post.user.avatar}`} />
               </Avatar>
 
               <UserAndTitle>
-                {post.name}
+                {post.user.name}
                 <span className='RPhNB'>•</span>
-                <span>{post.date.slice(0, 10)}</span>)
+                <span>{post.date.slice(0, 10)}</span>
               </UserAndTitle>
 
               {/* to do: 좋아요 누를시 하트 색깔 변하게 */}
               {/* likes[ user 정보가 담기니까 이안에 user.id가있다면 하트 색깔^^] */}
               {/* 좋아요를 눌렀다면 하트 색깔이 칠해진 아이콘 */}
-              <AiFillHeart
+              {user === null || post.likes[0].user !== user._id ? (
+                <AiOutlineHeart
+                  onClick={onPostLike}
+                  size='24'
+                  className='icon-like'
+                />
+              ) : (
+                <AiFillHeart
+                  onClick={onPostLike}
+                  size='24'
+                  className='icon-like'
+                />
+              )}
+              {/* <AiFillHeart
                 onClick={(e) => addLike(id)}
                 size='24'
                 className='icon-like'
-              />
+              /> */}
               {/* {isLike ? (
                 <AiFillHeart
                   onClick={addLike(id)}

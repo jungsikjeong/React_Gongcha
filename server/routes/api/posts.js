@@ -5,6 +5,26 @@ const auth = require('../../middleware/auth');
 
 const Post = require('../../models/Post');
 const User = require('../../models/User');
+const upload = require('../../middleware/upload');
+
+// @route   POST api/posts/upload
+// @desc    게시물 이미지 업로드
+// @access  Private
+router.post('/upload', async (req, res) => {
+  // 프론트 에서 가져온 이미지를 저장을 해준다.
+  upload(req, res, (err) => {
+    if (err) {
+      return res.json({ success: false, err });
+    }
+    if (!req.file) return res.send('Please upload a file');
+
+    return res.json({
+      success: true,
+      filePath: res.req.file.path,
+      fileName: res.req.file.filename,
+    });
+  });
+});
 
 // @route   POST api/posts
 // @desc    게시물 작성
@@ -35,6 +55,7 @@ router.post(
         text: req.body.text,
         name: user.name,
         avatar: user.avatar,
+        image: req.body.image ? req.body.image : '',
         user: req.user.id,
       });
 
@@ -70,7 +91,10 @@ router.get('/', async (req, res) => {
 // @access  Public
 router.get('/:id', async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id).populate('user', [
+      'name',
+      'avatar',
+    ]);
 
     if (!post) {
       return res.status(404).json({ msg: '게시글을 찾을 수 없습니다' });
@@ -118,7 +142,7 @@ router.delete('/:id', auth, async (req, res) => {
 // @access  Private
 router.put('/like/:id', auth, async (req, res) => {
   try {
-    const post = Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id);
 
     // 게시글이 이미 좋아요 눌렀는지 확인
     if (
@@ -145,7 +169,7 @@ router.put('/like/:id', auth, async (req, res) => {
 // @access  Private
 router.put('/unlike/:id', auth, async (req, res) => {
   try {
-    const post = Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id);
 
     if (
       post.likes.filter((like) => like.user.toString() === req.user.id).length >

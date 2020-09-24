@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -10,21 +9,7 @@ const { check, validationResult } = require('express-validator');
 const User = require('../../models/User');
 const Post = require('../../models/Post');
 const auth = require('../../middleware/auth');
-
-//=================================
-//             (이미지업로드)
-//=================================
-
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, `${Date.now()}_${file.originalname}`);
-  },
-});
-
-var upload = multer({ storage: storage }).single('file');
+const upload = require('../../middleware/upload');
 
 // @route   POST api/users (회원가입)
 // @desc    Register user
@@ -155,8 +140,6 @@ router.post('/edit/profile', auth, async (req, res) => {
         },
         { multi: true, new: true }
       ).exec();
-
-      console.log('newUser:', newUser);
     }
   } catch (err) {
     console.error(err.message);

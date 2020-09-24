@@ -2,6 +2,8 @@ import axios from 'axios';
 import {
   POST_SUCCESS,
   POST_FAILURE,
+  POST_IMAGE_SUCCESS,
+  POST_IMAGE_FAILURE,
   POST_READ,
   POST_READ_FAILURE,
   GET_ALL_POSTS,
@@ -9,6 +11,28 @@ import {
   UPDATE_LIKES,
 } from './types';
 import { setAlert } from './alert';
+
+// 게시글 이미지 업로드
+export const writeImagePost = (image) => async (dispatch) => {
+  try {
+    const config = {
+      header: { 'content-type': 'multipart/form-data' },
+    };
+
+    const res = await axios.post('/api/users/edit/avatar', image, config);
+
+    dispatch({
+      type: POST_IMAGE_SUCCESS,
+      payload: res.data.filePath,
+    });
+  } catch (err) {
+    console.error(err);
+    dispatch({
+      type: POST_IMAGE_FAILURE,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
 
 export const writePost = ({ text, history }) => async (dispatch) => {
   try {
@@ -55,7 +79,7 @@ export const readPost = (postId) => async (dispatch) => {
 
     dispatch({
       type: POST_READ_FAILURE,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: { msg: err },
     });
   }
 };

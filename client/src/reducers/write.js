@@ -1,6 +1,8 @@
 import {
   POST_SUCCESS,
   POST_FAILURE,
+  POST_IMAGE_SUCCESS,
+  POST_IMAGE_FAILURE,
   POST_READ,
   POST_READ_FAILURE,
   GET_ALL_POSTS,
@@ -10,6 +12,7 @@ import {
 
 const initialState = {
   loading: true,
+  image: [],
   post: null,
   posts: [],
   error: {},
@@ -19,6 +22,12 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case POST_IMAGE_SUCCESS:
+      return {
+        ...state,
+        image: { ...state.image, payload },
+      };
+
     case POST_SUCCESS:
     case POST_READ:
       return {
@@ -37,6 +46,7 @@ export default function (state = initialState, action) {
 
     case POST_FAILURE:
     case POST_READ_FAILURE:
+    case POST_IMAGE_FAILURE:
       return {
         ...state,
         error: payload,
