@@ -39,6 +39,7 @@ router.post(
         .isEmpty()
         .isLength({
           min: 25,
+          max: 100,
         }),
     ],
   ],

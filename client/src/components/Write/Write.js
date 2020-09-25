@@ -165,7 +165,7 @@ const Write = ({ write: { image }, isAuthenticated, writePost, history }) => {
             file={image ? 1 : 0}
           />
 
-          <span>{text.length} /200</span>
+          <span>{text.length} /100</span>
           {image && (
             <ImageBox>
               <img src={image} alt='' />
