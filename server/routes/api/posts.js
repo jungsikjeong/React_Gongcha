@@ -173,11 +173,14 @@ router.put('/unlike/:id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
 
+    // 게시물에 좋아요를 눌렀는지 확인
     if (
-      post.likes.filter((like) => like.user.toString() === req.user.id).length >
-      0
+      post.likes.filter((like) => like.user.toString() === req.user.id)
+        .length === 0
     ) {
-      return res.status(400).json({ mag: '먼저 게시글에 좋아요를 눌러주세요' });
+      return res
+        .status(400)
+        .json({ msg: '게시글에 좋아요를 먼저 눌러주세요.' });
     }
 
     // Get remove index

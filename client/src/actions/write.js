@@ -68,7 +68,7 @@ export const writePost = ({ body, history }) => async (dispatch) => {
 
 // id로 게시글 가져오기
 export const readPost = (postId) => async (dispatch) => {
-  // dispatch({ type: CLEAR_POST });
+  dispatch({ type: CLEAR_POST });
   try {
     const res = await axios.get(`/api/posts/${postId}`);
 
@@ -76,8 +76,6 @@ export const readPost = (postId) => async (dispatch) => {
       type: POST_READ,
       payload: res.data,
     });
-
-    console.log(res.data);
   } catch (err) {
     console.error(err);
 
@@ -135,24 +133,30 @@ export const addLike = (id) => async (dispatch) => {
     console.error(err);
     dispatch({
       type: POST_FAILURE,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: err.response,
+      // payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };
 
-// Remove Post Like
+// Remove Post like
 export const removeLike = (id) => async (dispatch) => {
   try {
+    console.log('id:', id);
     const res = await axios.put(`/api/posts/unlike/${id}`);
+    console.log('res:', res);
 
     dispatch({
       type: UPDATE_LIKES,
       payload: { id, likes: res.data },
     });
   } catch (err) {
+    console.error(err);
+
     dispatch({
       type: POST_FAILURE,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: err.response,
+      // payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };
