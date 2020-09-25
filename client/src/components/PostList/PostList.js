@@ -5,10 +5,15 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getAllPosts } from '../../actions/write';
 
+import defaultImage1 from '../../assets/default1.png';
+import defaultImage2 from '../../assets/default2.png';
+import defaultImage3 from '../../assets/default3.png';
+
 // components
 import Header from '../Header/Header';
 import Loading from '../common/Loading';
 import Alert from '../../components/common/Alert';
+import { useState } from 'react';
 
 // 페이지 전환 효과
 const ScreenFrames = keyframes`
@@ -88,9 +93,29 @@ const Columns = styled.div`
 `;
 
 const PostList = ({ write: { posts, loading }, getAllPosts }) => {
+  const [number, setNumber] = useState('');
+
+  const images = [
+    {
+      src: defaultImage1,
+    },
+    {
+      src: defaultImage2,
+    },
+    {
+      src: defaultImage3,
+    },
+  ];
+
   useEffect(() => {
     getAllPosts();
+    console.log(images);
   }, [getAllPosts]);
+
+  useEffect(() => {
+    // 사용자가 이미지를 업로드하지 않았을때 랜덤 이미지발생
+    setNumber(Math.round(Math.random() * 2));
+  }, [number]);
 
   return (
     <Container>
@@ -104,7 +129,11 @@ const PostList = ({ write: { posts, loading }, getAllPosts }) => {
           {posts.map((post) => (
             <Link to={`/postpage/${post._id}`} key={post._id}>
               <figure>
-                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRq6MvximRKiu0XTDp7J2omL4ZgOT6zMzseIg&usqp=CAU' />
+                {post.image ? (
+                  <img src={post.image} alt='' />
+                ) : (
+                  <img src={images[number].src} alt='' />
+                )}
                 <figcaption>{post.text}</figcaption>
               </figure>
             </Link>

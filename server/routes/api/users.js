@@ -95,7 +95,7 @@ router.post(
 // @access  Private
 router.post('/edit/avatar', async (req, res) => {
   // 프론트 에서 가져온 이미지를 저장을 해준다.
-  upload(req, res, (err) => {
+  upload.avatarUpload(req, res, (err) => {
     if (err) {
       return res.json({ success: false, err });
     }

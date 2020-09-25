@@ -12,7 +12,7 @@ import {
 
 const initialState = {
   loading: true,
-  image: [],
+  image: '',
   post: null,
   posts: [],
   error: {},
@@ -25,7 +25,7 @@ export default function (state = initialState, action) {
     case POST_IMAGE_SUCCESS:
       return {
         ...state,
-        image: { ...state.image, payload },
+        image: payload,
       };
 
     case POST_SUCCESS:
@@ -41,6 +41,7 @@ export default function (state = initialState, action) {
         ...state,
         post: null,
         posts: [],
+        image: '',
         loading: false,
       };
 

@@ -7,11 +7,7 @@ import { connect } from 'react-redux';
 import { writeImagePost } from '../../actions/write';
 
 const FileUpload = ({ writeImagePost }) => {
-  const onImageUpload = (e) => {
-    const {
-      target: { files },
-    } = e;
-
+  const onImageUpload = (files) => {
     // 파일을 서버에 전송하기위한것
     const formData = new FormData();
 
@@ -23,7 +19,10 @@ const FileUpload = ({ writeImagePost }) => {
   return (
     <Dropzone onDrop={onImageUpload}>
       {({ getRootProps, getInputProps }) => (
-        <>
+        <div
+          style={{ cursor: 'pointer', marginRight: 'auto' }}
+          {...getRootProps()}
+        >
           <input {...getInputProps()} />
           <PictureFilled
             style={{
@@ -36,7 +35,7 @@ const FileUpload = ({ writeImagePost }) => {
               marginRight: 'auto',
             }}
           />
-        </>
+        </div>
       )}
     </Dropzone>
   );

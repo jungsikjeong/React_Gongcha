@@ -12,7 +12,7 @@ const upload = require('../../middleware/upload');
 // @access  Private
 router.post('/upload', async (req, res) => {
   // 프론트 에서 가져온 이미지를 저장을 해준다.
-  upload(req, res, (err) => {
+  upload.imageUpload(req, res, (err) => {
     if (err) {
       return res.json({ success: false, err });
     }
@@ -48,14 +48,16 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
+    const { text, image } = req.body;
+
     try {
       const user = await User.findById(req.user.id).select('-password');
 
       const newPost = new Post({
-        text: req.body.text,
+        text: text,
         name: user.name,
         avatar: user.avatar,
-        image: req.body.image ? req.body.image : '',
+        image: image ? image : '',
         user: req.user.id,
       });
 

@@ -8,4 +8,6 @@
 
 # 🎈이슈 해결
 
-1. Post 스키마에서 user:ref:users => user:ref:user로 변경후 게시글 조회 api에 populate로 유저와 유저아바타,닉네임을가져와준후 프론트에서는 post.user.name 및 post.user.avatar로 화면에 뿌려주었음
+1. [미해결]
+
+2. Post 스키마에서 user:ref:users => user:ref:user로 변경후 게시글 조회 api에 populate로 유저와 유저아바타,닉네임을가져와준후 프론트에서는 post.user.name 및 post.user.avatar로 화면에 뿌려주었음

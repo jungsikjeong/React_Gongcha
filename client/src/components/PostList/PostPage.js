@@ -191,6 +191,9 @@ const PostPage = ({
 
   const isDelete = (user && user._id) === (post && post.user._id);
 
+  const isLike =
+    (user && user._id) === (post && post.likes.map((like) => like.user));
+
   const onHandleRemove = () => {
     removePost(id, history);
   };
@@ -201,8 +204,6 @@ const PostPage = ({
     }
     addLike(id);
   };
-
-  // const isLike = post.likes.find(({ user }) => user === post.user);
 
   return (
     <Container>
@@ -233,33 +234,30 @@ const PostPage = ({
               {/* to do: 좋아요 누를시 하트 색깔 변하게 */}
               {/* likes[ user 정보가 담기니까 이안에 user.id가있다면 하트 색깔^^] */}
               {/* 좋아요를 눌렀다면 하트 색깔이 칠해진 아이콘 */}
-              {user === null || post.likes[0].user !== user._id ? (
-                <AiOutlineHeart
+
+              {isLike ? (
+                <AiFillHeart
                   onClick={onPostLike}
                   size='24'
                   className='icon-like'
                 />
               ) : (
-                <AiFillHeart
+                <AiOutlineHeart
                   onClick={onPostLike}
                   size='24'
                   className='icon-like'
                 />
               )}
-              {/* <AiFillHeart
-                onClick={(e) => addLike(id)}
-                size='24'
-                className='icon-like'
-              /> */}
-              {/* {isLike ? (
-                <AiFillHeart
-                  onClick={addLike(id)}
+
+              {/* {user === null || post.likes[0].user !== user._id ? (
+                <AiOutlineHeart
+                  onClick={onPostLike}
                   size='24'
                   className='icon-like'
                 />
               ) : (
-                <AiOutlineHeart
-                  onClick={addLike(id)}
+                <AiFillHeart
+                  onClick={onPostLike}
                   size='24'
                   className='icon-like'
                 />

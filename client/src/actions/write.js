@@ -19,8 +19,9 @@ export const writeImagePost = (image) => async (dispatch) => {
       header: { 'content-type': 'multipart/form-data' },
     };
 
-    const res = await axios.post('/api/users/edit/avatar', image, config);
+    const res = await axios.post('/api/posts/upload', image, config);
 
+    console.log(res.data);
     dispatch({
       type: POST_IMAGE_SUCCESS,
       payload: res.data.filePath,
@@ -34,9 +35,10 @@ export const writeImagePost = (image) => async (dispatch) => {
   }
 };
 
-export const writePost = ({ text, history }) => async (dispatch) => {
+export const writePost = ({ body, history }) => async (dispatch) => {
   try {
-    const res = await axios.post('/api/posts', { text });
+    const { text, image } = body;
+    const res = await axios.post('/api/posts', { text, image });
 
     dispatch({
       type: POST_SUCCESS,
@@ -44,6 +46,8 @@ export const writePost = ({ text, history }) => async (dispatch) => {
     });
 
     dispatch(setAlert('게시글 작성 완료', 'success'));
+
+    dispatch({ type: CLEAR_POST });
 
     // 게시글 작성후 방금 작성한 페이지로 이동
     const _id = res.data._id;
