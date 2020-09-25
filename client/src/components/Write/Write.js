@@ -159,11 +159,13 @@ const Write = ({ write: { image }, isAuthenticated, writePost, history }) => {
 
         <Form onSubmit={onSubmit}>
           <TextArea
-            placeholder='오늘 어떤 공차를 하셨나요? (최소 25글자로 작성해주세요!)'
+            placeholder='오늘 어떤 공차를 하셨나요?   (최소 25글자로 작성해주세요)'
             onChange={onChange}
             value={text}
             file={image ? 1 : 0}
           />
+
+          <span>{text.length} /200</span>
           {image && (
             <ImageBox>
               <img src={image} alt='' />
