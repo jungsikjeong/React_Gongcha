@@ -192,13 +192,15 @@ const PostPage = ({
   useEffect(() => {
     readPost(id);
   }, [readPost, id]);
+  useEffect(() => {
+    console.log('isLike:', isLike);
+    console.log('post:', post);
+  }, [post]);
 
   const isDelete = (user && user._id) === (post && post.user._id);
 
   const isLike =
-    user &&
-    post &&
-    post.likes.map((like) => (like.user === user._id ? true : false));
+    post && post.likes.map((like) => (like.user === user._id ? true : false));
 
   const onHandleRemove = () => {
     removePost(id, history);
@@ -250,11 +252,7 @@ const PostPage = ({
               {/* likes[ user 정보가 담기니까 이안에 user.id가있다면 하트 색깔^^] */}
               {/* 좋아요를 눌렀다면 하트 색깔이 칠해진 아이콘 */}
 
-              {user &&
-              post &&
-              post.likes.map((like) =>
-                like.user === user._id ? true : false
-              ) ? (
+              {user && post.likes.length > 0 && isLike ? (
                 // 좋아요 눌러져있을시 빨간하트 표시
                 <AiFillHeart
                   onClick={onPostUnLike}
