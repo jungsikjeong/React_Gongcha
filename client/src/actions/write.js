@@ -76,8 +76,6 @@ export const readPost = (postId) => async (dispatch) => {
       type: POST_READ,
       payload: res.data,
     });
-
-    console.log(res.data);
   } catch (err) {
     console.error(err);
 
@@ -144,9 +142,7 @@ export const addLike = (id) => async (dispatch) => {
 // Remove Post like
 export const removeLike = (id) => async (dispatch) => {
   try {
-    console.log('id:', id);
     const res = await axios.put(`/api/posts/unlike/${id}`);
-    console.log('res:', res);
 
     dispatch({
       type: UPDATE_LIKES,

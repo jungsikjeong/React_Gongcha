@@ -192,15 +192,13 @@ const PostPage = ({
   useEffect(() => {
     readPost(id);
   }, [readPost, id]);
-  useEffect(() => {
-    console.log('isLike:', isLike);
-    console.log('post:', post);
-  }, [post]);
 
   const isDelete = (user && user._id) === (post && post.user._id);
 
   const isLike =
-    post && post.likes.map((like) => (like.user === user._id ? true : false));
+    user &&
+    post &&
+    post.likes.map((like) => (like.user === user._id ? true : false));
 
   const onHandleRemove = () => {
     removePost(id, history);
