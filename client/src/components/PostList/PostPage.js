@@ -68,13 +68,17 @@ const Wrapper = styled.div`
 `;
 
 const ImageBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   margin: 0;
+  object-fit: center;
 
   img {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100vh;
     flex: auto;
     border-radius: 8px;
   }
