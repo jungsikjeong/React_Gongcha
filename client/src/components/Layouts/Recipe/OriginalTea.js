@@ -144,6 +144,10 @@ const TLink = styled(Link)`
   height: 22px;
   padding: 12px 0 12px 19px;
   background: url(${(props) => props.bgurl}) 0 center no-repeat;
+
+  :hover {
+    color: #fff;
+  }
 `;
 
 const Ul = styled.ul`
