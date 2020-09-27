@@ -216,10 +216,13 @@ router.post(
     }
     try {
       const user = await User.findById(req.user.id).select('-password');
+
       const post = await Post.findById(req.params.id);
 
       const newComment = {
         text: req.body.text,
+        name: user.name,
+        avatar: user.avatar,
         user: user,
       };
 
@@ -248,14 +251,14 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
       (comment) => comment.id === req.params.comment_id
     );
 
-    // 댓글 유무
-    if (comment) {
+    // 댓글이 있는지 확인
+    if (!comment) {
       return res.status(404).json({ msg: '댓글이 없습니다.' });
     }
 
-    // check user
-    if (comment.user.toString() !== req.params.id) {
-      return res.status(404).json({ msg: '댓글 작성자가 아닙니다.' });
+    // Check user
+    if (comment.user.toString() !== req.user.id) {
+      return res.status(404).json({ msg: '유저가 일치하지 않습니다.' });
     }
 
     // Get remove index

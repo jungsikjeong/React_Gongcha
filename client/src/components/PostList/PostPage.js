@@ -79,7 +79,8 @@ const ImageBox = styled.div`
 
   img {
     max-width: 100%;
-    max-height: 100vh;
+    /* max-height: 100%; */
+    height: auto;
     flex: auto;
     border-radius: 8px;
   }
@@ -286,8 +287,8 @@ const PostPage = ({
               <TwoBox>
                 <Text>{post.text}</Text>
 
-                {/* 댓글 창 */}
-                <CommentList />
+                {/* 댓글 리스트 */}
+                <CommentList post={post} id={id} />
               </TwoBox>
               {/* 댓글 입력창 */}
               <CommentPost id={id} />

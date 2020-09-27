@@ -28,7 +28,7 @@ const Form = styled.form`
 `;
 
 const TextArea = styled.textarea`
-  color: #8e8e8e;
+  color: #fff;
   background: 0 0;
   border: 0;
   display: flex;
@@ -36,9 +36,13 @@ const TextArea = styled.textarea`
   box-flex: 1;
   max-height: 80px;
   outline: 0;
-  padding: 0;
+  padding: 0.1rem 0;
   resize: none;
   font-size: 0.9rem;
+
+  ::placeholder {
+    color: #8e8e8e;
+  }
 `;
 
 const Button = styled.button`
@@ -62,8 +66,7 @@ const CommentPost = ({ addComment, removeComment, id }) => {
 
     addComment(id, { text });
 
-    console.log('text{}', { text });
-    console.log(text);
+    setText('');
   };
 
   return (

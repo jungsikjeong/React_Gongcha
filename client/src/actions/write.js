@@ -190,7 +190,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
 // Remove Comment
 export const removeComment = (postId, commentId) => async (dispatch) => {
   try {
-    const res = await axios.post(`/api/posts/comment/${postId}/${commentId}`);
+    const res = await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
 
     dispatch({
       type: REMOVE_COMMENT,
@@ -200,7 +200,7 @@ export const removeComment = (postId, commentId) => async (dispatch) => {
     dispatch(setAlert('댓글 삭제 완료', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
-    console.log(err.response.data.errors);
+    console.log(errors);
 
     if (errors) {
       // 서버에서 오는 에러메시지가 array임
