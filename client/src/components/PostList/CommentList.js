@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -102,10 +102,17 @@ const CommentRemove = styled.div`
 
 const LikeButton = styled.div`
   cursor: pointer;
+
+  :hover {
+    color: red;
+  }
 `;
 
-const CommentList = ({ post, id, removeComment }) => {
+const CommentList = ({ post, id, removeComment, user }) => {
   const [commentOpenToggle, setCommentOpenToggle] = useState(false);
+  useEffect(() => {
+    console.log(user);
+  }, []);
 
   const onCommentOpenToggle = () => {
     setCommentOpenToggle(!commentOpenToggle);
@@ -136,9 +143,6 @@ const CommentList = ({ post, id, removeComment }) => {
             </div>
             <SubContents>
               <SubContentBox>
-                {/* to do:: time tag */}
-                <span>2주</span>
-
                 {/* to do:: list && <span좋아요2개</span> */}
                 <span>좋아요 2개</span>
                 <button onClick={onCommentOpenToggle}>답글 달기</button>
@@ -147,8 +151,9 @@ const CommentList = ({ post, id, removeComment }) => {
           </Contents>
 
           <CommentRemove className='comment-remove'>
-            {/* to do:: 본인댓글만 삭제하는 아이콘 보이게 */}
-            <GoTrashcan onClick={(e) => onRemoveComment(comment._id)} />
+            {user && user._id === comment.user._id && (
+              <GoTrashcan onClick={(e) => onRemoveComment(comment._id)} />
+            )}
           </CommentRemove>
 
           {/* 좋아요 버튼 */}
