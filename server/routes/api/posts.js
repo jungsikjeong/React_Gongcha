@@ -94,15 +94,15 @@ router.get('/', async (req, res) => {
 // @access  Public
 router.get('/:id', async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id).populate('user', [
-      'name',
-      'avatar',
-    ]);
+    const post = await Post.findById(req.params.id)
+      .populate('user', ['name', 'avatar'])
+      .populate('comments.user', ['name', 'avatar']);
 
     if (!post) {
       return res.status(404).json({ msg: '게시글을 찾을 수 없습니다' });
     }
 
+    console.log(post);
     res.json(post);
   } catch (err) {
     console.error(err.message);

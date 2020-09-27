@@ -121,14 +121,14 @@ const CommentList = ({ post, id, removeComment }) => {
         <Wrapper key={comment._id}>
           <ImageBox>
             <Avatar>
-              <img src={`http://localhost:5000/${comment.avatar}`} />
+              <img src={`http://localhost:5000/${comment.user.avatar}`} />
             </Avatar>
           </ImageBox>
           <Contents>
             <div className='content-box'>
               <span className='comment-text'>
                 <Link to='#'>
-                  <h3 className='user-name'>{comment.name}</h3>
+                  <h3 className='user-name'>{comment.user.name}</h3>
                 </Link>
 
                 {comment.text}
