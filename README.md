@@ -14,4 +14,10 @@
 
 2. Post 스키마에서 user:ref:users => user:ref:user로 변경후 게시글 조회 api에 populate로 유저와 유저아바타,닉네임을가져와준후 프론트에서는 post.user.name 및 post.user.avatar로 화면에 뿌려주었음
 
-3. 해결중..
+3. console.log를 해본 결과 user는 객체형태로 잘 작성이되었는데, 조회할때 user:\_id로 조회가되었다. 이 현상을토대로 게시글을 조회할 때 populate를 한번 더 써서 해결함.
+
+```javascript
+const post = await Post.findById(req.params.id)
+  .populate('user', ['name', 'avatar'])
+  .populate('comments.user', ['name', 'avatar']);
+```
