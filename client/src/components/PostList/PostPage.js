@@ -8,6 +8,7 @@ import Header from '../Header/Header';
 import CommentList from './CommentList';
 import CommentPost from './CommentPost';
 import Loading from '../common/Loading';
+import Alert from '../common/Alert';
 
 // icons
 import { AiOutlineHeart } from 'react-icons/ai';
@@ -229,67 +230,70 @@ const PostPage = ({
       {post === null ? (
         <Loading />
       ) : (
-        <Wrapper>
-          <ImageBox>
-            {post.image ? (
-              <img src={`http://localhost:5000/${post.image}`} alt='' />
-            ) : (
-              <img src={defaultImage} alt='' />
-            )}
-          </ImageBox>
-          <ContentsBox>
-            <OneBox>
-              {/* 모바일 버전에서는 비활성화됨 */}
-              <Avatar>
-                <img src={`http://localhost:5000/${post.user.avatar}`} />
-              </Avatar>
-
-              <UserAndTitle>
-                {post.user.name}
-                <span className='RPhNB'>•</span>
-                <span>{post.date.slice(0, 10)}</span>
-              </UserAndTitle>
-
-              {/* to do: 좋아요 누를시 하트 색깔 변하게 */}
-              {/* likes[ user 정보가 담기니까 이안에 user.id가있다면 하트 색깔^^] */}
-              {/* 좋아요를 눌렀다면 하트 색깔이 칠해진 아이콘 */}
-
-              {user && post.likes.length > 0 && isLike ? (
-                // 좋아요 눌러져있을시 빨간하트 표시
-                <AiFillHeart
-                  onClick={onPostUnLike}
-                  size='24'
-                  className='icon-like'
-                  style={{ color: '#ff6b6b' }}
-                />
+        <>
+          <Alert />
+          <Wrapper>
+            <ImageBox>
+              {post.image ? (
+                <img src={`http://localhost:5000/${post.image}`} alt='' />
               ) : (
-                // 좋아요 안눌러져있을시 흰색하트 표시
-                <AiOutlineHeart
-                  onClick={onPostLike}
-                  size='24'
-                  className='icon-like'
-                />
+                <img src={defaultImage} alt='' />
               )}
+            </ImageBox>
+            <ContentsBox>
+              <OneBox>
+                {/* 모바일 버전에서는 비활성화됨 */}
+                <Avatar>
+                  <img src={`http://localhost:5000/${post.user.avatar}`} />
+                </Avatar>
 
-              {/* 로그인한 사용자와 포스트작성자가 일치하면 삭제 버튼 나타남 */}
-              {isDelete && (
-                <GoTrashcan
-                  size='24'
-                  style={{ marginRight: '20px', cursor: 'pointer' }}
-                  onClick={onHandleRemove}
-                />
-              )}
-            </OneBox>
-            <TwoBox>
-              <Text>{post.text}</Text>
+                <UserAndTitle>
+                  {post.user.name}
+                  <span className='RPhNB'>•</span>
+                  <span>{post.date.slice(0, 10)}</span>
+                </UserAndTitle>
 
-              {/* 댓글 창 */}
-              <CommentList />
-            </TwoBox>
-            {/* 댓글 입력창 */}
-            <CommentPost />
-          </ContentsBox>
-        </Wrapper>
+                {/* to do: 좋아요 누를시 하트 색깔 변하게 */}
+                {/* likes[ user 정보가 담기니까 이안에 user.id가있다면 하트 색깔^^] */}
+                {/* 좋아요를 눌렀다면 하트 색깔이 칠해진 아이콘 */}
+
+                {user && post.likes.length > 0 && isLike ? (
+                  // 좋아요 눌러져있을시 빨간하트 표시
+                  <AiFillHeart
+                    onClick={onPostUnLike}
+                    size='24'
+                    className='icon-like'
+                    style={{ color: '#ff6b6b' }}
+                  />
+                ) : (
+                  // 좋아요 안눌러져있을시 흰색하트 표시
+                  <AiOutlineHeart
+                    onClick={onPostLike}
+                    size='24'
+                    className='icon-like'
+                  />
+                )}
+
+                {/* 로그인한 사용자와 포스트작성자가 일치하면 삭제 버튼 나타남 */}
+                {isDelete && (
+                  <GoTrashcan
+                    size='24'
+                    style={{ marginRight: '20px', cursor: 'pointer' }}
+                    onClick={onHandleRemove}
+                  />
+                )}
+              </OneBox>
+              <TwoBox>
+                <Text>{post.text}</Text>
+
+                {/* 댓글 창 */}
+                <CommentList />
+              </TwoBox>
+              {/* 댓글 입력창 */}
+              <CommentPost id={id} />
+            </ContentsBox>
+          </Wrapper>
+        </>
       )}
     </Container>
   );

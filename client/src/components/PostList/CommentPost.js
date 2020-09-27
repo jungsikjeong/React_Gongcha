@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+// actions
+import { addComment, removeComment } from '../../actions/write';
 
 const Container = styled.div`
   margin-top: 8px;
@@ -44,18 +49,34 @@ const Button = styled.button`
   padding: 0;
   color: #c5e7fd;
   background: 0 0;
+  cursor: pointer;
 `;
 
-const CommentPost = () => {
+const CommentPost = ({ addComment, removeComment, id }) => {
+  const [text, setText] = useState('');
+
+  const onChange = (e) => setText(e.target.value);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    addComment(id, { text });
+
+    console.log('text{}', { text });
+    console.log(text);
+  };
+
   return (
     <Container>
       <Wrapper>
-        <Form>
+        <Form onSubmit={onSubmit}>
           <TextArea
             aria-label='댓글 달기...'
             placeholder='댓글 달기...'
             autoComplete='off'
             autoCorrect='off'
+            onChange={onChange}
+            value={text}
           />
           <Button>게시</Button>
         </Form>
@@ -64,4 +85,9 @@ const CommentPost = () => {
   );
 };
 
-export default CommentPost;
+CommentPost.propTypes = {
+  addComment: PropTypes.func.isRequired,
+  removeComment: PropTypes.func.isRequired,
+};
+
+export default connect(null, { addComment, removeComment })(CommentPost);

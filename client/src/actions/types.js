@@ -28,4 +28,9 @@ export const POST_READ = 'POST_READ';
 export const POST_READ_FAILURE = 'POST_READ_FAILURE';
 export const GET_ALL_POSTS = 'GET_ALL_POSTS';
 
+// 게시글 좋아요
 export const UPDATE_LIKES = 'UPDATE_LIKES';
+
+// 게시글 댓글
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const REMOVE_COMMENT = 'REMOVE_COMMENT';
