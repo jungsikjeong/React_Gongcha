@@ -98,6 +98,10 @@ const CommentRemove = styled.div`
   :hover {
     color: #ff6b6b;
   }
+
+  @media (max-width: 768px) {
+    opacity: 1;
+  }
 `;
 
 const LikeButton = styled.div`
