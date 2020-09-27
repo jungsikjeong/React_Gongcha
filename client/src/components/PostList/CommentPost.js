@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -49,15 +49,23 @@ const Button = styled.button`
   border: 0;
   outline: none;
   font-size: 0.9rem;
+  font-weight: bold;
   line-height: 18px;
   padding: 0;
   color: #c5e7fd;
   background: 0 0;
   cursor: pointer;
+
+  ${(props) =>
+    props.active &&
+    css`
+      color: #0095f6;
+    `}
 `;
 
 const CommentPost = ({ addComment, removeComment, id }) => {
   const [text, setText] = useState('');
+  const [activeBtn, setActiveBtn] = useState(false);
 
   const onChange = (e) => setText(e.target.value);
 
@@ -68,6 +76,14 @@ const CommentPost = ({ addComment, removeComment, id }) => {
 
     setText('');
   };
+
+  useEffect(() => {
+    if (text) {
+      setActiveBtn(true);
+    } else {
+      setActiveBtn(false);
+    }
+  }, [text]);
 
   return (
     <Container>
@@ -81,7 +97,7 @@ const CommentPost = ({ addComment, removeComment, id }) => {
             onChange={onChange}
             value={text}
           />
-          <Button>게시</Button>
+          <Button active={activeBtn}>게시</Button>
         </Form>
       </Wrapper>
     </Container>

@@ -110,9 +110,6 @@ const LikeButton = styled.div`
 
 const CommentList = ({ post, id, removeComment, user }) => {
   const [commentOpenToggle, setCommentOpenToggle] = useState(false);
-  useEffect(() => {
-    console.log(user);
-  }, []);
 
   const onCommentOpenToggle = () => {
     setCommentOpenToggle(!commentOpenToggle);
