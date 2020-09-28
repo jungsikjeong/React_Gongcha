@@ -116,7 +116,7 @@ const LikeButton = styled.div`
 `;
 
 const CommentList = ({
-  post,
+  comment,
   id,
   removeComment,
   addCommentLike,
@@ -135,55 +135,51 @@ const CommentList = ({
 
   return (
     <Container>
-      {post.comments.map((comment) => (
-        <Wrapper key={comment._id}>
-          <ImageBox>
-            <Avatar>
-              <img src={`http://localhost:5000/${comment.user.avatar}`} />
-            </Avatar>
-          </ImageBox>
-          <Contents>
-            <div className='content-box'>
-              <span className='comment-text'>
-                <Link to='#'>
-                  <h3 className='user-name'>{comment.user.name}</h3>
-                </Link>
+      <Wrapper key={comment._id}>
+        <ImageBox>
+          <Avatar>
+            <img src={`http://localhost:5000/${comment.user.avatar}`} />
+          </Avatar>
+        </ImageBox>
+        <Contents>
+          <div className='content-box'>
+            <span className='comment-text'>
+              <Link to='#'>
+                <h3 className='user-name'>{comment.user.name}</h3>
+              </Link>
 
-                {comment.text}
-              </span>
-            </div>
-            <SubContents>
-              <SubContentBox>
-                {/* to do:: list && <span좋아요2개</span> */}
-                <span>좋아요 2개</span>
-                <button onClick={onCommentOpenToggle}>답글 달기</button>
-              </SubContentBox>
-            </SubContents>
-          </Contents>
+              {comment.text}
+            </span>
+          </div>
+          <SubContents>
+            <SubContentBox>
+              {/* to do:: list && <span좋아요2개</span> */}
+              <span>좋아요 2개</span>
+              <button onClick={onCommentOpenToggle}>답글 달기</button>
+            </SubContentBox>
+          </SubContents>
+        </Contents>
 
-          <CommentRemove className='comment-remove'>
-            {user && user._id === comment.user._id && (
-              <GoTrashcan onClick={(e) => onRemoveComment(comment._id)} />
-            )}
-          </CommentRemove>
-
-          {user && comment.likes.length > 0 && (
-            // 좋아요 눌러져있을시 빨간하트 표시
-            <LikeButton>
-              <FcLike onClick={(e) => removeCommentLike(id, comment._id)} />
-            </LikeButton>
+        <CommentRemove className='comment-remove'>
+          {user && user._id === comment.user._id && (
+            <GoTrashcan onClick={(e) => onRemoveComment(comment._id)} />
           )}
+        </CommentRemove>
 
-          {user && comment.likes.length === 0 && (
-            // 좋아요 안눌러져있을시 흰색하트 표시
-            <LikeButton>
-              <AiOutlineHeart
-                onClick={(e) => addCommentLike(id, comment._id)}
-              />
-            </LikeButton>
-          )}
-        </Wrapper>
-      ))}
+        {user && comment.likes.length > 0 && (
+          // 좋아요 눌러져있을시 빨간하트 표시
+          <LikeButton>
+            <FcLike onClick={(e) => removeCommentLike(id, comment._id)} />
+          </LikeButton>
+        )}
+
+        {user && comment.likes.length === 0 && (
+          // 좋아요 안눌러져있을시 흰색하트 표시
+          <LikeButton>
+            <AiOutlineHeart onClick={(e) => addCommentLike(id, comment._id)} />
+          </LikeButton>
+        )}
+      </Wrapper>
     </Container>
   );
 };

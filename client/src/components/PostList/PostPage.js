@@ -288,7 +288,14 @@ const PostPage = ({
                 <Text>{post.text}</Text>
 
                 {/* 댓글 리스트 */}
-                <CommentList post={post} id={id} user={user} />
+                {post.comments.map((comment) => (
+                  <CommentList
+                    key={comment._id}
+                    comment={comment}
+                    id={id}
+                    user={user}
+                  />
+                ))}
               </TwoBox>
               {/* 댓글 입력창 */}
               <CommentPost id={id} />
