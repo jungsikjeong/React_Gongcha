@@ -307,6 +307,10 @@ const PostPage = ({
   );
 };
 
+PostPage.defaultProps = {
+  post: '',
+};
+
 PostPage.propTypes = {
   write: PropTypes.object.isRequired,
   user: PropTypes.object,

@@ -166,14 +166,12 @@ const CommentList = ({
           )}
         </CommentRemove>
 
-        {user && comment.likes.length > 0 && (
+        {user && comment && comment.likes.length > 0 ? (
           // 좋아요 눌러져있을시 빨간하트 표시
           <LikeButton>
             <FcLike onClick={(e) => removeCommentLike(id, comment._id)} />
           </LikeButton>
-        )}
-
-        {user && comment.likes.length === 0 && (
+        ) : (
           // 좋아요 안눌러져있을시 흰색하트 표시
           <LikeButton>
             <AiOutlineHeart onClick={(e) => addCommentLike(id, comment._id)} />

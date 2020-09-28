@@ -74,7 +74,7 @@ export const readPost = (postId) => async (dispatch) => {
   dispatch({ type: CLEAR_POST });
   try {
     const res = await axios.get(`/api/posts/${postId}`);
-    console.log(res.data.comments[0]);
+    console.log(res.data.comments.map((comment) => comment.likes));
 
     dispatch({
       type: POST_READ,
