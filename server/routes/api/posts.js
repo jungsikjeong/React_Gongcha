@@ -102,7 +102,6 @@ router.get('/:id', async (req, res) => {
       return res.status(404).json({ msg: '게시글을 찾을 수 없습니다' });
     }
 
-    console.log(post);
     res.json(post);
   } catch (err) {
     console.error(err.message);
@@ -221,8 +220,6 @@ router.post(
 
       const newComment = {
         text: req.body.text,
-        name: user.name,
-        avatar: user.avatar,
         user: user,
       };
 
@@ -273,6 +270,74 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
     res.json(post.comment);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   PUT api/posts/comment/like/:id/:comment_id
+// @desc    댓글 좋아요 누르기
+// @access  Private
+router.put('/comment/like/:id/:comment_id', auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    const comment = await post.comments.find(
+      (comment) => comment.id === req.params.comment_id
+    );
+
+    // 댓글이 이미 좋아요 눌렀는지 확인
+    if (
+      comment.likes.filter((like) => like.user.toString() === req.user.id)
+        .length > 0
+    ) {
+      return res.status(400).json({ msg: '이미 좋아요를 누른 댓글입니다.' });
+    }
+
+    comment.likes.unshift({ user: req.user.id });
+
+    await post.save();
+
+    res.json(comment.likes);
+  } catch (err) {
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: '댓글을 찾을 수 없습니다.' });
+      // return console.log('댓글없엉');
+    }
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   PUT api/posts/comment/unlike/:id/:comment_id
+// @desc    댓글 좋아요 취소하기
+// @access  Private
+router.put('/comment/unlike/:id/:comment_id', auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    const comment = await post.comments.find(
+      (comment) => comment.id === req.params.comment_id
+    );
+
+    // 게시물에 좋아요를 눌렀는지 확인
+    if (
+      comment.likes.filter((like) => like.user.toString() === req.user.id)
+        .length === 0
+    ) {
+      return res.status(400).json({ msg: '댓글에 좋아요를 먼저 눌러주세요' });
+    }
+
+    //Get remove index
+    const removeIndex = comment.likes
+      .map((like) => like.user.toString())
+      .indexOf(req.user.id);
+
+    comment.likes.splice(removeIndex, 1);
+
+    await post.save();
+
+    res.json(comment.likes);
+  } catch (err) {
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: '댓글을 찾을 수 없습니다.' });
+    }
     res.status(500).send('Server Error');
   }
 });

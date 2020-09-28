@@ -3,12 +3,15 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { AiOutlineHeart } from 'react-icons/ai';
-import { GoTrashcan } from 'react-icons/go';
-import { removeComment } from '../../actions/write';
+import {
+  removeComment,
+  addCommentLike,
+  removeCommentLike,
+} from '../../actions/write';
 import { connect } from 'react-redux';
 
-// 이후 좋아요 누를시 보여줄 하트
 import { FcLike } from 'react-icons/fc';
+import { GoTrashcan } from 'react-icons/go';
 
 const Container = styled.div`
   width: 100%;
@@ -112,7 +115,14 @@ const LikeButton = styled.div`
   }
 `;
 
-const CommentList = ({ post, id, removeComment, user }) => {
+const CommentList = ({
+  post,
+  id,
+  removeComment,
+  addCommentLike,
+  removeCommentLike,
+  user,
+}) => {
   const [commentOpenToggle, setCommentOpenToggle] = useState(false);
 
   const onCommentOpenToggle = () => {
@@ -157,10 +167,21 @@ const CommentList = ({ post, id, removeComment, user }) => {
             )}
           </CommentRemove>
 
-          {/* 좋아요 버튼 */}
-          <LikeButton>
-            <AiOutlineHeart />
-          </LikeButton>
+          {user && comment.likes.length > 0 && (
+            // 좋아요 눌러져있을시 빨간하트 표시
+            <LikeButton>
+              <FcLike onClick={(e) => removeCommentLike(id, comment._id)} />
+            </LikeButton>
+          )}
+
+          {user && comment.likes.length === 0 && (
+            // 좋아요 안눌러져있을시 흰색하트 표시
+            <LikeButton>
+              <AiOutlineHeart
+                onClick={(e) => addCommentLike(id, comment._id)}
+              />
+            </LikeButton>
+          )}
         </Wrapper>
       ))}
     </Container>
@@ -168,6 +189,12 @@ const CommentList = ({ post, id, removeComment, user }) => {
 };
 CommentList.propTypes = {
   removeComment: PropTypes.func.isRequired,
+  addCommentLike: PropTypes.func.isRequired,
+  removeCommentLike: PropTypes.func.isRequired,
 };
 
-export default connect(null, { removeComment })(CommentList);
+export default connect(null, {
+  removeComment,
+  addCommentLike,
+  removeCommentLike,
+})(CommentList);

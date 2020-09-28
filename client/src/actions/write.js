@@ -11,6 +11,7 @@ import {
   UPDATE_LIKES,
   ADD_COMMENT,
   REMOVE_COMMENT,
+  UPDATE_COMMENT_LIKES,
 } from './types';
 import { setAlert } from './alert';
 
@@ -73,6 +74,7 @@ export const readPost = (postId) => async (dispatch) => {
   dispatch({ type: CLEAR_POST });
   try {
     const res = await axios.get(`/api/posts/${postId}`);
+    console.log(res.data.comments[0]);
 
     dispatch({
       type: POST_READ,
@@ -209,6 +211,47 @@ export const removeComment = (postId, commentId) => async (dispatch) => {
     dispatch({
       type: POST_FAILURE,
       payload: err,
+    });
+  }
+};
+
+// Add Comment Like
+export const addCommentLike = (id, comment_id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/posts/comment/like/${id}/${comment_id}`);
+
+    dispatch({
+      type: UPDATE_COMMENT_LIKES,
+      payload: { comment_id, likes: res.data },
+    });
+  } catch (err) {
+    console.error(err);
+    dispatch({
+      type: POST_FAILURE,
+      // payload: err.response,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Remove Comment like
+export const removeCommentLike = (id, comment_id) => async (dispatch) => {
+  try {
+    const res = await axios.put(
+      `/api/posts/comment/unlike/${id}/${comment_id}`
+    );
+
+    dispatch({
+      type: UPDATE_COMMENT_LIKES,
+      payload: { comment_id, likes: res.data },
+    });
+  } catch (err) {
+    console.error(err);
+
+    dispatch({
+      type: POST_FAILURE,
+      // payload: err.response,
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };

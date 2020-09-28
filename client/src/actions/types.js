@@ -30,6 +30,8 @@ export const GET_ALL_POSTS = 'GET_ALL_POSTS';
 
 // 게시글 좋아요
 export const UPDATE_LIKES = 'UPDATE_LIKES';
+// 댓글 좋아요
+export const UPDATE_COMMENT_LIKES = 'UPDATE_COMMENT_LIKES';
 
 // 게시글 댓글
 export const ADD_COMMENT = 'ADD_COMMENT';
