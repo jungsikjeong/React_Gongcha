@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -9,6 +9,7 @@ import CommentList from './CommentList';
 import CommentPost from './CommentPost';
 import Loading from '../common/Loading';
 import Alert from '../common/Alert';
+import LikeEffect from '../common/LikeEffect/LikeEffect';
 
 // icons
 import { AiOutlineHeart } from 'react-icons/ai';
@@ -39,6 +40,8 @@ const ScreenFrames = keyframes`
 `;
 
 const Container = styled.div`
+  position: absolute;
+  width: 100%;
   min-height: 100vh;
   background: #000;
   overflow: hidden;
@@ -194,6 +197,7 @@ const PostPage = ({
   user,
 }) => {
   const { id } = match.params;
+  const [effect, setEffect] = useState(false);
 
   useEffect(() => {
     readPost(id);
@@ -202,9 +206,7 @@ const PostPage = ({
   const isDelete = (user && user._id) === (post && post.user._id);
 
   const isLike =
-    user &&
-    post &&
-    post.likes.map((like) => (like.user === user._id ? true : false));
+    (user && user._id) === (post && post.likes.map((like) => like.user));
 
   const onHandleRemove = () => {
     removePost(id, history);
@@ -214,7 +216,10 @@ const PostPage = ({
     if (!user) {
       alert('로그인을 해주세요!');
     }
+
     addLike(id);
+    setEffect(true);
+    setTimeout(() => setEffect(false), 2000);
   };
 
   const onPostUnLike = (e) => {
@@ -233,7 +238,10 @@ const PostPage = ({
       ) : (
         <>
           <Alert />
+
           <Wrapper>
+            {effect && <LikeEffect />}
+
             <ImageBox>
               {post.image ? (
                 <img src={`http://localhost:5000/${post.image}`} alt='' />
@@ -254,11 +262,11 @@ const PostPage = ({
                   <span>{post.date.slice(0, 10)}</span>
                 </UserAndTitle>
 
-                {/* to do: 좋아요 누를시 하트 색깔 변하게 */}
-                {/* likes[ user 정보가 담기니까 이안에 user.id가있다면 하트 색깔^^] */}
+                {/* likes[ user 정보가 담기니까 이안에 user.id가있다면 하트 색깔..?] */}
                 {/* 좋아요를 눌렀다면 하트 색깔이 칠해진 아이콘 */}
-
-                {user && post.likes.length > 0 && isLike ? (
+                {user &&
+                post &&
+                post.likes.map((like) => like.user === user._id) ? (
                   // 좋아요 눌러져있을시 빨간하트 표시
                   <AiFillHeart
                     onClick={onPostUnLike}

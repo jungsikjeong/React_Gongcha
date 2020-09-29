@@ -1,0 +1,69 @@
+.effect {
+  position: absolute;
+  bottom: -60px;
+  width: 50px;
+  height: 50px;
+  background: url('https://s3.us-east-2.amazonaws.com/upload-icon/uploads/icons/png/15721583221557740359-512.png')
+    no-repeat;
+  background-size: cover;
+}
+
+.effect1 {
+  left: 10px;
+  animation: bubble 2s 2s linear infinite;
+}
+
+.effect2 {
+  left: 50%;
+  animation: bubble 10s 1s linear infinite;
+}
+
+.effect3 {
+  left: 150px;
+  animation: bubble 8s 1s linear infinite;
+}
+
+.effect4 {
+  right: 100px;
+  animation: bubble 3.5s 1s linear infinite;
+}
+
+.effect5 {
+  right: 10px;
+  animation: bubble 3s 1s linear infinite;
+}
+
+.effect6 {
+  right: 30px;
+  animation: bubble 5s 1s linear infinite;
+}
+.effect7 {
+  right: 55px;
+  animation: bubble 7s 1s linear infinite;
+}
+.effect8 {
+  right: 50%;
+  animation: bubble 9s 1s linear infinite;
+}
+.effect9 {
+  right: 70%;
+  animation: bubble 3s 1s linear infinite;
+}
+.effect10 {
+  right: 10%;
+  animation: bubble 2.5s 1s linear infinite;
+}
+
+@keyframes bubble {
+  0% {
+    bottom: -100px;
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  to {
+    bottom: 100%;
+    opacity: 0;
+  }
+}
