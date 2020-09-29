@@ -138,15 +138,19 @@ const CommentList = ({
       <Wrapper key={comment._id}>
         <ImageBox>
           <Avatar>
-            <img src={`http://localhost:5000/${comment.user.avatar}`} />
+            {comment.user.avatar && (
+              <img src={`http://localhost:5000/${comment.user.avatar}`} />
+            )}
           </Avatar>
         </ImageBox>
         <Contents>
           <div className='content-box'>
             <span className='comment-text'>
-              <Link to='#'>
-                <h3 className='user-name'>{comment.user.name}</h3>
-              </Link>
+              {comment.user.name && (
+                <Link to='#'>
+                  <h3 className='user-name'>{comment.user.name}</h3>
+                </Link>
+              )}
 
               {comment.text}
             </span>
@@ -154,7 +158,12 @@ const CommentList = ({
           <SubContents>
             <SubContentBox>
               {/* to do:: list && <span좋아요2개</span> */}
-              <span>좋아요 2개</span>
+              {comment.likes.length > 0 ? (
+                <span>좋아요 {comment.likes.length}개</span>
+              ) : (
+                ''
+              )}
+
               <button onClick={onCommentOpenToggle}>답글 달기</button>
             </SubContentBox>
           </SubContents>

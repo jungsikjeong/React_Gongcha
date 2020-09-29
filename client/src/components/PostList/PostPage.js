@@ -262,7 +262,6 @@ const PostPage = ({
                   <span>{post.date.slice(0, 10)}</span>
                 </UserAndTitle>
 
-                {/* likes[ user 정보가 담기니까 이안에 user.id가있다면 하트 색깔..?] */}
                 {/* 좋아요를 눌렀다면 하트 색깔이 칠해진 아이콘 */}
                 {isAuthenticated &&
                 post.likes.filter((like) => like.user === user._id).length >

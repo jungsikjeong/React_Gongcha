@@ -28,4 +28,4 @@ const post = await Post.findById(req.params.id)
 
 4. [해결중]
 
-5. [해결중]
+5. filter을 사용하여 해결함.

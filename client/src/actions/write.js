@@ -74,7 +74,6 @@ export const readPost = (postId) => async (dispatch) => {
   dispatch({ type: CLEAR_POST });
   try {
     const res = await axios.get(`/api/posts/${postId}`);
-    console.log(res.data.likes.map((like) => like));
 
     dispatch({
       type: POST_READ,
@@ -175,13 +174,13 @@ export const addComment = (postId, formData) => async (dispatch) => {
 
     dispatch(setAlert('댓글 작성 완료', 'success'));
   } catch (err) {
-    const errors = err.response.data.errors;
-    console.log(err.response.data.errors);
-
-    if (errors) {
-      // 서버에서 오는 에러메시지가 array임
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-    }
+    // const errors = err.response.data.errors;
+    console.log(err.response);
+    console.err(err);
+    // if (errors) {
+    //   // 서버에서 오는 에러메시지가 array임
+    //   errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    // }
     dispatch({
       type: POST_FAILURE,
       payload: err,
