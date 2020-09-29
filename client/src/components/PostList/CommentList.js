@@ -166,7 +166,9 @@ const CommentList = ({
           )}
         </CommentRemove>
 
-        {user && comment && comment.likes.length > 0 ? (
+        {user &&
+        comment &&
+        comment.likes.filter((like) => like.user === user._id).length > 0 ? (
           // 좋아요 눌러져있을시 빨간하트 표시
           <LikeButton>
             <FcLike onClick={(e) => removeCommentLike(id, comment._id)} />
