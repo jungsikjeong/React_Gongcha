@@ -194,7 +194,7 @@ const PostPage = ({
   removeLike,
   history,
   write: { post, loading },
-  user,
+  auth: { user, isAuthenticated },
 }) => {
   const { id } = match.params;
   const [effect, setEffect] = useState(false);
@@ -219,7 +219,7 @@ const PostPage = ({
 
     addLike(id);
     setEffect(true);
-    setTimeout(() => setEffect(false), 2000);
+    setTimeout(() => setEffect(false), 3000);
   };
 
   const onPostUnLike = (e) => {
@@ -264,9 +264,9 @@ const PostPage = ({
 
                 {/* likes[ user 정보가 담기니까 이안에 user.id가있다면 하트 색깔..?] */}
                 {/* 좋아요를 눌렀다면 하트 색깔이 칠해진 아이콘 */}
-                {user &&
-                post &&
-                post.likes.map((like) => like.user === user._id) ? (
+                {isAuthenticated &&
+                post.likes.filter((like) => like.user === user._id).length >
+                  0 ? (
                   // 좋아요 눌러져있을시 빨간하트 표시
                   <AiFillHeart
                     onClick={onPostUnLike}
@@ -321,7 +321,7 @@ PostPage.defaultProps = {
 
 PostPage.propTypes = {
   write: PropTypes.object.isRequired,
-  user: PropTypes.object,
+  auth: PropTypes.object.isRequired,
   readPost: PropTypes.func.isRequired,
   removePost: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
@@ -330,7 +330,7 @@ PostPage.propTypes = {
 
 const mapStateToProps = (state) => ({
   write: state.write,
-  user: state.auth.user,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, {
