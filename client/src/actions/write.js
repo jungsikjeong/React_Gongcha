@@ -176,7 +176,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
   } catch (err) {
     // const errors = err.response.data.errors;
     console.log(err.response);
-    console.err(err);
+
     // if (errors) {
     //   // 서버에서 오는 에러메시지가 array임
     //   errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
@@ -201,7 +201,7 @@ export const removeComment = (postId, commentId) => async (dispatch) => {
     dispatch(setAlert('댓글 삭제 완료', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
-    console.log(errors);
+    console.log(err);
 
     if (errors) {
       // 서버에서 오는 에러메시지가 array임

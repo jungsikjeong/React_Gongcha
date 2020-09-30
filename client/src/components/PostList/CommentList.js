@@ -157,7 +157,6 @@ const CommentList = ({
           </div>
           <SubContents>
             <SubContentBox>
-              {/* to do:: list && <span좋아요2개</span> */}
               {comment.likes.length > 0 ? (
                 <span>좋아요 {comment.likes.length}개</span>
               ) : (
