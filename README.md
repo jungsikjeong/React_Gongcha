@@ -26,6 +26,10 @@ const post = await Post.findById(req.params.id)
   .populate('comments.user', ['name', 'avatar']);
 ```
 
-4. [해결중]
+4. 원인은 프론트쪽이아닌 서버쪽에있었음. populate를 사용하여 해결!
+
+- 단톡방에서 있었던 내용..
+
+  - 방금작성한 데이터는 user.findById 를 통해 유저 정보를 가져온 후에 newComment 객체에 담기때문에 조회할수있는데 댓글 작성 api쪽에는 populate 가 없어요...
 
 5. filter을 사용하여 해결함.
