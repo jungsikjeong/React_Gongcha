@@ -166,6 +166,7 @@ export const removeLike = (id) => async (dispatch) => {
 export const addComment = (postId, formData) => async (dispatch) => {
   try {
     const res = await axios.post(`/api/posts/comment/${postId}`, formData);
+    console.log('res.data:', res.data);
 
     dispatch({
       type: ADD_COMMENT,
@@ -200,13 +201,13 @@ export const removeComment = (postId, commentId) => async (dispatch) => {
 
     dispatch(setAlert('댓글 삭제 완료', 'success'));
   } catch (err) {
-    const errors = err.response.data.errors;
-    console.log(err);
+    // const errors = err.response.data.errors;
+    console.err(err);
 
-    if (errors) {
-      // 서버에서 오는 에러메시지가 array임
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-    }
+    // if (errors) {
+    //   // 서버에서 오는 에러메시지가 array임
+    //   errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    // }
     dispatch({
       type: POST_FAILURE,
       payload: err,

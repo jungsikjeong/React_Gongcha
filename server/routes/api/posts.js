@@ -216,7 +216,10 @@ router.post(
     try {
       const user = await User.findById(req.user.id).select('-password');
 
-      const post = await Post.findById(req.params.id);
+      const post = await Post.findById(req.params.id).populate(
+        'comments.user',
+        ['name', 'avatar']
+      );
 
       const newComment = {
         text: req.body.text,
@@ -252,7 +255,8 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
 
     // 댓글이 있는지 확인
     if (!comment) {
-      return res.status(404).json({ msg: '댓글이 없습니다.' });
+      // return res.status(404).json({ msg: '댓글이 없습니다.' });
+      return console.log('댓글이 없습니다');
     }
 
     // Check user
@@ -262,8 +266,8 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
 
     // Get remove index
     const removeIndex = post.comments
-      .map((comment) => comment.user.toString())
-      .indexOf(req.user.id);
+      .map((comment) => comment.id)
+      .indexOf(req.params.comment_id);
 
     post.comments.splice(removeIndex, 1);
 
