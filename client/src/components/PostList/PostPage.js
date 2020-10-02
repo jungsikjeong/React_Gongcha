@@ -291,8 +291,21 @@ const PostPage = ({
                   />
                 )}
               </OneBox>
+
               <TwoBox>
                 <Text>{post.text}</Text>
+
+                <div
+                  style={{
+                    marginTop: '15px',
+                    paddingTop: '10px',
+                    borderTop: '1px solid rgba(211,211,211,.3)',
+                  }}
+                >
+                  <span>
+                    이 게시물을 <b>{post.likes.length}명</b>이 좋아합니다.
+                  </span>
+                </div>
 
                 {/* 댓글 리스트 */}
                 {post.comments.map((comment) => (

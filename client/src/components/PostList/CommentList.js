@@ -13,6 +13,9 @@ import { connect } from 'react-redux';
 import { FcLike } from 'react-icons/fc';
 import { GoTrashcan } from 'react-icons/go';
 
+// Component
+import CommentAnswer from './CommentAnswer';
+
 const Container = styled.div`
   width: 100%;
   color: #fff;
@@ -188,6 +191,10 @@ const CommentList = ({
           </LikeButton>
         )}
       </Wrapper>
+
+      {commentOpenToggle && (
+        <CommentAnswer setCommentOpenToggle={setCommentOpenToggle} />
+      )}
     </Container>
   );
 };
