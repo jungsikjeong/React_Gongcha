@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 // Component
 import Header from '../Header/Header';
 import CommentList from './CommentList';
@@ -164,6 +164,12 @@ const Avatar = styled.div`
 `;
 
 const UserAndTitle = styled.div`
+  a {
+    :hover {
+      color: #fff;
+    }
+  }
+
   .RPhNB {
     color: #fff;
     margin-left: 4px;
@@ -257,7 +263,8 @@ const PostPage = ({
                 </Avatar>
 
                 <UserAndTitle>
-                  {post.user.name}
+                  {/* // todo:: `/profile/:userid로 변경` */}
+                  <Link to='/userProfile'>{post.user.name}</Link>
                   <span className='RPhNB'>•</span>
                   <span>{post.date.slice(0, 10)}</span>
                 </UserAndTitle>

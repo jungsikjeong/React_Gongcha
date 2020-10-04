@@ -14,6 +14,7 @@ import PostPage from './components/PostList/PostPage';
 import PrivateRoute from './components/routing/PrivateRoute';
 import ProfileMenu from './components/Header/ProfileMenu';
 import Write from './components/Write/Write';
+import UserProfile from './components/UserProfile/UserProfile';
 
 //Redux
 import { Provider } from 'react-redux';
@@ -52,6 +53,10 @@ const App = () => {
 
           {/* 내 정보 */}
           <PrivateRoute path='/profile' component={Profile} />
+
+          {/* 유저 프로필 */}
+          {/* // todo:: `/profile/:userid로 변경` */}
+          <Route exact path='/userProfile' component={UserProfile} />
         </Fragment>
       </Router>
     </Provider>

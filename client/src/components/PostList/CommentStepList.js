@@ -143,7 +143,8 @@ const CommentStepList = ({
             <div className='content-box'>
               <span className='comment-text'>
                 {commentStep.user.name && (
-                  <Link to='#'>
+                  // todo:: `/profile/:userid로 변경`
+                  <Link to='/userProfile'>
                     <h3 className='user-name'>{commentStep.user.name}</h3>
                   </Link>
                 )}
