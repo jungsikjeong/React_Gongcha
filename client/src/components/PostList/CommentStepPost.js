@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // actions
-import { addComment, removeComment } from '../../actions/write';
+import { addComment, removeComment, addStepComment } from '../../actions/write';
 
 const Container = styled.div`
   margin-top: 8px;
@@ -63,10 +63,12 @@ const Button = styled.button`
     `}
 `;
 
-const CommentAnswer = ({
+const CommentStepPost = ({
   setCommentOpenToggle,
   addComment,
+  addStepComment,
   removeComment,
+  commentId,
   id,
 }) => {
   const [text, setText] = useState('');
@@ -77,7 +79,7 @@ const CommentAnswer = ({
   const onSubmit = (e) => {
     e.preventDefault();
 
-    // addComment(id, { text });
+    addStepComment(id, commentId, { text });
 
     setText('');
     setCommentOpenToggle(false);
@@ -110,9 +112,12 @@ const CommentAnswer = ({
   );
 };
 
-CommentAnswer.propTypes = {
+CommentStepPost.propTypes = {
   addComment: PropTypes.func.isRequired,
+  addStepComment: PropTypes.func.isRequired,
   removeComment: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addComment, removeComment })(CommentAnswer);
+export default connect(null, { addComment, removeComment, addStepComment })(
+  CommentStepPost
+);

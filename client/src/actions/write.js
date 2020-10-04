@@ -12,6 +12,7 @@ import {
   ADD_COMMENT,
   REMOVE_COMMENT,
   UPDATE_COMMENT_LIKES,
+  ADD_STEP_COMMENT,
 } from './types';
 import { setAlert } from './alert';
 
@@ -166,7 +167,6 @@ export const removeLike = (id) => async (dispatch) => {
 export const addComment = (postId, formData) => async (dispatch) => {
   try {
     const res = await axios.post(`/api/posts/comment/${postId}`, formData);
-    console.log('res.data:', res.data);
 
     dispatch({
       type: ADD_COMMENT,
@@ -202,7 +202,7 @@ export const removeComment = (postId, commentId) => async (dispatch) => {
     dispatch(setAlert('댓글 삭제 완료', 'success'));
   } catch (err) {
     // const errors = err.response.data.errors;
-    console.err(err);
+    console.error(err);
 
     // if (errors) {
     //   // 서버에서 오는 에러메시지가 array임
@@ -252,6 +252,37 @@ export const removeCommentLike = (id, comment_id) => async (dispatch) => {
       type: POST_FAILURE,
       // payload: err.response,
       payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// ADD StepComment
+export const addStepComment = (postId, comment_id, formData) => async (
+  dispatch
+) => {
+  try {
+    const res = await axios.post(
+      `/api/posts/comment/step/${postId}/${comment_id}`,
+      formData
+    );
+
+    dispatch({
+      type: ADD_STEP_COMMENT,
+      payload: res.data,
+    });
+
+    dispatch(setAlert('댓글 작성 완료', 'success'));
+  } catch (err) {
+    // const errors = err.response.data.errors;
+    console.log(err.response);
+
+    // if (errors) {
+    //   // 서버에서 오는 에러메시지가 array임
+    //   errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    // }
+    dispatch({
+      type: POST_FAILURE,
+      payload: err,
     });
   }
 };

@@ -14,7 +14,8 @@ import { FcLike } from 'react-icons/fc';
 import { GoTrashcan } from 'react-icons/go';
 
 // Component
-import CommentAnswer from './CommentAnswer';
+import CommentStepPost from './CommentStepPost';
+import CommentStepList from './CommentStepList';
 
 const Container = styled.div`
   width: 100%;
@@ -23,7 +24,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  padding: 16px 16px 16px 0px;
+  padding: 16px 16px 10px 0px;
   align-items: center;
 
   :hover {
@@ -66,7 +67,9 @@ const Contents = styled.div`
     }
 
     .comment-text {
-      font-size: 0.875rem;
+      h3 {
+        font-size: 1rem;
+      }
     }
   }
 `;
@@ -118,6 +121,38 @@ const LikeButton = styled.div`
   }
 `;
 
+const CommentStepContainer = styled.div`
+  margin-left: 3rem;
+
+  .comment_step_line {
+    border-bottom: 1px solid rgba(142, 142, 142, 1);
+    display: inline-block;
+    height: 0;
+    margin-right: 16px;
+    vertical-align: middle;
+    width: 24px;
+  }
+
+  button {
+    border: 0;
+    color: #0095f6;
+    color: rgba(0, 149, 246, 1);
+    display: inline;
+    padding: 0;
+    position: relative;
+    outline: none;
+    cursor: pointer;
+    background: 0 0;
+
+    span {
+      color: #8e8e8e;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 14px;
+    }
+  }
+`;
+
 const CommentList = ({
   comment,
   id,
@@ -127,6 +162,7 @@ const CommentList = ({
   user,
 }) => {
   const [commentOpenToggle, setCommentOpenToggle] = useState(false);
+  const [commentStepOpenToggle, setCommentStepOpenToggle] = useState(false);
 
   const onCommentOpenToggle = () => {
     setCommentOpenToggle(!commentOpenToggle);
@@ -134,6 +170,10 @@ const CommentList = ({
 
   const onRemoveComment = (commentId) => {
     removeComment(id, commentId);
+  };
+
+  const onCommentStepOpenToggle = () => {
+    setCommentStepOpenToggle(!commentStepOpenToggle);
   };
 
   return (
@@ -192,8 +232,52 @@ const CommentList = ({
         )}
       </Wrapper>
 
+      {comment.commentsStep.map((commentStep) =>
+        commentStepOpenToggle ? (
+          <CommentStepContainer
+            key={commentStep._id}
+            onClick={onCommentStepOpenToggle}
+          >
+            <button>
+              <div className='comment_step_line'></div>
+              <span>답글 숨기기</span>
+            </button>
+          </CommentStepContainer>
+        ) : (
+          <CommentStepContainer
+            key={commentStep._id}
+            onClick={onCommentStepOpenToggle}
+          >
+            <button>
+              <div className='comment_step_line'></div>
+              <span>답글 보기(1개)</span>
+            </button>
+          </CommentStepContainer>
+        )
+      )}
+
+      {commentStepOpenToggle && (
+        <>
+          {/* 대댓글 리스트 */}
+          {comment.commentsStep.map((commentStep) => (
+            <CommentStepList
+              commentStep={commentStep}
+              id={id}
+              user={user}
+              key={commentStep._id}
+            />
+          ))}
+        </>
+      )}
+
+      {/* 대댓글 입력창*/}
       {commentOpenToggle && (
-        <CommentAnswer setCommentOpenToggle={setCommentOpenToggle} />
+        <CommentStepPost
+          id={id}
+          commentId={comment._id}
+          comment={comment}
+          setCommentOpenToggle={setCommentOpenToggle}
+        />
       )}
     </Container>
   );
@@ -209,3 +293,24 @@ export default connect(null, {
   addCommentLike,
   removeCommentLike,
 })(CommentList);
+
+// {commentStepOpenToggle ? (
+//   <>
+//     {/* 대댓글 리스트 */}
+//     {comment.commentsStep.map((commentStep) => (
+//       <CommentStepList
+//         commentStep={commentStep}
+//         id={id}
+//         user={user}
+//         key={commentStep._id}
+//       />
+//     ))}
+//   </>
+// ) : (
+//   <CommentStepContainer>
+//     <button>
+//       <div className='comment_step_line'></div>
+//       <span>답글 보기(1개)</span>
+//     </button>
+//   </CommentStepContainer>
+// )}

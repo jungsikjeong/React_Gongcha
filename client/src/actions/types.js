@@ -36,3 +36,6 @@ export const UPDATE_COMMENT_LIKES = 'UPDATE_COMMENT_LIKES';
 // 게시글 댓글
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+
+// 게시글 대댓글
+export const ADD_STEP_COMMENT = 'ADD_STEP_COMMENT';

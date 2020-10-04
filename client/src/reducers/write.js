@@ -11,6 +11,7 @@ import {
   ADD_COMMENT,
   REMOVE_COMMENT,
   UPDATE_COMMENT_LIKES,
+  ADD_STEP_COMMENT,
 } from '../actions/types';
 
 const initialState = {
@@ -89,6 +90,7 @@ export default function (state = initialState, action) {
       };
 
     case ADD_COMMENT:
+    case ADD_STEP_COMMENT:
       return {
         ...state,
         post: { ...state.post, comments: payload },

@@ -96,7 +96,8 @@ router.get('/:id', async (req, res) => {
   try {
     const post = await Post.findById(req.params.id)
       .populate('user', ['name', 'avatar'])
-      .populate('comments.user', ['name', 'avatar']);
+      .populate('comments.user', ['name', 'avatar'])
+      .populate('comments.commentsStep.user', ['name', 'avatar']);
 
     if (!post) {
       return res.status(404).json({ msg: '게시글을 찾을 수 없습니다' });
@@ -223,8 +224,6 @@ router.post(
 
       const newComment = {
         text: req.body.text,
-        avatar: user.avatar,
-        name: user.name,
         user: user,
       };
 
@@ -347,5 +346,48 @@ router.put('/comment/unlike/:id/:comment_id', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+// @route   POST api/posts/comment/step/:id/:comment_id
+// @desc    게시글에 대댓글 작성
+// @access  Private
+router.post(
+  '/comment/step/:id/:comment_id',
+  [auth, [check('text', '댓글을 입력해주세요').not().isEmpty()]],
+  async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    try {
+      const user = await User.findById(req.user.id).select('-password');
+
+      const post = await Post.findById(req.params.id)
+        .populate('comments.user', ['name', 'avatar'])
+        .populate('comments.commentsStep.user', ['name', 'avatar']);
+      // const post = await Post.findById(
+      //   req.params.id
+      // ).populate('comments.commentsStep.user', ['avatar', 'user']);
+
+      const comment = await post.comments.find(
+        (comment) => comment.id === req.params.comment_id
+      );
+
+      const newComment = {
+        text: req.body.text,
+        user: user,
+      };
+
+      comment.commentsStep.unshift(newComment);
+
+      await post.save();
+
+      res.json(post.comments);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
 
 module.exports = router;
