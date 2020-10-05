@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { AiOutlineHeart } from 'react-icons/ai';
 import {
-  removeComment,
+  removeCommentStep,
   addCommentLike,
   removeCommentLike,
 } from '../../actions/write';
@@ -120,12 +120,12 @@ const CommentStepList = ({
   commentStep,
   id,
   user,
-  removeComment,
+  removeCommentStep,
   addCommentLike,
   removeCommentLike,
 }) => {
-  const onRemoveComment = (commentId) => {
-    removeComment(id, commentId);
+  const onRemoveComment = (commentStepId) => {
+    removeCommentStep(id, commentStepId);
   };
 
   return (
@@ -164,9 +164,9 @@ const CommentStepList = ({
           </Contents>
 
           <CommentRemove className='comment-remove'>
-            {/* {user && user._id === commentsStep.user._id && (
-              <GoTrashcan onClick={(e) => onRemoveComment(comment._id)} />
-            )} */}
+            {user && user._id === commentStep.user._id && (
+              <GoTrashcan onClick={(e) => onRemoveComment(commentStep._id)} />
+            )}
           </CommentRemove>
 
           {user &&
@@ -175,13 +175,13 @@ const CommentStepList = ({
             0 ? (
             // 좋아요 눌러져있을시 빨간하트 표시
             <LikeButton>
-              {/* <FcLike onClick={(e) => removeCommentLike(id, comment._id)} /> */}
+              <FcLike onClick={(e) => removeCommentLike(id, commentStep._id)} />
             </LikeButton>
           ) : (
             // 좋아요 안눌러져있을시 흰색하트 표시
             <LikeButton>
               <AiOutlineHeart
-              // onClick={(e) => addCommentLike(id, comment._id)}
+                onClick={(e) => addCommentLike(id, commentStep._id)}
               />
             </LikeButton>
           )}
@@ -191,13 +191,13 @@ const CommentStepList = ({
   );
 };
 CommentStepList.propTypes = {
-  removeComment: PropTypes.func.isRequired,
+  removeCommentStep: PropTypes.func.isRequired,
   addCommentLike: PropTypes.func.isRequired,
   removeCommentLike: PropTypes.func.isRequired,
 };
 
 export default connect(null, {
-  removeComment,
+  removeCommentStep,
   addCommentLike,
   removeCommentLike,
 })(CommentStepList);

@@ -233,29 +233,22 @@ const CommentList = ({
         )}
       </Wrapper>
 
-      {comment.commentsStep.map((commentStep) =>
-        commentStepOpenToggle ? (
-          <CommentStepContainer
-            key={commentStep._id}
-            onClick={onCommentStepOpenToggle}
-          >
+      {comment.commentsStep.length > 0 &&
+        (commentStepOpenToggle ? (
+          <CommentStepContainer onClick={onCommentStepOpenToggle}>
             <button>
               <div className='comment_step_line'></div>
               <span>답글 숨기기</span>
             </button>
           </CommentStepContainer>
         ) : (
-          <CommentStepContainer
-            key={commentStep._id}
-            onClick={onCommentStepOpenToggle}
-          >
+          <CommentStepContainer onClick={onCommentStepOpenToggle}>
             <button>
               <div className='comment_step_line'></div>
-              <span>답글 보기(1개)</span>
+              <span>답글 보기({comment.commentsStep.length}개)</span>
             </button>
           </CommentStepContainer>
-        )
-      )}
+        ))}
 
       {commentStepOpenToggle && (
         <>

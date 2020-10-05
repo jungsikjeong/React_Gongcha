@@ -11,6 +11,7 @@ import {
   UPDATE_LIKES,
   ADD_COMMENT,
   REMOVE_COMMENT,
+  REMOVE_COMMENT_STEP,
   UPDATE_COMMENT_LIKES,
   ADD_STEP_COMMENT,
 } from './types';
@@ -190,9 +191,9 @@ export const addComment = (postId, formData) => async (dispatch) => {
 };
 
 // Remove Comment
-export const removeComment = (postId, commentId) => async (dispatch) => {
+export const removeComment = (id, commentId) => async (dispatch) => {
   try {
-    const res = await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
+    const res = await axios.delete(`/api/posts/comment/${id}/${commentId}`);
 
     dispatch({
       type: REMOVE_COMMENT,
@@ -275,6 +276,35 @@ export const addStepComment = (postId, comment_id, formData) => async (
   } catch (err) {
     // const errors = err.response.data.errors;
     console.log(err.response);
+
+    // if (errors) {
+    //   // 서버에서 오는 에러메시지가 array임
+    //   errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    // }
+    dispatch({
+      type: POST_FAILURE,
+      payload: err,
+    });
+  }
+};
+
+// Remove CommentStep
+export const removeCommentStep = (id, commentId) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      `/api/posts/comment/step/${id}/${commentId}`
+    );
+
+    console.log(res.data);
+    dispatch({
+      type: REMOVE_COMMENT_STEP,
+      payload: res.data,
+    });
+
+    dispatch(setAlert('댓글 삭제 완료', 'success'));
+  } catch (err) {
+    // const errors = err.response.data.errors;
+    console.error(err);
 
     // if (errors) {
     //   // 서버에서 오는 에러메시지가 array임

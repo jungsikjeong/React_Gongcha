@@ -246,12 +246,6 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
 
-    // 댓글꺼내기
-    // :id와 일치하는 댓글 찾기
-    const comment = post.comments.find(
-      (comment) => comment.id === req.params.comment_id
-    );
-
     // 댓글이 있는지 확인
     if (!comment) {
       // return res.status(404).json({ msg: '댓글이 없습니다.' });
@@ -264,6 +258,7 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
     }
 
     // Get remove index
+    // 댓글 삭제
     const removeIndex = post.comments
       .map((comment) => comment.id)
       .indexOf(req.params.comment_id);
@@ -272,7 +267,56 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
 
     await post.save();
 
-    res.json(post.comment);
+    res.json(post.comments);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   DELETE api/posts/comment/step/:id/:comment_id
+// @desc    대댓글 삭제
+// @access  Private
+router.delete('/comment/step/:id/:comment_id', auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id)
+      .populate('comments.user', ['name', 'avatar'])
+      .populate('comments.commentsStep.user', ['name', 'avatar']);
+
+    const commentStep = post.comments.map((comment) =>
+      comment.commentsStep.find(
+        (commentStep) => commentStep.id === req.params.comment_id
+      )
+    );
+
+    // 댓글이 있는지 확인
+    if (!commentStep) {
+      // return res.status(404).json({ msg: '댓글이 없습니다.' });
+      return console.log('댓글이 없습니다');
+    }
+
+    if (commentStep) {
+      // Get remove index
+      // 댓글 삭제
+      const removeIndex = post.comments.map((comment) =>
+        comment.commentsStep
+          .map((commentStep) => commentStep.id)
+          .indexOf(req.params.comment_id)
+      );
+
+      post.comments.map((comment) =>
+        comment.commentsStep.splice(removeIndex, 1)
+      );
+
+      await post.save();
+
+      return res.json(post.comments);
+    }
+
+    // Check user
+    if (comment.user.toString() !== req.user.id) {
+      return res.status(404).json({ msg: '유저가 일치하지 않습니다.' });
+    }
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

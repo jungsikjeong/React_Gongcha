@@ -39,3 +39,4 @@ export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 
 // 게시글 대댓글
 export const ADD_STEP_COMMENT = 'ADD_STEP_COMMENT';
+export const REMOVE_COMMENT_STEP = 'REMOVE_COMMENT_STEP';

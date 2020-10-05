@@ -10,6 +10,7 @@ import {
   UPDATE_LIKES,
   ADD_COMMENT,
   REMOVE_COMMENT,
+  REMOVE_COMMENT_STEP,
   UPDATE_COMMENT_LIKES,
   ADD_STEP_COMMENT,
 } from '../actions/types';
@@ -107,6 +108,15 @@ export default function (state = initialState, action) {
           ),
         },
         loading: false,
+      };
+
+    case REMOVE_COMMENT_STEP:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: payload,
+        },
       };
     default:
       return state;
