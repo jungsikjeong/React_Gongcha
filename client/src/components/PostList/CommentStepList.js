@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import {
   removeCommentStep,
   addCommentStepLike,
-  removeCommentLike,
+  removeCommentStepLike,
 } from '../../actions/write';
 import { connect } from 'react-redux';
 
@@ -122,7 +122,7 @@ const CommentStepList = ({
   user,
   removeCommentStep,
   addCommentStepLike,
-  removeCommentLike,
+  removeCommentStepLike,
 }) => {
   const onRemoveComment = (commentStepId) => {
     removeCommentStep(id, commentStepId);
@@ -175,7 +175,9 @@ const CommentStepList = ({
             0 ? (
             // 좋아요 눌러져있을시 빨간하트 표시
             <LikeButton>
-              <FcLike onClick={(e) => removeCommentLike(id, commentStep._id)} />
+              <FcLike
+                onClick={(e) => removeCommentStepLike(id, commentStep._id)}
+              />
             </LikeButton>
           ) : (
             // 좋아요 안눌러져있을시 흰색하트 표시
@@ -193,11 +195,11 @@ const CommentStepList = ({
 CommentStepList.propTypes = {
   removeCommentStep: PropTypes.func.isRequired,
   addCommentStepLike: PropTypes.func.isRequired,
-  removeCommentLike: PropTypes.func.isRequired,
+  removeCommentStepLike: PropTypes.func.isRequired,
 };
 
 export default connect(null, {
   removeCommentStep,
   addCommentStepLike,
-  removeCommentLike,
+  removeCommentStepLike,
 })(CommentStepList);

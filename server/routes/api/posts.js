@@ -471,34 +471,37 @@ router.put('/comment/step/like/:id/:comment_id', auth, async (req, res) => {
   }
 });
 
-// @route   PUT api/posts/comment/unlike/:id/:comment_id
+// @route   PUT api/posts/comment/step/unlike/:id/:comment_id
 // @desc    대댓글 좋아요 취소하기
 // @access  Private
-router.put('/comment/unlike/:id/:comment_id', auth, async (req, res) => {
+router.put('/comment/step/unlike/:id/:comment_id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
-    const comment = await post.comments.find(
-      (comment) => comment.id === req.params.comment_id
+    const commentStep = post.comments.map((comment) =>
+      comment.commentsStep.find(
+        (commentStep) => commentStep.id === req.params.comment_id
+      )
     );
+    const reply = commentStep.find((step) => step.id === req.params.comment_id);
 
     // 게시물에 좋아요를 눌렀는지 확인
     if (
-      comment.likes.filter((like) => like.user.toString() === req.user.id)
+      reply.likes.filter((like) => like.user.toString() === req.user.id)
         .length === 0
     ) {
       return res.status(400).json({ msg: '댓글에 좋아요를 먼저 눌러주세요' });
     }
 
     //Get remove index
-    const removeIndex = comment.likes
+    const removeIndex = reply.likes
       .map((like) => like.user.toString())
       .indexOf(req.user.id);
 
-    comment.likes.splice(removeIndex, 1);
+    reply.likes.splice(removeIndex, 1);
 
     await post.save();
 
-    res.json(comment.likes);
+    res.json(reply.likes);
   } catch (err) {
     if (err.kind === 'ObjectId') {
       return res.status(404).json({ msg: '댓글을 찾을 수 없습니다.' });

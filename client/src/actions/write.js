@@ -341,15 +341,17 @@ export const addCommentStepLike = (id, commentStep_id) => async (dispatch) => {
 };
 
 // Remove CommentStep like
-export const removeCommentStepLike = (id, comment_id) => async (dispatch) => {
+export const removeCommentStepLike = (id, commentStep_id) => async (
+  dispatch
+) => {
   try {
     const res = await axios.put(
-      `/api/posts/comment/unlike/${id}/${comment_id}`
+      `/api/posts/comment/step/unlike/${id}/${commentStep_id}`
     );
-
+    console.log(res.data);
     dispatch({
       type: UPDATE_COMMENT_STEP_LIKES,
-      payload: { comment_id, likes: res.data },
+      payload: { commentStep_id, likes: res.data },
     });
   } catch (err) {
     console.error(err);

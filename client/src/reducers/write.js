@@ -96,13 +96,14 @@ export default function (state = initialState, action) {
         ...state,
         post: {
           ...state.post,
-          comments: state.post.comments.map((comment) =>
-            comment.commentsStep.map((commentStep) =>
+          comments: state.post.comments.map((comment) => {
+            const newCommentsStep = comment.commentsStep.map((commentStep) =>
               commentStep._id === payload.commentStep_id
                 ? { ...commentStep, likes: payload.likes }
                 : commentStep
-            )
-          ),
+            );
+            return { ...comment, commentsStep: newCommentsStep };
+          }),
         },
         loading: false,
       };
