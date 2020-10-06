@@ -2,20 +2,20 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { AiOutlineHeart } from 'react-icons/ai';
 import {
   removeCommentStep,
-  addCommentLike,
+  addCommentStepLike,
   removeCommentLike,
 } from '../../actions/write';
 import { connect } from 'react-redux';
 
+import { AiOutlineHeart } from 'react-icons/ai';
 import { FcLike } from 'react-icons/fc';
 import { GoTrashcan } from 'react-icons/go';
 
 const Container = styled.div`
   margin-left: 3rem;
-  width: 100%;
+  width: 90%;
   color: #fff;
 `;
 
@@ -121,7 +121,7 @@ const CommentStepList = ({
   id,
   user,
   removeCommentStep,
-  addCommentLike,
+  addCommentStepLike,
   removeCommentLike,
 }) => {
   const onRemoveComment = (commentStepId) => {
@@ -181,7 +181,7 @@ const CommentStepList = ({
             // 좋아요 안눌러져있을시 흰색하트 표시
             <LikeButton>
               <AiOutlineHeart
-                onClick={(e) => addCommentLike(id, commentStep._id)}
+                onClick={(e) => addCommentStepLike(id, commentStep._id)}
               />
             </LikeButton>
           )}
@@ -192,12 +192,12 @@ const CommentStepList = ({
 };
 CommentStepList.propTypes = {
   removeCommentStep: PropTypes.func.isRequired,
-  addCommentLike: PropTypes.func.isRequired,
+  addCommentStepLike: PropTypes.func.isRequired,
   removeCommentLike: PropTypes.func.isRequired,
 };
 
 export default connect(null, {
   removeCommentStep,
-  addCommentLike,
+  addCommentStepLike,
   removeCommentLike,
 })(CommentStepList);

@@ -162,7 +162,7 @@ const CommentList = ({
   user,
 }) => {
   const [commentOpenToggle, setCommentOpenToggle] = useState(false);
-  const [commentStepOpenToggle, setCommentStepOpenToggle] = useState(false);
+  const [commentStepOpenToggle, setCommentStepOpenToggle] = useState(true);
 
   const onCommentOpenToggle = () => {
     setCommentOpenToggle(!commentOpenToggle);

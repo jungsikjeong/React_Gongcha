@@ -14,6 +14,7 @@ import {
   REMOVE_COMMENT_STEP,
   UPDATE_COMMENT_LIKES,
   ADD_STEP_COMMENT,
+  UPDATE_COMMENT_STEP_LIKES,
 } from './types';
 import { setAlert } from './alert';
 
@@ -220,6 +221,7 @@ export const removeComment = (id, commentId) => async (dispatch) => {
 export const addCommentLike = (id, comment_id) => async (dispatch) => {
   try {
     const res = await axios.put(`/api/posts/comment/like/${id}/${comment_id}`);
+    console.log(res.data);
 
     dispatch({
       type: UPDATE_COMMENT_LIKES,
@@ -295,7 +297,6 @@ export const removeCommentStep = (id, commentId) => async (dispatch) => {
       `/api/posts/comment/step/${id}/${commentId}`
     );
 
-    console.log(res.data);
     dispatch({
       type: REMOVE_COMMENT_STEP,
       payload: res.data,
@@ -313,6 +314,50 @@ export const removeCommentStep = (id, commentId) => async (dispatch) => {
     dispatch({
       type: POST_FAILURE,
       payload: err,
+    });
+  }
+};
+
+// Add CommentStep Like
+export const addCommentStepLike = (id, commentStep_id) => async (dispatch) => {
+  try {
+    const res = await axios.put(
+      `/api/posts/comment/step/like/${id}/${commentStep_id}`
+    );
+    console.log(res.data);
+
+    dispatch({
+      type: UPDATE_COMMENT_STEP_LIKES,
+      payload: { commentStep_id, likes: res.data },
+    });
+  } catch (err) {
+    console.error(err);
+    dispatch({
+      type: POST_FAILURE,
+      payload: err.response,
+      // payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Remove CommentStep like
+export const removeCommentStepLike = (id, comment_id) => async (dispatch) => {
+  try {
+    const res = await axios.put(
+      `/api/posts/comment/unlike/${id}/${comment_id}`
+    );
+
+    dispatch({
+      type: UPDATE_COMMENT_STEP_LIKES,
+      payload: { comment_id, likes: res.data },
+    });
+  } catch (err) {
+    console.error(err);
+
+    dispatch({
+      type: POST_FAILURE,
+      // payload: err.response,
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };

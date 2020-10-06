@@ -13,6 +13,7 @@ import {
   REMOVE_COMMENT_STEP,
   UPDATE_COMMENT_LIKES,
   ADD_STEP_COMMENT,
+  UPDATE_COMMENT_STEP_LIKES,
 } from '../actions/types';
 
 const initialState = {
@@ -89,6 +90,54 @@ export default function (state = initialState, action) {
         },
         loading: false,
       };
+
+    case UPDATE_COMMENT_STEP_LIKES:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: state.post.comments.map((comment) =>
+            comment.commentsStep.map((commentStep) =>
+              commentStep._id === payload.commentStep_id
+                ? { ...commentStep, likes: payload.likes }
+                : commentStep
+            )
+          ),
+        },
+        loading: false,
+      };
+
+    // -- 2
+    // case UPDATE_COMMENT_STEP_LIKES:
+    //   return {
+    //     ...state,
+    //     post: {
+    //       ...state.post,
+    //       comments: state.post.comments.commentsStep.map((commentStep) =>
+    //         commentStep._id === payload.commentStep_id
+    //           ? { ...commentStep, likes: payload.likes }
+    //           : commentStep
+    //       ),
+    //     },
+    //     loading: false,
+    //   };
+
+    // -- 1
+    // case UPDATE_COMMENT_STEP_LIKES:
+    //   return {
+    //     ...state,
+    //     post: {
+    //       ...state.post,
+    //       comments: state.post.comments.map((comment) =>
+    //         comment.commentsStep.map((commentStep) =>
+    //           commentStep._id === payload.commentStep_id
+    //             ? { ...commentStep, likes: payload.likes }
+    //             : commentStep
+    //         )
+    //       ),
+    //     },
+    //     loading: false,
+    //   };
 
     case ADD_COMMENT:
     case ADD_STEP_COMMENT:

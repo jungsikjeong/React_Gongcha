@@ -274,64 +274,18 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
   }
 });
 
-// @route   DELETE api/posts/comment/step/:id/:comment_id
-// @desc    대댓글 삭제
-// @access  Private
-router.delete('/comment/step/:id/:comment_id', auth, async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id)
-      .populate('comments.user', ['name', 'avatar'])
-      .populate('comments.commentsStep.user', ['name', 'avatar']);
-
-    const commentStep = post.comments.map((comment) =>
-      comment.commentsStep.find(
-        (commentStep) => commentStep.id === req.params.comment_id
-      )
-    );
-
-    // 댓글이 있는지 확인
-    if (!commentStep) {
-      // return res.status(404).json({ msg: '댓글이 없습니다.' });
-      return console.log('댓글이 없습니다');
-    }
-
-    if (commentStep) {
-      // Get remove index
-      // 댓글 삭제
-      const removeIndex = post.comments.map((comment) =>
-        comment.commentsStep
-          .map((commentStep) => commentStep.id)
-          .indexOf(req.params.comment_id)
-      );
-
-      post.comments.map((comment) =>
-        comment.commentsStep.splice(removeIndex, 1)
-      );
-
-      await post.save();
-
-      return res.json(post.comments);
-    }
-
-    // Check user
-    if (comment.user.toString() !== req.user.id) {
-      return res.status(404).json({ msg: '유저가 일치하지 않습니다.' });
-    }
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
-});
-
 // @route   PUT api/posts/comment/like/:id/:comment_id
 // @desc    댓글 좋아요 누르기
 // @access  Private
 router.put('/comment/like/:id/:comment_id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
+
     const comment = await post.comments.find(
       (comment) => comment.id === req.params.comment_id
     );
+    console.log(comment);
+    console.log(comment.likes);
 
     // 댓글이 이미 좋아요 눌렀는지 확인
     if (
@@ -409,9 +363,6 @@ router.post(
       const post = await Post.findById(req.params.id)
         .populate('comments.user', ['name', 'avatar'])
         .populate('comments.commentsStep.user', ['name', 'avatar']);
-      // const post = await Post.findById(
-      //   req.params.id
-      // ).populate('comments.commentsStep.user', ['avatar', 'user']);
 
       const comment = await post.comments.find(
         (comment) => comment.id === req.params.comment_id
@@ -433,5 +384,127 @@ router.post(
     }
   }
 );
+
+// @route   DELETE api/posts/comment/step/:id/:comment_id
+// @desc    대댓글 삭제
+// @access  Private
+router.delete('/comment/step/:id/:comment_id', auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id)
+      .populate('comments.user', ['name', 'avatar'])
+      .populate('comments.commentsStep.user', ['name', 'avatar']);
+
+    const commentStep = post.comments.map((comment) =>
+      comment.commentsStep.find(
+        (commentStep) => commentStep.id === req.params.comment_id
+      )
+    );
+
+    // 댓글이 있는지 확인
+    if (!commentStep) {
+      // return res.status(404).json({ msg: '댓글이 없습니다.' });
+      return console.log('댓글이 없습니다');
+    }
+
+    if (commentStep) {
+      // Get remove index
+      // 댓글 삭제
+      const removeIndex = post.comments.map((comment) =>
+        comment.commentsStep
+          .map((commentStep) => commentStep.id)
+          .indexOf(req.params.comment_id)
+      );
+
+      post.comments.map((comment) =>
+        comment.commentsStep.splice(removeIndex, 1)
+      );
+
+      await post.save();
+
+      return res.json(post.comments);
+    }
+
+    // Check user
+    if (comment.user.toString() !== req.user.id) {
+      return res.status(404).json({ msg: '유저가 일치하지 않습니다.' });
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   PUT api/posts/comment/step/like/:id/:comment_id
+// @desc    대댓글 좋아요 누르기
+// @access  Private
+router.put('/comment/step/like/:id/:comment_id', auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    const commentStep = post.comments.map((comment) =>
+      comment.commentsStep.find(
+        (commentStep) => commentStep.id === req.params.comment_id
+      )
+    );
+    // console.log(commentStep);
+    const reply = commentStep.find((step) => step.id === req.params.comment_id);
+
+    // 댓글이 이미 좋아요 눌렀는지 확인
+    if (
+      reply.likes.filter((like) => like.user.toString() === req.user.id)
+        .length > 0
+    ) {
+      return res.status(400).json({ msg: '이미 좋아요를 누른 댓글입니다.' });
+    }
+
+    reply.likes.unshift({ user: req.user.id });
+
+    await post.save();
+
+    res.json(reply.likes);
+  } catch (err) {
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: '댓글을 찾을 수 없습니다.' });
+      // return console.log('댓글없엉');
+    }
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   PUT api/posts/comment/unlike/:id/:comment_id
+// @desc    대댓글 좋아요 취소하기
+// @access  Private
+router.put('/comment/unlike/:id/:comment_id', auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    const comment = await post.comments.find(
+      (comment) => comment.id === req.params.comment_id
+    );
+
+    // 게시물에 좋아요를 눌렀는지 확인
+    if (
+      comment.likes.filter((like) => like.user.toString() === req.user.id)
+        .length === 0
+    ) {
+      return res.status(400).json({ msg: '댓글에 좋아요를 먼저 눌러주세요' });
+    }
+
+    //Get remove index
+    const removeIndex = comment.likes
+      .map((like) => like.user.toString())
+      .indexOf(req.user.id);
+
+    comment.likes.splice(removeIndex, 1);
+
+    await post.save();
+
+    res.json(comment.likes);
+  } catch (err) {
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: '댓글을 찾을 수 없습니다.' });
+    }
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;

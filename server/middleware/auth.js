@@ -7,7 +7,7 @@ module.exports = function (req, res, next) {
 
   // 토큰 확인
   if (!token) {
-    return res.status(401).json({ meg: '토큰 없음, 승인 거부 됨' });
+    return res.status(401).json({ msg: '토큰 없음, 승인 거부 됨' });
   }
 
   // Verify token
@@ -19,6 +19,6 @@ module.exports = function (req, res, next) {
 
     next();
   } catch (err) {
-    res.status(401).json({ meg: ' Token is not valid' });
+    res.status(401).json({ msg: ' Token is not valid' });
   }
 };
