@@ -108,38 +108,6 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
-    // -- 2
-    // case UPDATE_COMMENT_STEP_LIKES:
-    //   return {
-    //     ...state,
-    //     post: {
-    //       ...state.post,
-    //       comments: state.post.comments.commentsStep.map((commentStep) =>
-    //         commentStep._id === payload.commentStep_id
-    //           ? { ...commentStep, likes: payload.likes }
-    //           : commentStep
-    //       ),
-    //     },
-    //     loading: false,
-    //   };
-
-    // -- 1
-    // case UPDATE_COMMENT_STEP_LIKES:
-    //   return {
-    //     ...state,
-    //     post: {
-    //       ...state.post,
-    //       comments: state.post.comments.map((comment) =>
-    //         comment.commentsStep.map((commentStep) =>
-    //           commentStep._id === payload.commentStep_id
-    //             ? { ...commentStep, likes: payload.likes }
-    //             : commentStep
-    //         )
-    //       ),
-    //     },
-    //     loading: false,
-    //   };
-
     case ADD_COMMENT:
     case ADD_STEP_COMMENT:
       return {
