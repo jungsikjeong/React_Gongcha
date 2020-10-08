@@ -159,7 +159,6 @@ const Profile = ({
       avatar: newPhotoURL,
     };
 
-    console.log(body);
     // 유저프로필 변경후 재부팅시켜서 최신화시킴
     profileChange(body);
     loadUser();
@@ -184,7 +183,6 @@ const Profile = ({
       <Header />
 
       {/* to do:: 자기가 쓴 게시글 목록들 가져오기 */}
-
       {loading ? (
         <Loading />
       ) : (

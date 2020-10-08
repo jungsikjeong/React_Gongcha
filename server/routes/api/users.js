@@ -147,4 +147,28 @@ router.post('/edit/profile', auth, async (req, res) => {
   }
 });
 
+// @route   GET api/users/profile/:user_id
+// @desc    사용자 ID로 프로필 가져 오기
+// @access  Public
+router.get('/profile/:user_id', async (req, res) => {
+  try {
+    const profile = await User.findById(req.params.user_id)
+      .select('-password')
+      .populate('posts', ['image', 'text']);
+
+    if (!profile)
+      return res.status(400).json({ msg: '프로필을 찾을 수 없습니다.' });
+
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+
+    // 경로로오는 user_id가 + - 면 발생하는 에러를 잡아줌
+    if (err.kind === 'ObjectId') {
+      return res.status(400).json({ msg: '프로필을 찾을 수 없습니다.' });
+    }
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

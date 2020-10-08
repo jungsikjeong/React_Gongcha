@@ -116,135 +116,19 @@ const PostList = ({ write: { posts, loading }, getAllPosts }) => {
               </figure>
             </Link>
           ))}
-          <Link to='/postPage'>
-            <figure>
-              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRq6MvximRKiu0XTDp7J2omL4ZgOT6zMzseIg&usqp=CAU' />
-              <figcaption>
-                <p>테스트1</p>
-                Cinderella wearing European fashion of the mid-1860’s
-              </figcaption>
-            </figure>
-          </Link>
-
-          <Link to='#'>
-            <figure>
-              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQh2TM-trBZcxJMFJm-mLFkloU2HDHHkZzZXQ&usqp=CAU' />
-              <figcaption>
-                <p>테스트2</p>
-                Cinderella wearing European fashion of the mid-1860’s
-              </figcaption>
-            </figure>
-          </Link>
-
-          <Link to='#'>
-            <figure>
-              <img src='https://nimage.g-enews.com/phpwas/restmb_allidxmake.php?idx=5&simg=2018052309411600967fd4d2b07dc12114162187.jpg' />
-              <figcaption>
-                <p>테스트3</p>
-                Cinderella wearing European fashion of the mid-1860’s
-              </figcaption>
-            </figure>
-          </Link>
-
-          <Link to='#'>
-            <figure>
-              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRhR9_x9NyLSp1VXFtwTbZOU-mHADy8heQNfg&usqp=CAU' />
-              <figcaption>
-                <p>테스트4</p>
-                Cinderella wearing European fashion of the mid-1860’s
-              </figcaption>
-            </figure>
-          </Link>
-          <Link to='#'>
-            <figure>
-              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRCINfG09lpCiQQWSgzppcxubNh643jbqoEVA&usqp=CAU' />
-              <figcaption>
-                <p>테스트5</p>
-                Cinderella wearing European fashion of the mid-1860’s
-              </figcaption>
-            </figure>
-          </Link>
-
-          <Link to='#'>
-            <figure>
-              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSdvXcKyxJVuTL0ExD32a2daSWSn6TgPhiugA&usqp=CAU' />
-              <figcaption>
-                <p>테스트6</p>
-                Cinderella wearing European fashion of the mid-1860’s
-              </figcaption>
-            </figure>
-          </Link>
-
-          <Link to='#'>
-            <figure>
-              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRx7epj1rwmX5A9k2XOH6vHhmpErIPEbZITVA&usqp=CAU' />
-              <figcaption>
-                <p>테스트7</p>
-                Cinderella wearing European fashion of the mid-1860’s
-              </figcaption>
-            </figure>
-          </Link>
-
-          <Link to='#'>
-            <figure>
-              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSTtoNEEKROdvsObn6oRIv1aUUKvldDdu4Paw&usqp=CAU' />
-              <figcaption>
-                <p>테스트8</p>
-                Cinderella wearing European fashion of the mid-1860’s
-              </figcaption>
-            </figure>
-          </Link>
-
-          <Link to='#'>
-            <figure>
-              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS417N_I3kJuQqLXHbUTu0kbXMLP9TY2xLodw&usqp=CAU' />
-              <figcaption>
-                <p>테스트9</p>
-                Cinderella wearing European fashion of the mid-1860’s
-              </figcaption>
-            </figure>
-          </Link>
-
-          <Link to='#'>
-            <figure>
-              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT5qhZ5UfXeqrkn-cSsB483oyb6ADrlV1xQ-g&usqp=CAU' />
-              <figcaption>
-                <p>테스트</p>
-                Cinderella wearing European fashion of the mid-1860’s
-              </figcaption>
-            </figure>
-          </Link>
-
-          <Link to='#'>
-            <figure>
-              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRzUQ52Yd97u08XWbNNuGmwiSYfUttNfcGerA&usqp=CAU' />
-              <figcaption>
-                <p>테스트</p>
-                Cinderella wearing European fashion of the mid-1860’s
-              </figcaption>
-            </figure>
-          </Link>
-
-          <Link to='#'>
-            <figure>
-              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI1IfH0uOhF2eHmF8dVXkcXO9hO5jfQIHfAw&usqp=CAU' />
-              <figcaption>
-                <p>테스트</p>
-                Cinderella wearing European fashion of the mid-1860’s
-              </figcaption>
-            </figure>
-          </Link>
-
-          <Link to='#'>
-            <figure>
-              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTMgUKaLHWTgg6zcVcM4GBsijBA3nyanRCQ0w&usqp=CAU' />
-              <figcaption>
-                <p>테스트</p>
-                Cinderella wearing European fashion of the mid-1860’s
-              </figcaption>
-            </figure>
-          </Link>
         </Columns>
+      )}
+      {posts.length === 0 && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '1rem',
+          }}
+        >
+          게시글이 없어요.. 첫 게시글의 주인공이 되어보실까요?🙄
+        </div>
       )}
     </Container>
   );

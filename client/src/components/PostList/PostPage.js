@@ -263,8 +263,9 @@ const PostPage = ({
                 </Avatar>
 
                 <UserAndTitle>
-                  {/* // todo:: `/profile/:userid로 변경` */}
-                  <Link to='/userProfile'>{post.user.name}</Link>
+                  <Link to={`/userProfile/${post.user._id}`}>
+                    {post.user.name}
+                  </Link>
                   <span className='RPhNB'>•</span>
                   <span>{post.date.slice(0, 10)}</span>
                 </UserAndTitle>

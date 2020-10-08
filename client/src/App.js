@@ -55,8 +55,7 @@ const App = () => {
           <PrivateRoute path='/profile' component={Profile} />
 
           {/* 유저 프로필 */}
-          {/* // todo:: `/profile/:userid로 변경` */}
-          <Route exact path='/userProfile' component={UserProfile} />
+          <Route exact path='/userProfile/:id' component={UserProfile} />
         </Fragment>
       </Router>
     </Provider>

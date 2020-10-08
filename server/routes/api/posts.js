@@ -62,6 +62,9 @@ router.post(
         user: req.user.id,
       });
 
+      user.posts.push(newPost);
+      await user.save();
+
       const post = await newPost.save();
 
       res.json(post);
@@ -119,6 +122,7 @@ router.get('/:id', async (req, res) => {
 router.delete('/:id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
+    const user = await User.findById(req.user.id).select('-password');
 
     if (!post) {
       return res.status(404).json({ msg: '게시글이 없습니다.' });
@@ -128,6 +132,17 @@ router.delete('/:id', auth, async (req, res) => {
     if (post.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: '게시글을 작성한 유저가 아닙니다.' });
     }
+    const userPost = user.posts.filter(
+      (post) => post._id.toString() !== req.params.id
+    );
+    // Get remove index
+    const removeIndex = user.posts
+      .map((post) => post._id.toString())
+      .indexOf(req.user.id);
+
+    user.posts.splice(removeIndex, 1);
+
+    await user.save();
 
     await post.remove();
 

@@ -27,7 +27,6 @@ export const writeImagePost = (image) => async (dispatch) => {
 
     const res = await axios.post('/api/posts/upload', image, config);
 
-    console.log(res.data);
     dispatch({
       type: POST_IMAGE_SUCCESS,
       payload: res.data.filePath,

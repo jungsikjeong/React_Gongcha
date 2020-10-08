@@ -4,6 +4,7 @@ import {
   AVATAR_CHANGE,
   CLEAR_USER_PROFILE,
   PROFILE_CHANGE_SUCCESS,
+  USER_PROFILE,
 } from './types';
 
 // 유저 프로필 이미지변경,multer때문에 필요
@@ -47,4 +48,18 @@ export const clearUserProfile = () => async (dispatch) => {
   dispatch({
     type: CLEAR_USER_PROFILE,
   });
+};
+
+// 유저 프로필 보기
+export const userProfile = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/users/profile/${userId}`);
+
+    dispatch({
+      type: USER_PROFILE,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
 };

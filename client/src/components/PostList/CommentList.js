@@ -190,8 +190,7 @@ const CommentList = ({
           <div className='content-box'>
             <span className='comment-text'>
               {comment.user.name && (
-                // todo:: `/profile/:userid로 변경`
-                <Link to='/userProfile'>
+                <Link to={`/userProfile/${comment.user._id}`}>
                   <h3 className='user-name'>{comment.user.name}</h3>
                 </Link>
               )}
