@@ -18,10 +18,17 @@ var imageUpload = multer({
     bucket: 'gongcha/uploadImage',
     contentType: multerS3.AUTO_CONTENT_TYPE,
     metadata: function (req, file, cb) {
-      cb(null, { fieldName: file.fieldname });
+      cb(null, { fileName: file.fieldname });
     },
     key: function (req, file, cb) {
-      cb(null, Date.now().toString());
+      var filename = file.originalname;
+
+      var ext = file.mimetype.split('/')[1];
+      if (!['png', 'jpg', 'jpeg', 'gif', 'bmp'].includes(ext)) {
+        return cb(new Error('Only images are allowed'));
+      }
+
+      cb(null, Date.now().toString() + filename);
     },
   }),
 }).single('file');
@@ -33,10 +40,16 @@ var avatarUpload = multer({
     bucket: 'gongcha/avatarImage',
     contentType: multerS3.AUTO_CONTENT_TYPE,
     metadata: function (req, file, cb) {
-      cb(null, { fieldName: file.fieldname });
+      cb(null, { fileName: file.fieldname });
     },
     key: function (req, file, cb) {
-      cb(null, Date.now().toString());
+      var filename = file.originalname;
+      var ext = file.mimetype.split('/')[1];
+      if (!['png', 'jpg', 'jpeg', 'gif', 'bmp'].includes(ext)) {
+        return cb(new Error('Only images are allowed'));
+      }
+
+      cb(null, Date.now().toString() + filename);
     },
   }),
 }).single('file');
@@ -44,3 +57,4 @@ var avatarUpload = multer({
 // module.exports = upload;
 exports.avatarUpload = avatarUpload;
 exports.imageUpload = imageUpload;
+exports.s3 = s3;
