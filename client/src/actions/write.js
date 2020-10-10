@@ -120,7 +120,8 @@ export const removePost = (postId, history) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: POST_FAILURE,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      // payload: { msg: err.response.statusText, status: err.response.status },
+      payload: { msg: err },
     });
   }
 };

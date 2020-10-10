@@ -127,15 +127,19 @@ router.delete('/:id', auth, async (req, res) => {
     if (!post) {
       return res.status(404).json({ msg: '게시글이 없습니다.' });
     }
+
     // aws s3 버킷에서 파일 삭제
+    const url = post.image.split('/'); // post에 저장된 image를 가져옴
+    const delFileName = url[url.length - 1];
+
     const params = {
-      Bucket: 'gongcha/uploadImage',
-      Key: post.image,
+      Bucket: 'gongcha',
+      Key: `uploadImage/${delFileName}`,
     };
-    console.log(params);
 
     upload.s3.deleteObject(params, function (err, data) {
       console.log(params);
+
       if (err) {
         console.log('aws image delete error');
         console.log(err, err.stack);
