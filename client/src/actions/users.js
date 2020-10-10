@@ -10,11 +10,13 @@ import {
 // 유저 프로필 이미지변경,multer때문에 필요
 export const avatarChange = (formData) => async (dispatch) => {
   try {
+    console.log(formData);
     const config = {
       header: { 'content-type': 'multipart/form-data' },
     };
 
     const res = await axios.post('/api/users/edit/avatar', formData, config);
+    console.log(res.data);
 
     dispatch({
       type: AVATAR_CHANGE,

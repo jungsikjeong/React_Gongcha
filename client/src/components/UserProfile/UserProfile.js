@@ -108,12 +108,7 @@ const UserProfile = ({ match, userProfile, users: { userProfileList } }) => {
       <Wrapper>
         <UserContainer>
           <Avatar>
-            {userProfileList && (
-              <img
-                src={`http://localhost:5000/${userProfileList.avatar}`}
-                alt=''
-              />
-            )}
+            {userProfileList && <img src={userProfileList.avatar} alt='' />}
           </Avatar>
 
           <h2>{userProfileList.name}</h2>
@@ -125,9 +120,9 @@ const UserProfile = ({ match, userProfile, users: { userProfileList } }) => {
                 <CardItem key={post._id}>
                   <div className='card-item-div'>
                     <SLink to={`/postpage/${post._id}`}>
-                      <img src={`http://localhost:5000/${post.image}`} alt='' />
+                      <img src={post.image} alt='' />
 
-                      <CardDesc>{post.text}</CardDesc>
+                      {/* <CardDesc>{post.text}</CardDesc> */}
                     </SLink>
                   </div>
                 </CardItem>

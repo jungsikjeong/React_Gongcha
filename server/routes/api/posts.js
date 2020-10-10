@@ -20,8 +20,8 @@ router.post('/upload', async (req, res) => {
 
     return res.json({
       success: true,
-      filePath: res.req.file.path,
-      fileName: res.req.file.filename,
+      filePath: res.req.file.location,
+      fileName: res.req.file.originalname,
     });
   });
 });

@@ -181,9 +181,7 @@ const CommentList = ({
       <Wrapper key={comment._id}>
         <ImageBox>
           <Avatar>
-            {comment.user.avatar && (
-              <img src={`http://localhost:5000/${comment.user.avatar}`} />
-            )}
+            {comment.user.avatar && <img src={comment.user.avatar} />}
           </Avatar>
         </ImageBox>
         <Contents>

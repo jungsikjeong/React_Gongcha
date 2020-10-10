@@ -134,9 +134,7 @@ const CommentStepList = ({
         <Wrapper>
           <ImageBox>
             <Avatar>
-              {commentStep.user.avatar && (
-                <img src={`http://localhost:5000/${commentStep.user.avatar}`} />
-              )}
+              {commentStep.user.avatar && <img src={commentStep.user.avatar} />}
             </Avatar>
           </ImageBox>
           <Contents>

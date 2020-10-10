@@ -250,7 +250,7 @@ const PostPage = ({
 
             <ImageBox>
               {post.image ? (
-                <img src={`http://localhost:5000/${post.image}`} alt='' />
+                <img src={post.image} alt='' />
               ) : (
                 <img src={defaultImage} alt='' />
               )}
@@ -259,7 +259,7 @@ const PostPage = ({
               <OneBox>
                 {/* 모바일 버전에서는 비활성화됨 */}
                 <Avatar>
-                  <img src={`http://localhost:5000/${post.user.avatar}`} />
+                  <img src={post.user.avatar} />
                 </Avatar>
 
                 <UserAndTitle>
