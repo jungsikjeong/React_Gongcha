@@ -34,13 +34,10 @@ router.post(
   [
     auth,
     [
-      check('text', '내용을 양식에 맞게 입력해주세요!')
-        .not()
-        .isEmpty()
-        .isLength({
-          min: 25,
-          max: 100,
-        }),
+      check('text', '최소 25글자를 입력해주세요').not().isEmpty().isLength({
+        min: 25,
+        max: 100,
+      }),
     ],
   ],
   async (req, res) => {
