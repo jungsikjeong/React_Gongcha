@@ -363,3 +363,10 @@ export const removeCommentStepLike = (id, commentStep_id) => async (
     });
   }
 };
+
+// CLEAR_POST
+export const clearPost = () => async (dispatch) => {
+  dispatch({
+    type: CLEAR_POST,
+  });
+};

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Modal } from 'antd';
 import Button from '../../components/common/Button';
 import { logout } from '../../actions/auth';
-import { writePost } from '../../actions/write';
+import { writePost, clearPost } from '../../actions/write';
 import { PictureFilled } from '@ant-design/icons';
 import { withRouter } from 'react-router-dom';
 
@@ -130,7 +130,13 @@ const ImageBox = styled.div`
   }
 `;
 
-const Write = ({ write: { image }, isAuthenticated, writePost, history }) => {
+const Write = ({
+  write: { image },
+  isAuthenticated,
+  writePost,
+  history,
+  clearPost,
+}) => {
   const [text, setText] = useState('');
 
   const onChange = (e) => {
@@ -147,6 +153,17 @@ const Write = ({ write: { image }, isAuthenticated, writePost, history }) => {
 
     writePost({ body, history });
   };
+
+  const onCancel = () => {
+    clearPost();
+    history.push('/');
+  };
+
+  useEffect(() => {
+    return () => {
+      clearPost();
+    };
+  }, []);
 
   return (
     <Container>
@@ -175,7 +192,9 @@ const Write = ({ write: { image }, isAuthenticated, writePost, history }) => {
           <div className='actionBox'>
             <FileUpload />
 
-            <ButtonStyle cancel>취소</ButtonStyle>
+            <ButtonStyle cancel onClick={onCancel}>
+              취소
+            </ButtonStyle>
             <ButtonStyle>등록</ButtonStyle>
           </div>
         </Form>
@@ -188,6 +207,7 @@ Write.propTypes = {
   write: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool,
   writePost: PropTypes.func,
+  clearPost: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -197,4 +217,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   writePost,
+  clearPost,
 })(withRouter(Write));

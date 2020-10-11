@@ -1,34 +1,35 @@
+require('dotenv').config();
+
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const aws = require('aws-sdk');
-const { uuid } = require('uuidv4');
+const { v4: uuidv4 } = require('uuid');
 
 //=================================
 //             (게시글이미지업로드)
 //=================================
 
 const s3 = new aws.S3({
-  accessKeyId: process.env.AWS_KEY,
-  secretAccessKey: process.env.AWS_PRIVATE_KEY,
+  accessKeyId: `${process.env.AWS_KEY}`,
+  secretAccessKey: `${process.env.AWS_PRIVATE_KEY}`,
 });
 
 var imageUpload = multer({
   storage: multerS3({
     s3: s3,
-    acl: 'public-read',
+    acl: 'public-read-write',
     bucket: 'gongcha/uploadImage',
     contentType: multerS3.AUTO_CONTENT_TYPE,
     metadata: function (req, file, cb) {
       cb(null, { fileName: file.fieldname });
     },
     key: function (req, file, cb) {
-      var filename = uuid();
-
+      var filename = uuidv4();
       var ext = file.mimetype.split('/')[1];
       if (!['png', 'jpg', 'jpeg', 'gif', 'bmp'].includes(ext)) {
         return cb(new Error('Only images are allowed'));
       }
-      console.log('filename::', filename);
+      console.log(`${process.env.AWS_KEY}`);
 
       cb(null, Date.now().toString() + filename);
     },
@@ -45,7 +46,7 @@ var avatarUpload = multer({
       cb(null, { fileName: file.fieldname });
     },
     key: function (req, file, cb) {
-      var filename = uuid();
+      var filename = uuidv4();
       var ext = file.mimetype.split('/')[1];
       if (!['png', 'jpg', 'jpeg', 'gif', 'bmp'].includes(ext)) {
         return cb(new Error('Only images are allowed'));
