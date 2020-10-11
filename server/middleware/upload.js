@@ -10,8 +10,8 @@ const { v4: uuidv4 } = require('uuid');
 //=================================
 
 const s3 = new aws.S3({
-  accessKeyId: `${process.env.AWS_KEY}`,
-  secretAccessKey: `${process.env.AWS_PRIVATE_KEY}`,
+  accessKeyId: process.env.AWS_KEY,
+  secretAccessKey: process.env.AWS_PRIVATE_KEY,
 });
 
 var imageUpload = multer({
@@ -29,7 +29,6 @@ var imageUpload = multer({
       if (!['png', 'jpg', 'jpeg', 'gif', 'bmp'].includes(ext)) {
         return cb(new Error('Only images are allowed'));
       }
-      console.log(`${process.env.AWS_KEY}`);
 
       cb(null, Date.now().toString() + filename);
     },
