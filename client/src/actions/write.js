@@ -67,6 +67,7 @@ export const writePost = ({ body, history }) => async (dispatch) => {
     }
     dispatch({
       type: POST_FAILURE,
+      payload: err,
     });
   }
 };
