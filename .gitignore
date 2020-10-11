@@ -3,3 +3,4 @@ node_modules
 default.json
 uploads
 dev.js
+build
