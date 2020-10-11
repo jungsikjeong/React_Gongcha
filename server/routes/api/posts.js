@@ -278,6 +278,9 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
 
+    const comment = await post.comments.find(
+      (comment) => comment.id === req.params.comment_id
+    );
     // 댓글이 있는지 확인
     if (!comment) {
       // return res.status(404).json({ msg: '댓글이 없습니다.' });
@@ -316,8 +319,6 @@ router.put('/comment/like/:id/:comment_id', auth, async (req, res) => {
     const comment = await post.comments.find(
       (comment) => comment.id === req.params.comment_id
     );
-    console.log(comment);
-    console.log(comment.likes);
 
     // 댓글이 이미 좋아요 눌렀는지 확인
     if (
