@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const config = require('config');
+// const config = require('config');
 
 module.exports = function (req, res, next) {
   // 헤더에서 토큰 가져 오기
@@ -12,7 +12,7 @@ module.exports = function (req, res, next) {
 
   // Verify token
   try {
-    const decoded = jwt.verify(token, config.get('jwtSecret'));
+    const decoded = jwt.verify(token, `${process.env.JWT_SECRET}`);
 
     // console.log('decoded:', decoded);
     req.user = decoded.user;
