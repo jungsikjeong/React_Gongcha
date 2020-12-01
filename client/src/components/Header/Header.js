@@ -1,7 +1,8 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { loadUser } from '../../actions/auth';
 
 // 아이콘 및 사진
 import { RiCloseLine } from 'react-icons/ri';
@@ -304,4 +305,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, {})(Header);
+export default connect(mapStateToProps, { loadUser })(Header);

@@ -158,10 +158,9 @@ const Profile = ({
       name: newName,
       avatar: newPhotoURL,
     };
-
     // 유저프로필 변경후 재부팅시켜서 최신화시킴
     profileChange(body);
-    loadUser();
+    // loadUser();
     setAlert('프로필 변경 완료', 'success');
     setNewName('');
   };
@@ -182,7 +181,6 @@ const Profile = ({
     <ProfileContainer>
       <Header />
 
-      {/* to do:: 자기가 쓴 게시글 목록들 가져오기 */}
       {loading ? (
         <Loading />
       ) : (

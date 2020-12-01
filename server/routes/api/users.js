@@ -129,17 +129,21 @@ router.post('/edit/profile', auth, async (req, res) => {
           },
         },
         { new: true }
-      ).select('-password');
+      )
+        .select('-password')
+        .exec();
 
-      const post = await Post.findByIdAndUpdate(
-        user,
-        {
-          $set: {
-            user: req.user.id,
-          },
-        },
-        { multi: true, new: true }
-      ).exec();
+      return res.json(newUser);
+
+      // const post = await Post.findByIdAndUpdate(
+      //   user,
+      //   {
+      //     $set: {
+      //       user: req.user.id,
+      //     },
+      //   },
+      //   { multi: true, new: true }
+      // ).exec();
     }
   } catch (err) {
     console.error(err.message);
