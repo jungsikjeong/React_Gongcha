@@ -33,4 +33,4 @@ const post = await Post.findById(req.params.id)
 
     " 방금작성한 데이터는 user.findById 를 통해 유저 정보를 가져온 후에 newComment 객체에 담기때문에 조회할수있는데 댓글 작성 api쪽에는 populate 가 없어요... "
 
-1. filter을 사용하여 해결함.
+- filter을 사용하여 해결함.
