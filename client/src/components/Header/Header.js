@@ -278,7 +278,7 @@ const Header = ({ auth: { isAuthenticated, user } }) => {
                   <Link to='/write'>
                     <Li>WRITE</Li>
                   </Link>
-                  {/* to do:: 로그인한 유저의 마이페이지로 가게끔 */}
+
                   <Link to='/profile'>
                     <Li>My Pages</Li>
                   </Link>
