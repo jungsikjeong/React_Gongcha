@@ -70,6 +70,7 @@ const CommentStepPost = ({
   removeComment,
   commentId,
   id,
+  auth: { isAuthenticated },
 }) => {
   const [text, setText] = useState('');
   const [activeBtn, setActiveBtn] = useState(false);
@@ -96,28 +97,36 @@ const CommentStepPost = ({
   return (
     <Container>
       <Wrapper>
-        <Form onSubmit={onSubmit}>
-          <TextArea
-            aria-label='댓글 달기...'
-            placeholder='댓글 달기...'
-            autoComplete='off'
-            autoCorrect='off'
-            onChange={onChange}
-            value={text}
-          />
-          <Button active={activeBtn}>게시</Button>
-        </Form>
+        {isAuthenticated && (
+          <Form onSubmit={onSubmit}>
+            <TextArea
+              aria-label='댓글 달기...'
+              placeholder='댓글 달기...'
+              autoComplete='off'
+              autoCorrect='off'
+              onChange={onChange}
+              value={text}
+            />
+            <Button active={activeBtn}>게시</Button>
+          </Form>
+        )}
       </Wrapper>
     </Container>
   );
 };
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
 
 CommentStepPost.propTypes = {
   addComment: PropTypes.func.isRequired,
   addStepComment: PropTypes.func.isRequired,
   removeComment: PropTypes.func.isRequired,
+  auth: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addComment, removeComment, addStepComment })(
-  CommentStepPost
-);
+export default connect(mapStateToProps, {
+  addComment,
+  removeComment,
+  addStepComment,
+})(CommentStepPost);

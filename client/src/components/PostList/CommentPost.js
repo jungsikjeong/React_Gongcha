@@ -63,7 +63,12 @@ const Button = styled.button`
     `}
 `;
 
-const CommentPost = ({ addComment, removeComment, id }) => {
+const CommentPost = ({
+  addComment,
+  removeComment,
+  id,
+  auth: { isAuthenticated },
+}) => {
   const [text, setText] = useState('');
   const [activeBtn, setActiveBtn] = useState(false);
 
@@ -88,25 +93,34 @@ const CommentPost = ({ addComment, removeComment, id }) => {
   return (
     <Container>
       <Wrapper>
-        <Form onSubmit={onSubmit}>
-          <TextArea
-            aria-label='댓글 달기...'
-            placeholder='댓글 달기...'
-            autoComplete='off'
-            autoCorrect='off'
-            onChange={onChange}
-            value={text}
-          />
-          <Button active={activeBtn}>게시</Button>
-        </Form>
+        {isAuthenticated && (
+          <Form onSubmit={onSubmit}>
+            <TextArea
+              aria-label='댓글 달기...'
+              placeholder='댓글 달기...'
+              autoComplete='off'
+              autoCorrect='off'
+              onChange={onChange}
+              value={text}
+            />
+            <Button active={activeBtn}>게시</Button>
+          </Form>
+        )}
       </Wrapper>
     </Container>
   );
 };
 
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
 CommentPost.propTypes = {
   addComment: PropTypes.func.isRequired,
   removeComment: PropTypes.func.isRequired,
+  auth: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addComment, removeComment })(CommentPost);
+export default connect(mapStateToProps, { addComment, removeComment })(
+  CommentPost
+);

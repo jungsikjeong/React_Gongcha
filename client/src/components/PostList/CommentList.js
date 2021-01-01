@@ -160,6 +160,7 @@ const CommentList = ({
   addCommentLike,
   removeCommentLike,
   user,
+  auth: { isAuthenticated },
 }) => {
   const [commentOpenToggle, setCommentOpenToggle] = useState(false);
   const [commentStepOpenToggle, setCommentStepOpenToggle] = useState(true);
@@ -203,8 +204,9 @@ const CommentList = ({
               ) : (
                 ''
               )}
-
-              <button onClick={onCommentOpenToggle}>답글 달기</button>
+              {isAuthenticated && (
+                <button onClick={onCommentOpenToggle}>답글 달기</button>
+              )}
             </SubContentBox>
           </SubContents>
         </Contents>
@@ -273,13 +275,18 @@ const CommentList = ({
     </Container>
   );
 };
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
 CommentList.propTypes = {
   removeComment: PropTypes.func.isRequired,
   addCommentLike: PropTypes.func.isRequired,
   removeCommentLike: PropTypes.func.isRequired,
+  auth: PropTypes.func.isRequired,
 };
 
-export default connect(null, {
+export default connect(mapStateToProps, {
   removeComment,
   addCommentLike,
   removeCommentLike,
